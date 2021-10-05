@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Wed 29 Sep 2021 02:42:06 PM CDT
+    on Tue 05 Oct 2021 05:49:44 PM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/home/dash/stroop-posture/exp/task-switching-replication.py',
+    originPath='/home/dash/cognitive-control-posture/exp/task-switching-replication.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -104,12 +104,14 @@ taskCueImage = visual.ImageStim(
     color=None, colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=0.0)
-taskTarget = visual.ShapeStim(
-    win=win, name='taskTarget',
-    size=(7.5, 7.5), vertices='triangle',
-    ori=0.0, pos=(0, 0),
-    lineWidth=1.0,     colorSpace='rgb',  lineColor='white', fillColor='white',
-    opacity=None, depth=-1.0, interpolate=True)
+taskTargetImage = visual.ImageStim(
+    win=win,
+    name='taskTargetImage', 
+    image='sin', mask=None,
+    ori=0.0, pos=(0, 0), size=(5.0, 5.0),
+    color=[1,1,1], colorSpace='rgb', opacity=None,
+    flipHoriz=False, flipVert=False,
+    texRes=128.0, interpolate=True, depth=-1.0)
 taskResponse = keyboard.Keyboard()
 
 # Initialize components for Routine "feedback"
@@ -258,21 +260,13 @@ for thisTrial in trials:
     continueRoutine = True
     routineTimer.add(2.500000)
     # update component parameters for each repeat
-    # target shape, triangle vs. square
-    shapeOffset = 0.4
-    if shapeType == 'triangle':
-        taskTarget.setVertices( [ [0.0, shapeOffset], [-shapeOffset, -shapeOffset], [shapeOffset, -shapeOffset] ] )
-    elif shapeType == 'square':
-        taskTarget.setVertices( [ [shapeOffset, shapeOffset], [shapeOffset, -shapeOffset], [-shapeOffset, -shapeOffset], [-shapeOffset, shapeOffset] ] )
-
     taskCueImage.setImage(cueFileName)
-    taskTarget.setFillColor(shapeColor)
-    taskTarget.setLineColor(shapeColor)
+    taskTargetImage.setImage(targetFileName)
     taskResponse.keys = []
     taskResponse.rt = []
     _taskResponse_allKeys = []
     # keep track of which components have finished
-    trialComponents = [taskCueImage, taskTarget, taskResponse]
+    trialComponents = [taskCueImage, taskTargetImage, taskResponse]
     for thisComponent in trialComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -312,22 +306,22 @@ for thisTrial in trials:
                 win.timeOnFlip(taskCueImage, 'tStopRefresh')  # time at next scr refresh
                 taskCueImage.setAutoDraw(False)
         
-        # *taskTarget* updates
-        if taskTarget.status == NOT_STARTED and tThisFlip >= 1.0-frameTolerance:
+        # *taskTargetImage* updates
+        if taskTargetImage.status == NOT_STARTED and tThisFlip >= 1.0-frameTolerance:
             # keep track of start time/frame for later
-            taskTarget.frameNStart = frameN  # exact frame index
-            taskTarget.tStart = t  # local t and not account for scr refresh
-            taskTarget.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(taskTarget, 'tStartRefresh')  # time at next scr refresh
-            taskTarget.setAutoDraw(True)
-        if taskTarget.status == STARTED:
+            taskTargetImage.frameNStart = frameN  # exact frame index
+            taskTargetImage.tStart = t  # local t and not account for scr refresh
+            taskTargetImage.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(taskTargetImage, 'tStartRefresh')  # time at next scr refresh
+            taskTargetImage.setAutoDraw(True)
+        if taskTargetImage.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > taskTarget.tStartRefresh + 1.5-frameTolerance:
+            if tThisFlipGlobal > taskTargetImage.tStartRefresh + 1.5-frameTolerance:
                 # keep track of stop time/frame for later
-                taskTarget.tStop = t  # not accounting for scr refresh
-                taskTarget.frameNStop = frameN  # exact frame index
-                win.timeOnFlip(taskTarget, 'tStopRefresh')  # time at next scr refresh
-                taskTarget.setAutoDraw(False)
+                taskTargetImage.tStop = t  # not accounting for scr refresh
+                taskTargetImage.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(taskTargetImage, 'tStopRefresh')  # time at next scr refresh
+                taskTargetImage.setAutoDraw(False)
         
         # *taskResponse* updates
         waitOnFlip = False
@@ -382,8 +376,8 @@ for thisTrial in trials:
             thisComponent.setAutoDraw(False)
     trials.addData('taskCueImage.started', taskCueImage.tStartRefresh)
     trials.addData('taskCueImage.stopped', taskCueImage.tStopRefresh)
-    trials.addData('taskTarget.started', taskTarget.tStartRefresh)
-    trials.addData('taskTarget.stopped', taskTarget.tStopRefresh)
+    trials.addData('taskTargetImage.started', taskTargetImage.tStartRefresh)
+    trials.addData('taskTargetImage.stopped', taskTargetImage.tStopRefresh)
     # check responses
     if taskResponse.keys in ['', [], None]:  # No response was made
         taskResponse.keys = None
@@ -395,7 +389,7 @@ for thisTrial in trials:
     
     # ------Prepare to start Routine "feedback"-------
     continueRoutine = True
-    routineTimer.add(1.000000)
+    routineTimer.add(5.000000)
     # update component parameters for each repeat
     feedbackSound.setSound('A', secs=1.0, hamming=True)
     feedbackSound.setVolume(1.0, log=False)
@@ -433,7 +427,7 @@ for thisTrial in trials:
             feedbackText.setAutoDraw(True)
         if feedbackText.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > feedbackText.tStartRefresh + 1.0-frameTolerance:
+            if tThisFlipGlobal > feedbackText.tStartRefresh + 5.0-frameTolerance:
                 # keep track of stop time/frame for later
                 feedbackText.tStop = t  # not accounting for scr refresh
                 feedbackText.frameNStop = frameN  # exact frame index
