@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Task Switching Experiment
+GenericName=Experiment
+Exec=/usr/bin/python3 /home/experimenter/cognitive-control-posture/exp/task-switching-replication.py 
+Icon=/home/experimenter/cognitive-control-posture/exp/stimuli/blue-triangle.png
+Terminal=true
+NoDisplay=false
+Type=Application
+Categories=Science;

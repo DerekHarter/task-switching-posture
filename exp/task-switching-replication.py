@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Wed 20 Oct 2021 02:14:33 PM CDT
+    on Thu 21 Oct 2021 12:35:42 PM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/home/dash/cognitive-control-posture/exp/task-switching-replication.py',
+    originPath='/home/experimenter/cognitive-control-posture/exp/task-switching-replication.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -311,7 +311,7 @@ practiceTimedTaskCueImage = visual.ImageStim(
     name='practiceTimedTaskCueImage', 
     image='sin', mask=None,
     ori=0.0, pos=(0, 0), size=(10.0, 10.0),
-    color=None, colorSpace='rgb', opacity=None,
+    color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=0.0)
 practiceTimedTaskTargetImage = visual.ImageStim(

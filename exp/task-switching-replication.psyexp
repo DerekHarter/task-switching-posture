@@ -56,7 +56,7 @@
   <Routines>
     <Routine name="practiceTimedTrial">
       <ImageComponent name="practiceTimedTaskCueImage">
-        <Param val="" valType="color" updates="constant" name="color"/>
+        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
@@ -380,7 +380,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="practiceUntimedInstructions01KeyResponse">
-        <Param val="'1','2'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="'1','2'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
@@ -426,7 +426,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="practiceUntimed02KeyResponse">
-        <Param val="'1'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="'1'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
@@ -472,7 +472,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="practiceUntimedInstructions03KeyResponse">
-        <Param val="'2'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="'2'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
@@ -518,7 +518,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="practiceUntimedInstructions04KeyResponse">
-        <Param val="'1','2'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="'1','2'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
@@ -564,7 +564,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="practiceUntimedInstructions05KeyResponse">
-        <Param val="'1'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="'1'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
@@ -610,7 +610,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="practiceUntimedInstructions06KeyResponse">
-        <Param val="'2'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="'2'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
@@ -656,7 +656,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="practiceUntimedInstructions07KeyResponse">
-        <Param val="'1','2'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="'1','2'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
@@ -702,7 +702,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="practiceUntimedInstructions08KeyResponse">
-        <Param val="'1','2'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="'1','2'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="True" valType="bool" updates="constant" name="discard previous"/>
