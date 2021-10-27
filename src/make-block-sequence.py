@@ -116,8 +116,50 @@ def trialsToCsv(trials):
         # output this trial
         print('%d,%s,%s,%s,%s,%s,%s,%s,%d' %
               (trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor, cueFileName, stimuliFileName, correctAnswer))
-              
+
+def trialsToTrialList(trials):
+    """
+    Return a list of dictionaries, where keys are the trial feature/variable names
+    """
+    trialList = []
+    
+    # loop to generate trial settings/variables
+    for trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor in trials:
+        # file names for cue/stimuli to use for this trial
+        cueFileName = 'stimuli/%s-rectangle.png' % (cueType)
+        stimuliFileName = 'stimuli/%s-%s.png' % (shapeColor, shapeType)
+
+        # correct answer for this trial.
+        # TODO: we are hard codeing condition 07 at the moment as correct answer here
+        correctAnswer = 1
+        if cueType == 'dashed': # select by color
+            if shapeColor == 'yellow':
+                correctAnswer = 1
+            else:
+                correctAnswer = 2
+        else: # select by shape
+            if shapeType == 'triangle':
+                correctAnswer = 1
+            else:
+                correctAnswer = 2
+
+        trialDict = {
+            'trialNum': trialNum,
+            'switchTrialType': switchTrialType,
+            'congruantTrialType': congruantTrialType,
+            'cueType': cueType,
+            'shapeType': shapeType,
+            'shapeColor': shapeColor,
+            'cueFileName': cueFileName,
+            'correctAnswere': correctAnswer,
+        }
+
+        trialList.append(trialDict)
+
+    return trialList
+    
 if __name__ == "__main__":
     #trials = random_trials(48)
     trials = counter_balanced_trials(48)
-    trialsToCsv(trials)
+    #trialsToCsv(trials)
+    print(trialsToTrialList(trials))
