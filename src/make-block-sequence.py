@@ -89,9 +89,11 @@ def counter_balanced_trials(numTrials):
     return trials
                     
 
-def trialsToCsv(trials):
+def trialsToCsv(trialFileName, trials):
+    f = open(trialFileName, 'w')
+    
     # file header
-    print("trialNum,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer")
+    f.write("trialNum,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer\n")
 
     # loop to generate trial settings/variables
     for trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor in trials:
@@ -114,9 +116,11 @@ def trialsToCsv(trials):
                 correctAnswer = 2
 
         # output this trial
-        print('%d,%s,%s,%s,%s,%s,%s,%s,%d' %
+        f.write('%d,%s,%s,%s,%s,%s,%s,%s,%d\n' %
               (trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor, cueFileName, stimuliFileName, correctAnswer))
 
+    f.close()
+    
 def trialsToTrialList(trials):
     """
     Return a list of dictionaries, where keys are the trial feature/variable names
@@ -161,5 +165,5 @@ def trialsToTrialList(trials):
 if __name__ == "__main__":
     #trials = random_trials(48)
     trials = counter_balanced_trials(48)
-    #trialsToCsv(trials)
-    print(trialsToTrialList(trials))
+    trialsToCsv('trials.csv', trials)
+    #print(trialsToTrialList(trials))
