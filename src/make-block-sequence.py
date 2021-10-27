@@ -91,7 +91,7 @@ def counter_balanced_trials(numTrials):
 
 def trialsToCsv(trials):
     # file header
-    print("trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor, cueFileName, stimuliFileName, correctAnswer")
+    print("trialNum,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer")
 
     # loop to generate trial settings/variables
     for trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor in trials:
@@ -114,7 +114,7 @@ def trialsToCsv(trials):
                 correctAnswer = 2
 
         # output this trial
-        print('%d, %s, %s, %s, %s, %s, %s, %s, %d' %
+        print('%d,%s,%s,%s,%s,%s,%s,%s,%d' %
               (trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor, cueFileName, stimuliFileName, correctAnswer))
               
 if __name__ == "__main__":
