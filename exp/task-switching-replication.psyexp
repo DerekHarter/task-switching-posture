@@ -7,7 +7,7 @@
     <Param val="auto" valType="str" updates="None" name="Data file delimiter"/>
     <Param val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code" updates="None" name="Data filename"/>
     <Param val="True" valType="bool" updates="None" name="Enable Escape"/>
-    <Param val="{'participant': '1000', 'session': '001', 'condition': &quot;['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16' ]&quot;}" valType="code" updates="None" name="Experiment info"/>
+    <Param val="{'participant': '1000', 'session': '001', 'condition': &quot;['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16']&quot;}" valType="code" updates="None" name="Experiment info"/>
     <Param val="True" valType="bool" updates="None" name="Force stereo"/>
     <Param val="True" valType="bool" updates="None" name="Full-screen window"/>
     <Param val="" valType="str" updates="None" name="HTML path"/>
@@ -23,7 +23,7 @@
     <Param val="1" valType="num" updates="None" name="Screen"/>
     <Param val="True" valType="bool" updates="None" name="Show info dlg"/>
     <Param val="False" valType="bool" updates="None" name="Show mouse"/>
-    <Param val="degFlatPos" valType="str" updates="None" name="Units"/>
+    <Param val="deg" valType="str" updates="None" name="Units"/>
     <Param val="" valType="str" updates="None" name="Use version"/>
     <Param val="[1920, 1080]" valType="list" updates="None" name="Window size (pixels)"/>
     <Param val="avg" valType="str" updates="None" name="blendMode"/>
@@ -198,7 +198,7 @@
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(10.0, 10.0)" valType="list" updates="constant" name="size"/>
+        <Param val="(25.0, 25.0)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
@@ -206,7 +206,7 @@
         <Param val="2.5" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="deg" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <ImageComponent name="stimuli_image">
         <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
@@ -224,7 +224,7 @@
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(5.0, 5.0)" valType="list" updates="constant" name="size"/>
+        <Param val="(12.0, 12.0)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="1.0" valType="code" updates="None" name="startVal"/>
@@ -232,7 +232,7 @@
         <Param val="1.5" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="deg" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="exp_resp">
         <Param val="'1','2'" valType="list" updates="constant" name="allowedKeys"/>
@@ -915,7 +915,7 @@
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(10.0, 10.0)" valType="list" updates="constant" name="size"/>
+        <Param val="(25.0, 25.0)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
@@ -923,7 +923,7 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="deg" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <ImageComponent name="stimuli_untimed_image">
         <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
@@ -941,7 +941,7 @@
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(5.0, 5.0)" valType="list" updates="constant" name="size"/>
+        <Param val="(12.0, 12.0)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="1.0" valType="code" updates="None" name="startVal"/>
@@ -949,7 +949,7 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="deg" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="untimed_resp">
         <Param val="'1','2'" valType="list" updates="constant" name="allowedKeys"/>
@@ -1117,7 +1117,7 @@
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(10.0, 10.0)" valType="list" updates="constant" name="size"/>
+        <Param val="(25.0, 25.0)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
@@ -1125,7 +1125,7 @@
         <Param val="2.5" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="deg" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <ImageComponent name="stimuli_timed_image">
         <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
@@ -1143,7 +1143,7 @@
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(5.0, 5.0)" valType="list" updates="constant" name="size"/>
+        <Param val="(12.0, 12.0)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="1.0" valType="code" updates="None" name="startVal"/>
@@ -1151,7 +1151,7 @@
         <Param val="1.5" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="deg" valType="str" updates="None" name="units"/>
       </ImageComponent>
       <KeyboardComponent name="timed_resp">
         <Param val="'1','2'" valType="list" updates="constant" name="allowedKeys"/>

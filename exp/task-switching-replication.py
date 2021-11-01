@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Wed 27 Oct 2021 10:42:38 PM CDT
+    on Mon 01 Nov 2021 12:31:58 PM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/home/dash/cognitive-control-posture/exp/task-switching-replication-reorg2.py',
+    originPath='/home/dash/cognitive-control-posture/exp/task-switching-replication.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -69,7 +69,7 @@ win = visual.Window(
     winType='pyglet', allowGUI=False, allowStencil=False,
     monitor='testMonitor', color='black', colorSpace='rgb',
     blendMode='avg', useFBO=True, 
-    units='degFlatPos')
+    units='deg')
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
 if expInfo['frameRate'] != None:
@@ -405,17 +405,17 @@ InitializeUntimedClock = core.Clock()
 UntimedTrialClock = core.Clock()
 cue_untimed_image = visual.ImageStim(
     win=win,
-    name='cue_untimed_image', 
+    name='cue_untimed_image', units='deg', 
     image='sin', mask=None,
-    ori=0.0, pos=(0, 0), size=(10.0, 10.0),
+    ori=0.0, pos=(0, 0), size=(25.0, 25.0),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=0.0)
 stimuli_untimed_image = visual.ImageStim(
     win=win,
-    name='stimuli_untimed_image', 
+    name='stimuli_untimed_image', units='deg', 
     image='sin', mask=None,
-    ori=0.0, pos=(0, 0), size=(5.0, 5.0),
+    ori=0.0, pos=(0, 0), size=(12.0, 12.0),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-1.0)
@@ -496,17 +496,17 @@ InitializeTimedClock = core.Clock()
 TimedTrialClock = core.Clock()
 cue_timed_image = visual.ImageStim(
     win=win,
-    name='cue_timed_image', 
+    name='cue_timed_image', units='deg', 
     image='sin', mask=None,
-    ori=0.0, pos=(0, 0), size=(10.0, 10.0),
+    ori=0.0, pos=(0, 0), size=(25.0, 25.0),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=0.0)
 stimuli_timed_image = visual.ImageStim(
     win=win,
-    name='stimuli_timed_image', 
+    name='stimuli_timed_image', units='deg', 
     image='sin', mask=None,
-    ori=0.0, pos=(0, 0), size=(5.0, 5.0),
+    ori=0.0, pos=(0, 0), size=(12.0, 12.0),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-1.0)
@@ -601,17 +601,17 @@ InitializeBlockClock = core.Clock()
 ExpTrialClock = core.Clock()
 cue_image = visual.ImageStim(
     win=win,
-    name='cue_image', 
+    name='cue_image', units='deg', 
     image='sin', mask=None,
-    ori=0.0, pos=(0, 0), size=(10.0, 10.0),
+    ori=0.0, pos=(0, 0), size=(25.0, 25.0),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=0.0)
 stimuli_image = visual.ImageStim(
     win=win,
-    name='stimuli_image', 
+    name='stimuli_image', units='deg', 
     image='sin', mask=None,
-    ori=0.0, pos=(0, 0), size=(5.0, 5.0),
+    ori=0.0, pos=(0, 0), size=(12.0, 12.0),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-1.0)
