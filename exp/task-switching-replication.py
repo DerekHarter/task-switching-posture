@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Mon 01 Nov 2021 01:45:35 PM CDT
+    on Mon 01 Nov 2021 03:03:24 PM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -540,6 +540,10 @@ def trials_to_triallist(trials):
 PostureInstructionClock = core.Clock()
 postureTrial = 0
 
+numCorrectTrials = 0
+totalTrialsAttempted = 0
+reactionTimeSum = 0.0
+totalTrialsReactedSuccessfully = 0
 text_3 = visual.TextStim(win=win, name='text_3',
     text='',
     font='Open Sans',
@@ -807,6 +811,10 @@ text_2 = visual.TextStim(win=win, name='text_2',
 PostureInstructionClock = core.Clock()
 postureTrial = 0
 
+numCorrectTrials = 0
+totalTrialsAttempted = 0
+reactionTimeSum = 0.0
+totalTrialsReactedSuccessfully = 0
 text_3 = visual.TextStim(win=win, name='text_3',
     text='',
     font='Open Sans',
@@ -911,12 +919,12 @@ text_2 = visual.TextStim(win=win, name='text_2',
 # Initialize components for Routine "Results"
 ResultsClock = core.Clock()
 text_4 = visual.TextStim(win=win, name='text_4',
-    text='Thank you for participating in our experiment.\nYour participantion is greatly appreciated.\n\nYou had an accuracy rate of \n\n352 / 392 = 89.8% correct\n\nYour average reaction time on the trials\nthat you responded in time was\n\n0.83 ms\n\nPress any key when you are ready to finish the experiment.\n',
+    text='',
     font='Open Sans',
     pos=(0, 0), height=1.0, wrapWidth=30.0, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
-    depth=0.0);
+    depth=-1.0);
 key_resp_3 = keyboard.Keyboard()
 
 # Create some handy timers
@@ -3775,10 +3783,18 @@ for thisPosture in postures:
             # ------Prepare to start Routine "DetermineExpFeedback"-------
             continueRoutine = True
             # update component parameters for each repeat
+            totalTrialsAttempted += 1
+            
+            if type(exp_resp.rt) == float:
+                reactionTimeSum += exp_resp.rt
+                totalTrialsReactedSuccessfully += 1
+                #print('rt:  %f, sum: %f, totalTrials: %d' % (exp_resp.rt, reactionTimeSum, totalTrialsReactedSuccessfully))
+                
             if exp_resp.corr == 1:
                 selectCorrect = 1
                 selectIncorrectSolid = 0
                 selectIncorrectDashed = 0
+                numCorrectTrials += 1
             else:
                 selectCorrect = 0
                 if cueType == 'solid':
@@ -4143,6 +4159,32 @@ for thisPosture in postures:
 # ------Prepare to start Routine "Results"-------
 continueRoutine = True
 # update component parameters for each repeat
+accuracy = float(numCorrectTrials) / float(totalTrialsAttempted)
+avgReactionTime = reactionTimeSum / float(totalTrialsReactedSuccessfully)
+
+experimentResultsText = """
+Thank you for participating in our experiment.
+Your participantion is greatly appreciated.
+
+You had an accuracy rate of 
+
+%d / %d = %0.1f %% correct
+
+For comparison, in a previous study, participants
+achieved an accuracy of 92.5%%
+
+Your average reaction time on the trials
+that you responded in time was
+
+%0.4f sec
+
+For comparison, in a previous study, participants
+achieved an average reaction time of 0.5404 sec
+
+Press any key when you are ready to finish the experiment.
+""" % (numCorrectTrials, totalTrialsAttempted, accuracy * 100.0, avgReactionTime)
+
+text_4.setText(experimentResultsText)
 key_resp_3.keys = []
 key_resp_3.rt = []
 _key_resp_3_allKeys = []
