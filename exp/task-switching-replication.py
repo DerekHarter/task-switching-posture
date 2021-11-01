@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Mon 01 Nov 2021 12:31:58 PM CDT
+    on Mon 01 Nov 2021 01:23:33 PM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -86,6 +86,8 @@ defaultKeyboard = keyboard.Keyboard()
 # Initialize components for Routine "Initialize"
 InitializeClock = core.Clock()
 import random
+import itertools
+import sys
 
 # determine experiment settings from participant condition
 conditionStr = expInfo['condition']
@@ -95,7 +97,31 @@ numTrialsPerBlock = 4
 numTrialsUntimed = 4
 numTrialsTimed = 4
 
-counterBalancing = {
+# set up instrcution and experiment image stimuli based on condition
+untimedInstruction01   = 'instructions/cond-%02d-untimed-01.png' % (condition)
+untimedInstruction02   = 'instructions/cond-%02d-untimed-02.png' % (condition)
+untimedInstruction03   = 'instructions/cond-%02d-untimed-03.png' % (condition)
+untimedInstruction04   = 'instructions/cond-%02d-untimed-04.png' % (condition)
+untimedInstruction05   = 'instructions/cond-%02d-untimed-05.png' % (condition)
+untimedInstruction06   = 'instructions/cond-%02d-untimed-06.png' % (condition)
+untimedInstruction07   = 'instructions/cond-%02d-untimed-07.png' % (condition)
+untimedInstruction08   = 'instructions/cond-%02d-untimed-08.png' % (condition)
+timedInstruction01     = 'instructions/cond-%02d-timed-01.png' % (condition)
+timedInstruction02     = 'instructions/cond-%02d-timed-02.png' % (condition)
+expInstruction01       = 'instructions/cond-%02d-experiment-01.png' % (condition)
+errorInstructionDashed = 'instructions/cond-%02d-error-dashed.png' % (condition)
+errorInstructionSolid  = 'instructions/cond-%02d-error-solid.png' % (condition)
+
+# experiment trial variable enumerated types
+cue_types = ['dashed', 'solid']
+shape_types = ['square', 'triangle']
+shape_colors = ['blue', 'yellow']
+
+# mapping of subject condition number to counter balanced experiment settings for
+# cues and expected correct responses
+# NOTE: should we try and move these two tables/dicts into an external csv file and
+# load it instead of having it hardcoded in the psycopy code?
+counter_balancing = {
     #    posture     cueSolid cueDashed colorLeft colorRight shapeLeft  shapeRight
      1: ['standing', 'color', 'shape', 'blue',   'yellow', 'triangle', 'square'],
      2: ['standing', 'color', 'shape', 'blue',   'yellow', 'square',   'triangle'],
@@ -118,173 +144,394 @@ counterBalancing = {
     16: ['sitting',  'shape', 'color', 'yellow', 'blue',   'square',   'triangle'],
 }
 
-posture, cueSolid, cueDashed, colorLeft, colorRight, shapeLeft, shapeRight = counterBalancing[condition]
+# given selected subject condition, determine experiment variables and settings being
+# used
+posture, cueSolid, cueDashed, colorLeft, colorRight, shapeLeft, shapeRight = counter_balancing[condition]
 
-# set up instrcution and experiment image stimuli based on condition
-untimedInstruction01   = 'instructions/cond-%02d-untimed-01.png' % (condition)
-untimedInstruction02   = 'instructions/cond-%02d-untimed-02.png' % (condition)
-untimedInstruction03   = 'instructions/cond-%02d-untimed-03.png' % (condition)
-untimedInstruction04   = 'instructions/cond-%02d-untimed-04.png' % (condition)
-untimedInstruction05   = 'instructions/cond-%02d-untimed-05.png' % (condition)
-untimedInstruction06   = 'instructions/cond-%02d-untimed-06.png' % (condition)
-untimedInstruction07   = 'instructions/cond-%02d-untimed-07.png' % (condition)
-untimedInstruction08   = 'instructions/cond-%02d-untimed-08.png' % (condition)
-timedInstruction01     = 'instructions/cond-%02d-timed-01.png' % (condition)
-timedInstruction02     = 'instructions/cond-%02d-timed-02.png' % (condition)
-expInstruction01       = 'instructions/cond-%02d-experiment-01.png' % (condition)
-errorInstructionDashed = 'instructions/cond-%02d-error-dashed.png' % (condition)
-errorInstructionSolid  = 'instructions/cond-%02d-error-solid.png' % (condition)
+# mapping of subject counter balanced conditions to expected correct button
+# press, 1 for left and 2 for right.  Used explicitly when creating randomized
+# trials to correctly set all trial variables for current subject condition
+subject_condition_responses = {
+    # condition 1, dashed=shape, solid=color
+    (1, 'dashed', 'yellow', 'triangle'): 1,
+    (1, 'dashed', 'yellow', 'square'): 2,
+    (1, 'dashed', 'blue',   'triangle'): 1,
+    (1, 'dashed', 'blue',   'square'): 2,
+    (1, 'solid',  'yellow', 'triangle'): 2,
+    (1, 'solid',  'yellow', 'square'): 2,
+    (1, 'solid',  'blue',   'triangle'): 1,
+    (1, 'solid',  'blue',   'square'): 1,
 
-# methods to create counter balanced trial blocks
-cueTypes = ['dashed', 'solid']
-shapeTypes = ['square', 'triangle']
-shapeColors = ['blue', 'yellow']
+    # condition 2, dashed=shape, solid=color
+    (2, 'dashed', 'yellow', 'triangle'): 2,
+    (2, 'dashed', 'yellow', 'square'): 1,
+    (2, 'dashed', 'blue',   'triangle'): 2,
+    (2, 'dashed', 'blue',   'square'): 1,
+    (2, 'solid',  'yellow', 'triangle'): 2,
+    (2, 'solid',  'yellow', 'square'): 2,
+    (2, 'solid',  'blue',   'triangle'): 1,
+    (2, 'solid',  'blue',   'square'): 1,
 
-def counter_balanced_trials(numTrials):
+    # condition 3, dashed=shape, solid=color
+    (3, 'dashed', 'yellow', 'triangle'): 1,
+    (3, 'dashed', 'yellow', 'square'): 2,
+    (3, 'dashed', 'blue',   'triangle'): 1,
+    (3, 'dashed', 'blue',   'square'): 2,
+    (3, 'solid',  'yellow', 'triangle'): 1,
+    (3, 'solid',  'yellow', 'square'): 1,
+    (3, 'solid',  'blue',   'triangle'): 2,
+    (3, 'solid',  'blue',   'square'): 2,
+
+    # condition 4, dashed=shape, solid=color
+    (4, 'dashed', 'yellow', 'triangle'): 2,
+    (4, 'dashed', 'yellow', 'square'): 1,
+    (4, 'dashed', 'blue',   'triangle'): 2,
+    (4, 'dashed', 'blue',   'square'): 1,
+    (4, 'solid',  'yellow', 'triangle'): 1,
+    (4, 'solid',  'yellow', 'square'): 1,
+    (4, 'solid',  'blue',   'triangle'): 2,
+    (4, 'solid',  'blue',   'square'): 2,
+
+    # condition 5, dashed=color, solid=shape
+    (5, 'dashed', 'yellow', 'triangle'): 2,
+    (5, 'dashed', 'yellow', 'square'): 2,
+    (5, 'dashed', 'blue',   'triangle'): 1,
+    (5, 'dashed', 'blue',   'square'): 1,
+    (5, 'solid',  'yellow', 'triangle'): 1,
+    (5, 'solid',  'yellow', 'square'): 2,
+    (5, 'solid',  'blue',   'triangle'): 1,
+    (5, 'solid',  'blue',   'square'): 2,
+
+    # condition 6, dashed=color, solid=shape
+    (6, 'dashed', 'yellow', 'triangle'): 2,
+    (6, 'dashed', 'yellow', 'square'): 2,
+    (6, 'dashed', 'blue',   'triangle'): 1,
+    (6, 'dashed', 'blue',   'square'): 1,
+    (6, 'solid',  'yellow', 'triangle'): 2,
+    (6, 'solid',  'yellow', 'square'): 1,
+    (6, 'solid',  'blue',   'triangle'): 2,
+    (6, 'solid',  'blue',   'square'): 1,
+
+    # condition 7, dashed=color, solid=shape
+    (7, 'dashed', 'yellow', 'triangle'): 1,
+    (7, 'dashed', 'yellow', 'square'): 1,
+    (7, 'dashed', 'blue',   'triangle'): 2,
+    (7, 'dashed', 'blue',   'square'): 2,
+    (7, 'solid',  'yellow', 'triangle'): 1,
+    (7, 'solid',  'yellow', 'square'): 2,
+    (7, 'solid',  'blue',   'triangle'): 1,
+    (7, 'solid',  'blue',   'square'): 2,
+
+    # condition 8, dashed=color, solid=shape
+    (8, 'dashed', 'yellow', 'triangle'): 1,
+    (8, 'dashed', 'yellow', 'square'): 1,
+    (8, 'dashed', 'blue',   'triangle'): 2,
+    (8, 'dashed', 'blue',   'square'): 2,
+    (8, 'solid',  'yellow', 'triangle'): 2,
+    (8, 'solid',  'yellow', 'square'): 1,
+    (8, 'solid',  'blue',   'triangle'): 2,
+    (8, 'solid',  'blue',   'square'): 1,
+
+    # condition 9, dashed=shape, solid=color
+    (9, 'dashed', 'yellow', 'triangle'): 1,
+    (9, 'dashed', 'yellow', 'square'): 2,
+    (9, 'dashed', 'blue',   'triangle'): 1,
+    (9, 'dashed', 'blue',   'square'): 2,
+    (9, 'solid',  'yellow', 'triangle'): 2,
+    (9, 'solid',  'yellow', 'square'): 2,
+    (9, 'solid',  'blue',   'triangle'): 1,
+    (9, 'solid',  'blue',   'square'): 1,
+
+    # condition 10, dashed=shape, solid=color
+    (10, 'dashed', 'yellow', 'triangle'): 2,
+    (10, 'dashed', 'yellow', 'square'): 1,
+    (10, 'dashed', 'blue',   'triangle'): 2,
+    (10, 'dashed', 'blue',   'square'): 1,
+    (10, 'solid',  'yellow', 'triangle'): 2,
+    (10, 'solid',  'yellow', 'square'): 2,
+    (10, 'solid',  'blue',   'triangle'): 1,
+    (10, 'solid',  'blue',   'square'): 1,
+
+    # condition 11, dashed=shape, solid=color
+    (11, 'dashed', 'yellow', 'triangle'): 1,
+    (11, 'dashed', 'yellow', 'square'): 2,
+    (11, 'dashed', 'blue',   'triangle'): 1,
+    (11, 'dashed', 'blue',   'square'): 2,
+    (11, 'solid',  'yellow', 'triangle'): 1,
+    (11, 'solid',  'yellow', 'square'): 1,
+    (11, 'solid',  'blue',   'triangle'): 2,
+    (11, 'solid',  'blue',   'square'): 2,
+
+    # condition 12, dashed=shape, solid=color
+    (12, 'dashed', 'yellow', 'triangle'): 2,
+    (12, 'dashed', 'yellow', 'square'): 1,
+    (12, 'dashed', 'blue',   'triangle'): 2,
+    (12, 'dashed', 'blue',   'square'): 1,
+    (12, 'solid',  'yellow', 'triangle'): 1,
+    (12, 'solid',  'yellow', 'square'): 1,
+    (12, 'solid',  'blue',   'triangle'): 2,
+    (12, 'solid',  'blue',   'square'): 2,
+
+    # condition 13, dashed=color, solid=shape
+    (13, 'dashed', 'yellow', 'triangle'): 2,
+    (13, 'dashed', 'yellow', 'square'): 2,
+    (13, 'dashed', 'blue',   'triangle'): 1,
+    (13, 'dashed', 'blue',   'square'): 1,
+    (13, 'solid',  'yellow', 'triangle'): 1,
+    (13, 'solid',  'yellow', 'square'): 2,
+    (13, 'solid',  'blue',   'triangle'): 1,
+    (13, 'solid',  'blue',   'square'): 2,
+
+    # condition 14, dashed=color, solid=shape
+    (14, 'dashed', 'yellow', 'triangle'): 2,
+    (14, 'dashed', 'yellow', 'square'): 2,
+    (14, 'dashed', 'blue',   'triangle'): 1,
+    (14, 'dashed', 'blue',   'square'): 1,
+    (14, 'solid',  'yellow', 'triangle'): 2,
+    (14, 'solid',  'yellow', 'square'): 1,
+    (14, 'solid',  'blue',   'triangle'): 2,
+    (14, 'solid',  'blue',   'square'): 1,
+
+    # condition 15, dashed=color, solid=shape
+    (15, 'dashed', 'yellow', 'triangle'): 1,
+    (15, 'dashed', 'yellow', 'square'): 1,
+    (15, 'dashed', 'blue',   'triangle'): 2,
+    (15, 'dashed', 'blue',   'square'): 2,
+    (15, 'solid',  'yellow', 'triangle'): 1,
+    (15, 'solid',  'yellow', 'square'): 2,
+    (15, 'solid',  'blue',   'triangle'): 1,
+    (15, 'solid',  'blue',   'square'): 2,
+
+    # condition 16, dashed=color, solid=shape
+    (16, 'dashed', 'yellow', 'triangle'): 1,
+    (16, 'dashed', 'yellow', 'square'): 1,
+    (16, 'dashed', 'blue',   'triangle'): 2,
+    (16, 'dashed', 'blue',   'square'): 2,
+    (16, 'solid',  'yellow', 'triangle'): 2,
+    (16, 'solid',  'yellow', 'square'): 1,
+    (16, 'solid',  'blue',   'triangle'): 2,
+    (16, 'solid',  'blue',   'square'): 1,
+}
+
+def determine_expected_response(condition, trial):
     """
-    We generate numTrials + 1, first trial is randomly
-    selected, then remaining trials are selected to 
-    have equal numbers of congruant/incongruant and
-    switch/no-switch trials.  We expect numTrials to be
-    an even number divisible by 2.
+    Given subject condition and the trial variables (cue, shape and color), determine
+    correct response.  We basically use a lookup table / dictionary
+    to map from these to expected correct response.  The lookup table could (should?)
+    be moved to a file that is read in on experiment startup.
     """
+    response = 0
+    cue_type, shape_type, shape_color = trial
+    response = subject_condition_responses[(condition, cue_type, shape_color, shape_type)]
+
+    # it is an error if response is still 0, should probably
+    # stop or throw an exception to be defensive
+    return response
+
+
+def is_balanced(trials):
+    """
+    Return true if both switch/noswitch and congruant/incongruant
+    are balanced, false otherwise.
+
+    NOTE: this method always assumes there is a first buffer
+    trial which is ignored when determining balance
+    """
+    return is_switch_balanced(trials) and is_congruant_balanced(trials)
+
+
+def is_switch_balanced(trials):
+    """
+    Return true if switch/noswitch are balanced, false if not.
+    """
+    switch_count = 0
+    for _, switch_type, *_ in trials:
+        if switch_type == 'switch':
+            switch_count += 1
+
+    num_trials = len(trials) - 1
+    half_trials = num_trials // 2
+    
+    #print('is_switch_balanced %d switched out of %d trials' % (switch_count, num_trials))
+    return switch_count == half_trials
+
+        
+def is_congruant_balanced(trials):
+    """
+    Return true if congruant/incongruant are balanced, false if not.
+    """
+    congruant_count = 0
+    for _, _, congruant_type, *_ in trials:
+        if congruant_type == 'congruant':
+            congruant_count += 1
+
+    num_trials = len(trials) - 1
+    half_trials = num_trials // 2
+    
+    #print('is_congruant_balanced %d congruant out of %d trials' % (congruant_count, num_trials))
+    return congruant_count == half_trials
+
+
+def random_trials(condition, num_trials, add_buffer_trial=False):
+    """
+    Create the indicated number of trials and shuffle them
+    randomly.  Return result as a list of the trial variables.
+
+    The add_buffer_trial flag determines if a random initial trial is
+    added to the beginning of the trial sequence.  Normally we systematically
+    use the trial variable combinations, repeating all possible combinations
+    as many times as needed.  But when we are explicitly enforcing that
+    trial blocks have equal switch/noswitch and congruant/incongruant, we need
+    an initial buffer trial where switch and congruant are NA, this is not
+    defined except in relation to a previous trial, so the initial trial is always
+    NA with respect to switch/noswitch and congruant/incongruant
+    """
+    
+    # create list of 8 basic trial variable combinations
+    vars = [cue_types, shape_types, shape_colors]
+    base_trials = list(itertools.product(*vars))
+    num_base_trials = len(base_trials)
+
+    # Repeat basic trial combinations whole number of times
+    # that we can, then select some more combinations at random
+    # to get exactly the asked for num_trials
+    num_base_repeats = num_trials // num_base_trials
+    num_remaining = num_trials % num_base_trials
+    trial_list = base_trials * num_base_repeats
+    trial_list += random.sample(base_trials, num_remaining)
+
+    # now shuffle the trial_list randomly
+    random.shuffle(trial_list)
+
+    # if we are to add a buffer trial, choose one at random and prepend
+    # it to the trial list
+    if add_buffer_trial:
+        trial = random.choice(base_trials)
+        trial_list = [trial] + trial_list
+        num_trials += 1
+        
+    # collect trial variables as a list of trials to return
     trials = []
 
-    # genenerate initial random trial
-    cueType = random.choice(cueTypes)
-    shapeType = random.choice(shapeTypes)
-    shapeColor = random.choice(shapeColors)
-    trial = (1, 'NA', 'NA', cueType, shapeType, shapeColor)
+    # rest of trials, determine switch and congruant from previous
+    for trial_num in range(0, num_trials):
+        cue_type, shape_type, shape_color = trial_list[trial_num]
+        current_response = determine_expected_response(condition, trial_list[trial_num])
 
-    trials.append( trial )
-
-    # now create and randomly permute the trial types
-    # we are trying to balance
-    halfTrials = int(numTrials / 2)
-    congruantTrialTypes = ['congruant'] * halfTrials + ['incongruant'] * halfTrials
-    random.shuffle(congruantTrialTypes)
-    switchTrialTypes = ['switch'] * halfTrials + ['noswitch'] * halfTrials
-    random.shuffle(switchTrialTypes)
-    trialNums = range(2, numTrials + 2)
-
-    for trialNum, congruantTrialType, switchTrialType in zip(trialNums, congruantTrialTypes, switchTrialTypes):
-        _, _, _, prevCueType, prevShapeType, prevShapeColor = trials[-1]
-
-        # determine whether this is a switch or no switch on the task (choose by shape vs.
-        # choose by color)
-        if switchTrialType == 'noswitch':
-            cueType = prevCueType
+        # first trial is a buffer
+        # if no previous, then switch and congrunt are not applicable to this trial
+        if trial_num == 0:
+            switch_type = 'NA'
+            congruant_type = 'NA'
+        # otherwise determine switch and congruant for this trial based on previous trial
         else:
-            if prevCueType == 'dashed':
-                cueType = 'solid'
+            prev_cue_type, prev_shape_type, prev_shape_color = trial_list[trial_num - 1]
+
+            # determine if switch or noswitch
+            if cue_type == prev_cue_type:
+                switch_type = 'noswitch'
             else:
-                cueType = 'dashed'
+                switch_type = 'switch'
 
-        # determine if response is congruant (push same button) or incongruant
-        # (push the other button)
-        # TODO: we currently hard code that cue solid is choose by shape and
-        #   cue dashed is choose by color, but this needs to differ depending
-        #   on the participant condition of what the cue means
-        if congruantTrialType == 'congruant':
-            if prevCueType == 'solid': # hard code solid to shape select task
-                shapeType = prevShapeType
-                shapeColor = random.choice(shapeColors)
-            else: # hard code dashed to be color select task
-                shapeColor = prevShapeColor
-                shapeType = random.choice(shapeTypes)
-        else:
-            if prevCueType == 'solid': # hard code solid to shape select task
-                if prevShapeType == 'square':
-                    shapeType = 'triangle'
-                else:
-                    shapeType = 'square'
-                shapeColor = random.choice(shapeColors)
-            else: # hard code dashed to be color select task
-                if prevShapeColor == 'blue':
-                    shapeColor = 'yellow'
-                else:
-                    shapeColor = 'blue'
-                shapeType = random.choice(shapeTypes)
+            # determine if congruant or not congruant, this is more complicated, it depends
+            # on the expected response of previous trial and the response of current trial
+            if current_response == prev_response:
+                congruant_type = 'congruant'
+            else:
+                congruant_type = 'incongruant'
 
-        # save the generated trial to be returned
-        trial = (trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor)
-        trials.append( trial )
+        # remember the previous response for next iteration to determine congruant / incongruant
+        prev_response = current_response
+        
+        trials.append( (trial_num + 1, switch_type, congruant_type, cue_type, shape_type, shape_color, current_response) )
 
+    # return the resulting constructed and randomly shuffled list of trials
     return trials
 
-def trialsToTrialList(trials):
+
+def counter_balanced_trials(condition, num_trials):
     """
-    Return a list of dictionaries, where keys are the trial feature/variable names
+    We brute force solution here.  Generate random trials
+    with a buffer trial before the requested num_trials, then
+    test to see if resulting random shuffle of trials is balanced
+    or not.  Usually should take no more than 100 random generations
+    to find a trial that is both balanced by switch/noswitch and
+    congruant/incongruant
     """
-    trialList = []
-    
-    # loop to generate trial settings/variables
-    for trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor in trials:
-        # file names for cue/stimuli to use for this trial
-        cueFileName = 'stimuli/%s-rectangle.png' % (cueType)
-        stimuliFileName = 'stimuli/%s-%s.png' % (shapeColor, shapeType)
+    # get an initial set of random trials
+    MAX_ATTEMPTS = 1000
+    trials = random_trials(condition, num_trials, True)
 
-        # correct answer for this trial.
-        # TODO: we are hard codeing condition 07 at the moment as correct answer here
-        correctAnswer = 1
-        if cueType == 'dashed': # select by color
-            if shapeColor == 'yellow':
-                correctAnswer = 1
-            else:
-                correctAnswer = 2
-        else: # select by shape
-            if shapeType == 'triangle':
-                correctAnswer = 1
-            else:
-                correctAnswer = 2
+    # keep generating random trials of the requested size until
+    # we find a balanced one, or until we reach some maximum
+    # attempts, in which case something may be wrong
+    num_attempts = 1
+    while not is_balanced(trials) and num_attempts <= MAX_ATTEMPTS:
+        trials = random_trials(condition, num_trials, True)
+        num_attempts += 1
 
-        trialDict = {
-            'trialNum': trialNum,
-            'switchTrialType': switchTrialType,
-            'congruantTrialType': congruantTrialType,
-            'cueType': cueType,
-            'shapeType': shapeType,
-            'shapeColor': shapeColor,
-            'cueFileName': cueFileName,
-            'stimuliFileName': stimuliFileName,
-            'correctAnswer': correctAnswer,
-        }
+    # sanity check, make sure we found a balanced trial
+    if not is_balanced(trials):
+        print("<counter_balanced_trials> Error: could not achieve block balance in %d attempts, aborting" % (MAX_ATTEMPTS))
+        sys.exit(1)
+        
+    # at this point we should have found a balanced trial
+    return trials
+                    
 
-        trialList.append(trialDict)
-
-    return trialList
-
-def trialsToCsv(trialFileName, trials):
-    f = open(trialFileName, 'w')
+def trials_to_csv(filename, trials):
+    """
+    Given a list of trials (which constitutes a single block of trials usually
+    for the experiment), save the block trial list to a comma seperated values (csv)
+    file.  This file can be loaded by Psychopy for an experiment block of trials.
+    """
+    f = open(filename, 'w')
     
     # file header
     f.write("trialNum,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer\n")
 
     # loop to generate trial settings/variables
-    for trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor in trials:
+    for trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
         # file names for cue/stimuli to use for this trial
-        cueFileName = 'stimuli/%s-rectangle.png' % (cueType)
-        stimuliFileName = 'stimuli/%s-%s.png' % (shapeColor, shapeType)
-
-        # correct answer for this trial.
-        # TODO: we are hard codeing condition 07 at the moment as correct answer here
-        correctAnswer = 1
-        if cueType == 'dashed': # select by color
-            if shapeColor == 'yellow':
-                correctAnswer = 1
-            else:
-                correctAnswer = 2
-        else: # select by shape
-            if shapeType == 'triangle':
-                correctAnswer = 1
-            else:
-                correctAnswer = 2
+        cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)
+        stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)
 
         # output this trial
         f.write('%d,%s,%s,%s,%s,%s,%s,%s,%d\n' %
-              (trialNum, switchTrialType, congruantTrialType, cueType, shapeType, shapeColor, cueFileName, stimuliFileName, correctAnswer))
+              (trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, cue_filename, stimuli_filename, correct_response))
 
     f.close()
+
+
+def trials_to_triallist(trials):
+    """
+    Return a list of dictionaries, where keys are the trial feature/variable names.  Can be used
+    directly in Psychopy code instead of saving to a csv file then loading the file for a
+    block of trials.
+    """
+    trial_list = []
+    
+    # loop to generate trial settings/variables
+    for trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
+        # file names for cue/stimuli to use for this trial
+        cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)
+        stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)
+
+        trial_dict = {
+            'trialNum': trial_num,
+            'switchTrialType': switch_type,
+            'congruantTrialType': congruant_type,
+            'cueType': cue_type,
+            'shapeType': shape_type,
+            'shapeColor': shape_color,
+            'cueFileName': cue_filename,
+            'stimuliFileName': stimuli_filename,
+            'correctAnswer': correct_response,
+        }
+
+        trial_list.append(trial_dict)
+
+    return trial_list
 
 
 
@@ -1623,10 +1870,9 @@ routineTimer.reset()
 continueRoutine = True
 # update component parameters for each repeat
 untimedNum = 1
-thisUntimedTrials = counter_balanced_trials(numTrialsUntimed)
-#thisBlockTrialList = trialsToTrialList(thisBlockTrials)
-thisUntimedFileName = 'data/untimed-%02d-trials.csv' % untimedNum
-trialsToCsv(thisUntimedFileName, thisUntimedTrials)
+thisUntimedTrials = random_trials(condition, numTrialsUntimed)
+thisUntimedFileName = 'data/%s_%s_%s-untimed-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], untimedNum)
+trials_to_csv(thisUntimedFileName, thisUntimedTrials)
 # keep track of which components have finished
 InitializeUntimedComponents = []
 for thisComponent in InitializeUntimedComponents:
@@ -2370,10 +2616,9 @@ routineTimer.reset()
 continueRoutine = True
 # update component parameters for each repeat
 timedNum = 1
-thisTimedTrials = counter_balanced_trials(numTrialsTimed)
-#thisBlockTrialList = trialsToTrialList(thisBlockTrials)
-thisTimedFileName = 'data/timed-%02d-trials.csv' % timedNum
-trialsToCsv(thisTimedFileName, thisTimedTrials)
+thisTimedTrials = random_trials(condition, numTrialsTimed)
+thisTimedFileName = 'data/%s_%s_%s-timed-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], timedNum)
+trials_to_csv(thisTimedFileName, thisTimedTrials)
 # keep track of which components have finished
 InitializeTimedComponents = []
 for thisComponent in InitializeTimedComponents:
@@ -3314,10 +3559,9 @@ for thisPosture in postures:
         continueRoutine = True
         # update component parameters for each repeat
         blockNum = 1
-        thisBlockTrials = counter_balanced_trials(numTrialsPerBlock)
-        #thisBlockTrialList = trialsToTrialList(thisBlockTrials)
-        thisBlockFileName = 'data/block-%02d-trials.csv' % blockNum
-        trialsToCsv(thisBlockFileName, thisBlockTrials)
+        thisBlockTrials = counter_balanced_trials(condition, numTrialsPerBlock)
+        thisBlockFileName = 'data/%s_%s_%s-posture-%s-block-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], posture, blockNum)
+        trials_to_csv(thisBlockFileName, thisBlockTrials)
         # keep track of which components have finished
         InitializeBlockComponents = []
         for thisComponent in InitializeBlockComponents:

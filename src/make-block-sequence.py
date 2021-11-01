@@ -3,10 +3,15 @@ import random
 import itertools
 import sys
 
+# experiment trial variable enumerated types
 cue_types = ['dashed', 'solid']
 shape_types = ['square', 'triangle']
 shape_colors = ['blue', 'yellow']
 
+# mapping of subject condition number to counter balanced experiment settings for
+# cues and expected correct responses
+# NOTE: should we try and move these two tables/dicts into an external csv file and
+# load it instead of having it hardcoded in the psycopy code?
 counter_balancing = {
     #    posture     cueSolid cueDashed colorLeft colorRight shapeLeft  shapeRight
      1: ['standing', 'color', 'shape', 'blue',   'yellow', 'triangle', 'square'],
@@ -30,6 +35,9 @@ counter_balancing = {
     16: ['sitting',  'shape', 'color', 'yellow', 'blue',   'square',   'triangle'],
 }
 
+# mapping of subject counter balanced conditions to expected correct button
+# press, 1 for left and 2 for right.  Used explicitly when creating randomized
+# trials to correctly set all trial variables for current subject condition
 subject_condition_responses = {
     # condition 1, dashed=shape, solid=color
     (1, 'dashed', 'yellow', 'triangle'): 1,
@@ -194,11 +202,10 @@ subject_condition_responses = {
 
 def determine_expected_response(condition, trial):
     """
-    Given a trial cue, shape and color, determine
-    correct response.
-
-    NOTE: TBD, the following code should be looked up from
-    the participant counter balanced conditions.
+    Given subject condition and the trial variables (cue, shape and color), determine
+    correct response.  We basically use a lookup table / dictionary
+    to map from these to expected correct response.  The lookup table could (should?)
+    be moved to a file that is read in on experiment startup.
     """
     response = 0
     cue_type, shape_type, shape_color = trial
@@ -256,6 +263,15 @@ def random_trials(condition, num_trials, add_buffer_trial=False):
     """
     Create the indicated number of trials and shuffle them
     randomly.  Return result as a list of the trial variables.
+
+    The add_buffer_trial flag determines if a random initial trial is
+    added to the beginning of the trial sequence.  Normally we systematically
+    use the trial variable combinations, repeating all possible combinations
+    as many times as needed.  But when we are explicitly enforcing that
+    trial blocks have equal switch/noswitch and congruant/incongruant, we need
+    an initial buffer trial where switch and congruant are NA, this is not
+    defined except in relation to a previous trial, so the initial trial is always
+    NA with respect to switch/noswitch and congruant/incongruant
     """
     
     # create list of 8 basic trial variable combinations
@@ -351,6 +367,11 @@ def counter_balanced_trials(condition, num_trials):
                     
 
 def trials_to_csv(filename, trials):
+    """
+    Given a list of trials (which constitutes a single block of trials usually
+    for the experiment), save the block trial list to a comma seperated values (csv)
+    file.  This file can be loaded by Psychopy for an experiment block of trials.
+    """
     f = open(filename, 'w')
     
     # file header
@@ -371,7 +392,9 @@ def trials_to_csv(filename, trials):
 
 def trials_to_triallist(trials):
     """
-    Return a list of dictionaries, where keys are the trial feature/variable names
+    Return a list of dictionaries, where keys are the trial feature/variable names.  Can be used
+    directly in Psychopy code instead of saving to a csv file then loading the file for a
+    block of trials.
     """
     trial_list = []
     
