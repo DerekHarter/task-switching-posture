@@ -408,8 +408,8 @@
       <CodeComponent name="code_5">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="postureTrial = 1&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="postureTrial = 1;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="postureTrial = 0&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="postureTrial = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="/* Syntax Error: Fix Python code */" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="# move to next posture if needed,&amp;#10;# this will switch the posture after each&amp;#10;# set of numBlocks is completed.&amp;#10;if postureTrial &gt;= 2:&amp;#10;    blockNumber = 1&amp;#10;    if posture == 'standing':&amp;#10;        posture = 'sitting'&amp;#10;    elif posture == 'sitting':&amp;#10;        posture = 'standing'&amp;#10;&amp;#10;# set up instructions for this posture&amp;#10;postureInstructions = &quot;&quot;&quot;&amp;#10;You will be performing this experiment in&amp;#10;two separate postures.&amp;#10;&amp;#10;At this time you should be in the&amp;#10;`%s` posture&amp;#10;&amp;#10;Please have the experimenter help you&amp;#10;get yourself into position for this&amp;#10;portion of the experiment. &amp;#10;&amp;#10;Press any button when you are ready to continue.&amp;#10;&quot;&quot;&quot; % (posture)&amp;#10;&amp;#10;# set up for next posture iteration&amp;#10;postureTrial += 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>

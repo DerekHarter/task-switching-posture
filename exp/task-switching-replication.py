@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Mon 01 Nov 2021 01:23:33 PM CDT
+    on Mon 01 Nov 2021 01:45:35 PM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -538,7 +538,7 @@ def trials_to_triallist(trials):
 
 # Initialize components for Routine "PostureInstruction"
 PostureInstructionClock = core.Clock()
-postureTrial = 1
+postureTrial = 0
 
 text_3 = visual.TextStim(win=win, name='text_3',
     text='',
@@ -805,7 +805,7 @@ text_2 = visual.TextStim(win=win, name='text_2',
 
 # Initialize components for Routine "PostureInstruction"
 PostureInstructionClock = core.Clock()
-postureTrial = 1
+postureTrial = 0
 
 text_3 = visual.TextStim(win=win, name='text_3',
     text='',
