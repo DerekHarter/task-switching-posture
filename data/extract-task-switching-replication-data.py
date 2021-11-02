@@ -39,7 +39,8 @@ final_features = {
     'exp_resp.keys': 'response',
     'correctAnswer': 'correctResponse',
     'exp_resp.corr': 'correct',
-    'exp_resp.rt': 'reactionTime',    
+    'exp_resp.rt': 'reactionTime',
+    'date': 'date',
 }
 
 left_right_map = {
@@ -69,7 +70,7 @@ def extract_task_switching_replication_data():
          task switching replication data.
     """
     # will hold result to return
-    task_switching_replication_df = None
+    df = None
     
     # find files matching raw PsychoPy subject trial/data name
     file_pattern = "[0-9][0-9][0-9][0-9]_*_*_*"
@@ -97,30 +98,33 @@ def extract_task_switching_replication_data():
         subject_df = subject_df.rename(columns=final_features)
 
         # append this subject data to the final data frame
-        if task_switching_replication_df == None:
-            task_switching_replication_df = subject_df
+        if df == None:
+            df = subject_df
         else:
-            task_switching_replication_df = pd.concat([task_switching_replication_df, subject_df], ignore_index=True)
+            df = pd.concat([df, subject_df], ignore_index=True)
 
     # clean the data frame
     # blockNum and trialNum are coming out as floats, make them regular ints
-    task_switching_replication_df.blockNum = task_switching_replication_df.blockNum.astype(int)
-    task_switching_replication_df.trialNum = task_switching_replication_df.trialNum.astype(int)
-    task_switching_replication_df.correctResponse = task_switching_replication_df.correctResponse.astype(int)
-    #task_switching_replication_df.correct = task_switching_replication_df.correct.astype(int)
+    df.blockNum = df.blockNum.astype(int)
+    df.trialNum = df.trialNum.astype(int)
+    df.correctResponse = df.correctResponse.astype(int)
+    #df.correct = df.correct.astype(int)
 
     # map 1/2 responses to left/right and None to timeout in our data
-    task_switching_replication_df.response = task_switching_replication_df.response.map(left_right_map)
-    task_switching_replication_df.correctResponse = task_switching_replication_df.correctResponse.map(left_right_map)
-    task_switching_replication_df.correct = task_switching_replication_df.correct.map(correct_map)
+    df.response = df.response.map(left_right_map)
+    df.correctResponse = df.correctResponse.map(left_right_map)
+    df.correct = df.correct.map(correct_map)
+
+    # convert date string to a real date
+    df.date = pd.to_datetime(df.date, format='%Y_%b_%d_%H%M')
     
     # for some reason we get duplicate results of trials (maybe a key press followed
     # real quickly by another)?  Any time that the response is blank is an indication
     # this is a duplicate row, so drop the row
-    task_switching_replication_df = task_switching_replication_df.dropna(subset=['response'])
+    df = df.dropna(subset=['response'])
 
     # return the cleaned and tidy dataframe
-    return task_switching_replication_df
+    return df
 
 
 def save_task_switching_replication_data(data_file_name, task_switching_replication_df):
