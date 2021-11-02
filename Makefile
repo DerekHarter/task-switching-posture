@@ -42,6 +42,15 @@ tables :
 papers :
 	cd papers && $(MAKE)
 
+## backup     : Backup raw data, use git system to add data files 
+##              commit them and push them to the remore repository.
+##
+.PHONY : backup
+backup :
+	git add data
+	git commit -m "Subject project data backup `date`"
+	git push
+
 
 ## clean      : DANGER: Remove all generated build products so can
 ##              rebuild everything from scratch.  It can take time
