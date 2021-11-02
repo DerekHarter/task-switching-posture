@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Mon 01 Nov 2021 03:03:24 PM CDT
+    on Mon 01 Nov 2021 08:53:22 PM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -345,7 +345,7 @@ def is_switch_balanced(trials):
     Return true if switch/noswitch are balanced, false if not.
     """
     switch_count = 0
-    for _, switch_type, *_ in trials:
+    for _, _, _, _, _, switch_type, *_ in trials:
         if switch_type == 'switch':
             switch_count += 1
 
@@ -361,7 +361,7 @@ def is_congruant_balanced(trials):
     Return true if congruant/incongruant are balanced, false if not.
     """
     congruant_count = 0
-    for _, _, congruant_type, *_ in trials:
+    for _, _, _, _, _, _, congruant_type, *_ in trials:
         if congruant_type == 'congruant':
             congruant_count += 1
 
@@ -372,7 +372,7 @@ def is_congruant_balanced(trials):
     return congruant_count == half_trials
 
 
-def random_trials(condition, num_trials, add_buffer_trial=False):
+def random_trials(block_num, trial_type, condition, posture, num_trials, add_buffer_trial=False):
     """
     Create the indicated number of trials and shuffle them
     randomly.  Return result as a list of the trial variables.
@@ -421,8 +421,8 @@ def random_trials(condition, num_trials, add_buffer_trial=False):
         # first trial is a buffer
         # if no previous, then switch and congrunt are not applicable to this trial
         if trial_num == 0:
-            switch_type = 'NA'
-            congruant_type = 'NA'
+            switch_type = 'buffer'
+            congruant_type = 'buffer'
         # otherwise determine switch and congruant for this trial based on previous trial
         else:
             prev_cue_type, prev_shape_type, prev_shape_color = trial_list[trial_num - 1]
@@ -443,13 +443,13 @@ def random_trials(condition, num_trials, add_buffer_trial=False):
         # remember the previous response for next iteration to determine congruant / incongruant
         prev_response = current_response
         
-        trials.append( (trial_num + 1, switch_type, congruant_type, cue_type, shape_type, shape_color, current_response) )
+        trials.append( (block_num, trial_num + 1, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, current_response) )
 
     # return the resulting constructed and randomly shuffled list of trials
     return trials
 
 
-def counter_balanced_trials(condition, num_trials):
+def counter_balanced_trials(block_num, trial_type, condition, posture, num_trials):
     """
     We brute force solution here.  Generate random trials
     with a buffer trial before the requested num_trials, then
@@ -460,14 +460,14 @@ def counter_balanced_trials(condition, num_trials):
     """
     # get an initial set of random trials
     MAX_ATTEMPTS = 1000
-    trials = random_trials(condition, num_trials, True)
+    trials = random_trials(block_num, trial_type, condition, posture, num_trials, True)
 
     # keep generating random trials of the requested size until
     # we find a balanced one, or until we reach some maximum
     # attempts, in which case something may be wrong
     num_attempts = 1
     while not is_balanced(trials) and num_attempts <= MAX_ATTEMPTS:
-        trials = random_trials(condition, num_trials, True)
+        trials = random_trials(block_num, trial_type, condition, posture, num_trials, True)
         num_attempts += 1
 
     # sanity check, make sure we found a balanced trial
@@ -488,17 +488,17 @@ def trials_to_csv(filename, trials):
     f = open(filename, 'w')
     
     # file header
-    f.write("trialNum,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer\n")
+    f.write("blockNum,trialNum,trialType,condition,posture,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer\n")
 
     # loop to generate trial settings/variables
-    for trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
+    for block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
         # file names for cue/stimuli to use for this trial
         cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)
         stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)
 
         # output this trial
-        f.write('%d,%s,%s,%s,%s,%s,%s,%s,%d\n' %
-              (trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, cue_filename, stimuli_filename, correct_response))
+        f.write('%d,%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d\n' %
+              (block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, cue_filename, stimuli_filename, correct_response))
 
     f.close()
 
@@ -512,13 +512,17 @@ def trials_to_triallist(trials):
     trial_list = []
     
     # loop to generate trial settings/variables
-    for trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
+    for block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
         # file names for cue/stimuli to use for this trial
         cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)
         stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)
 
         trial_dict = {
+            'blockNum': block_num,
             'trialNum': trial_num,
+            'trialType': trial_type,
+            'condition': condition,
+            'posture': posture,
             'switchTrialType': switch_type,
             'congruantTrialType': congruant_type,
             'cueType': cue_type,
@@ -838,7 +842,7 @@ key_response = keyboard.Keyboard()
 
 # Initialize components for Routine "ExpInstructionBlock"
 ExpInstructionBlockClock = core.Clock()
-blockNumber = 1
+blockNumber = 0
 blockText = ""
 text = visual.TextStim(win=win, name='text',
     text='',
@@ -989,7 +993,7 @@ continueRoutine = True
 # this will switch the posture after each
 # set of numBlocks is completed.
 if postureTrial >= 2:
-    blockNumber = 1
+    blockNumber = 0
     if posture == 'standing':
         posture = 'sitting'
     elif posture == 'sitting':
@@ -1878,7 +1882,9 @@ routineTimer.reset()
 continueRoutine = True
 # update component parameters for each repeat
 untimedNum = 1
-thisUntimedTrials = random_trials(condition, numTrialsUntimed)
+blockNum = 1
+trialType = 'untimed'
+thisUntimedTrials = random_trials(blockNum, trialType, condition, posture, numTrialsUntimed)
 thisUntimedFileName = 'data/%s_%s_%s-untimed-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], untimedNum)
 trials_to_csv(thisUntimedFileName, thisUntimedTrials)
 # keep track of which components have finished
@@ -2624,7 +2630,9 @@ routineTimer.reset()
 continueRoutine = True
 # update component parameters for each repeat
 timedNum = 1
-thisTimedTrials = random_trials(condition, numTrialsTimed)
+blockNum = 1
+trialType = 'timed'
+thisTimedTrials = random_trials(blockNum, trialType, condition, posture, numTrialsTimed)
 thisTimedFileName = 'data/%s_%s_%s-timed-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], timedNum)
 trials_to_csv(thisTimedFileName, thisTimedTrials)
 # keep track of which components have finished
@@ -3223,7 +3231,7 @@ for thisPosture in postures:
     # this will switch the posture after each
     # set of numBlocks is completed.
     if postureTrial >= 2:
-        blockNumber = 1
+        blockNumber = 0
         if posture == 'standing':
             posture = 'sitting'
         elif posture == 'sitting':
@@ -3456,6 +3464,8 @@ for thisPosture in postures:
         # ------Prepare to start Routine "ExpInstructionBlock"-------
         continueRoutine = True
         # update component parameters for each repeat
+        blockNumber += 1
+        
         blockText = """
         Please check your posture and ensure you
         are still in the correct position.
@@ -3469,7 +3479,6 @@ for thisPosture in postures:
         
         Press any button to start the challenge""" % (posture, blockNumber, numBlocks)
         
-        blockNumber += 1
         text.setText(blockText)
         key_resp.keys = []
         key_resp.rt = []
@@ -3566,9 +3575,10 @@ for thisPosture in postures:
         # ------Prepare to start Routine "InitializeBlock"-------
         continueRoutine = True
         # update component parameters for each repeat
-        blockNum = 1
-        thisBlockTrials = counter_balanced_trials(condition, numTrialsPerBlock)
-        thisBlockFileName = 'data/%s_%s_%s-posture-%s-block-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], posture, blockNum)
+        #blockNum = 1
+        trialType = 'experiment'
+        thisBlockTrials = counter_balanced_trials(blockNumber, trialType, condition, posture, numTrialsPerBlock)
+        thisBlockFileName = 'data/%s_%s_%s-posture-%s-block-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], posture, blockNumber)
         trials_to_csv(thisBlockFileName, thisBlockTrials)
         # keep track of which components have finished
         InitializeBlockComponents = []

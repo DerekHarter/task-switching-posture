@@ -232,7 +232,7 @@ def is_switch_balanced(trials):
     Return true if switch/noswitch are balanced, false if not.
     """
     switch_count = 0
-    for _, switch_type, *_ in trials:
+    for _, _, _, _, _, switch_type, *_ in trials:
         if switch_type == 'switch':
             switch_count += 1
 
@@ -248,7 +248,7 @@ def is_congruant_balanced(trials):
     Return true if congruant/incongruant are balanced, false if not.
     """
     congruant_count = 0
-    for _, _, congruant_type, *_ in trials:
+    for _, _, _, _, _, _, congruant_type, *_ in trials:
         if congruant_type == 'congruant':
             congruant_count += 1
 
@@ -259,7 +259,7 @@ def is_congruant_balanced(trials):
     return congruant_count == half_trials
 
 
-def random_trials(condition, num_trials, add_buffer_trial=False):
+def random_trials(block_num, trial_type, condition, posture, num_trials, add_buffer_trial=False):
     """
     Create the indicated number of trials and shuffle them
     randomly.  Return result as a list of the trial variables.
@@ -308,8 +308,8 @@ def random_trials(condition, num_trials, add_buffer_trial=False):
         # first trial is a buffer
         # if no previous, then switch and congrunt are not applicable to this trial
         if trial_num == 0:
-            switch_type = 'NA'
-            congruant_type = 'NA'
+            switch_type = 'buffer'
+            congruant_type = 'buffer'
         # otherwise determine switch and congruant for this trial based on previous trial
         else:
             prev_cue_type, prev_shape_type, prev_shape_color = trial_list[trial_num - 1]
@@ -330,13 +330,13 @@ def random_trials(condition, num_trials, add_buffer_trial=False):
         # remember the previous response for next iteration to determine congruant / incongruant
         prev_response = current_response
         
-        trials.append( (trial_num + 1, switch_type, congruant_type, cue_type, shape_type, shape_color, current_response) )
+        trials.append( (block_num, trial_num + 1, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, current_response) )
 
     # return the resulting constructed and randomly shuffled list of trials
     return trials
 
 
-def counter_balanced_trials(condition, num_trials):
+def counter_balanced_trials(block_num, trial_type, condition, posture, num_trials):
     """
     We brute force solution here.  Generate random trials
     with a buffer trial before the requested num_trials, then
@@ -347,14 +347,14 @@ def counter_balanced_trials(condition, num_trials):
     """
     # get an initial set of random trials
     MAX_ATTEMPTS = 1000
-    trials = random_trials(condition, num_trials, True)
+    trials = random_trials(block_num, trial_type, condition, posture, num_trials, True)
 
     # keep generating random trials of the requested size until
     # we find a balanced one, or until we reach some maximum
     # attempts, in which case something may be wrong
     num_attempts = 1
     while not is_balanced(trials) and num_attempts <= MAX_ATTEMPTS:
-        trials = random_trials(condition, num_trials, True)
+        trials = random_trials(block_num, trial_type, condition, posture, num_trials, True)
         num_attempts += 1
 
     # sanity check, make sure we found a balanced trial
@@ -375,17 +375,17 @@ def trials_to_csv(filename, trials):
     f = open(filename, 'w')
     
     # file header
-    f.write("trialNum,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer\n")
+    f.write("blockNum,trialNum,trialType,condition,posture,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer\n")
 
     # loop to generate trial settings/variables
-    for trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
+    for block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
         # file names for cue/stimuli to use for this trial
         cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)
         stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)
 
         # output this trial
-        f.write('%d,%s,%s,%s,%s,%s,%s,%s,%d\n' %
-              (trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, cue_filename, stimuli_filename, correct_response))
+        f.write('%d,%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d\n' %
+              (block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, cue_filename, stimuli_filename, correct_response))
 
     f.close()
 
@@ -399,13 +399,17 @@ def trials_to_triallist(trials):
     trial_list = []
     
     # loop to generate trial settings/variables
-    for trial_num, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
+    for block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:
         # file names for cue/stimuli to use for this trial
         cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)
         stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)
 
         trial_dict = {
+            'blockNum': block_num,
             'trialNum': trial_num,
+            'trialType': trial_type,
+            'condition': condition,
+            'posture': posture,
             'switchTrialType': switch_type,
             'congruantTrialType': congruant_type,
             'cueType': cue_type,
@@ -422,8 +426,8 @@ def trials_to_triallist(trials):
     
 if __name__ == "__main__":
     subject_condition = 7
-    trials = counter_balanced_trials(subject_condition, 48)
+    trials = counter_balanced_trials(3, 'untimed', subject_condition, 'standing', 48)
     print(trials_to_triallist(trials))
-    #trials_to_csv('tmp.csv', trials)
+    trials_to_csv('tmp.csv', trials)
     for trial in trials:
         print(trial)
