@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Mon 01 Nov 2021 08:53:22 PM CDT
+    on Tue 02 Nov 2021 08:02:52 AM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -46,12 +46,12 @@ expInfo['expName'] = expName
 expInfo['psychopyVersion'] = psychopyVersion
 
 # Data file name stem = absolute path + name; later add .psyexp, .csv, .log, etc
-filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])
+filename = _thisDir + os.sep + u'../data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])
 
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/home/dash/cognitive-control-posture/exp/task-switching-replication.py',
+    originPath='/home/experimenter/cognitive-control-posture/exp/task-switching-replication.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -93,9 +93,9 @@ import sys
 conditionStr = expInfo['condition']
 condition = int(conditionStr)
 numBlocks = 4
-numTrialsPerBlock = 4
-numTrialsUntimed = 4
-numTrialsTimed = 4
+numTrialsPerBlock = 48
+numTrialsUntimed = 12
+numTrialsTimed = 24
 
 # set up instrcution and experiment image stimuli based on condition
 untimedInstruction01   = 'instructions/cond-%02d-untimed-01.png' % (condition)
@@ -660,17 +660,17 @@ InitializeUntimedClock = core.Clock()
 UntimedTrialClock = core.Clock()
 cue_untimed_image = visual.ImageStim(
     win=win,
-    name='cue_untimed_image', units='deg', 
+    name='cue_untimed_image', units='cm', 
     image='sin', mask=None,
-    ori=0.0, pos=(0, 0), size=(25.0, 25.0),
+    ori=0.0, pos=(0, 0), size=(30.0, 30.0),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=0.0)
 stimuli_untimed_image = visual.ImageStim(
     win=win,
-    name='stimuli_untimed_image', units='deg', 
+    name='stimuli_untimed_image', units='cm', 
     image='sin', mask=None,
-    ori=0.0, pos=(0, 0), size=(12.0, 12.0),
+    ori=0.0, pos=(0, 0), size=(15.0, 15.0),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-1.0)
@@ -1885,7 +1885,7 @@ untimedNum = 1
 blockNum = 1
 trialType = 'untimed'
 thisUntimedTrials = random_trials(blockNum, trialType, condition, posture, numTrialsUntimed)
-thisUntimedFileName = 'data/%s_%s_%s-untimed-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], untimedNum)
+thisUntimedFileName = '../data/%s_%s_%s-untimed-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], untimedNum)
 trials_to_csv(thisUntimedFileName, thisUntimedTrials)
 # keep track of which components have finished
 InitializeUntimedComponents = []
@@ -2633,7 +2633,7 @@ timedNum = 1
 blockNum = 1
 trialType = 'timed'
 thisTimedTrials = random_trials(blockNum, trialType, condition, posture, numTrialsTimed)
-thisTimedFileName = 'data/%s_%s_%s-timed-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], timedNum)
+thisTimedFileName = '../data/%s_%s_%s-timed-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], timedNum)
 trials_to_csv(thisTimedFileName, thisTimedTrials)
 # keep track of which components have finished
 InitializeTimedComponents = []
@@ -3578,7 +3578,7 @@ for thisPosture in postures:
         #blockNum = 1
         trialType = 'experiment'
         thisBlockTrials = counter_balanced_trials(blockNumber, trialType, condition, posture, numTrialsPerBlock)
-        thisBlockFileName = 'data/%s_%s_%s-posture-%s-block-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], posture, blockNumber)
+        thisBlockFileName = '../data/%s_%s_%s-posture-%s-block-%02d-trials.csv' % (expInfo['participant'], expName, expInfo['date'], posture, blockNumber)
         trials_to_csv(thisBlockFileName, thisBlockTrials)
         # keep track of which components have finished
         InitializeBlockComponents = []
