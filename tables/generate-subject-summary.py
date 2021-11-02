@@ -73,13 +73,15 @@ def save_table(subject_summary_df, output_file):
     """
     caption = "Summary of experiment participants results"
     label = "table-subject-summary"
+    header = ['cond', 'date', 'accuracy', 'std', 'rt', 'std']
     subject_summary_df.to_latex(output_file,
                                 index=True,
-                                header=True,
+                                #header=True,
                                 bold_rows=False,
                                 float_format="%0.4f",
-                                #caption=caption,
-                                #label=label,
+                                caption=caption,
+                                label=label,
+                                header=header,
                                 longtable=False)
 
 

@@ -8,7 +8,7 @@ numbersections: true
 classoption: letterpaper, 12pt, onecolumn, oneside, notitlepage
 header-includes:
   - \usepackage[backend=biber, style=apa]{biblatex}
-  - \addbibresource{stroop-replication.bib}
+  - \addbibresource{task-switching-replication.bib}
   - \usepackage[nottoc,notlot,notlof]{tocbibind}
   - \hypersetup{allcolors=blue, colorlinks=true}
   - \usepackage[margin=1.0in]{geometry}
@@ -29,7 +29,7 @@ abstract: |
 
 \input{../tables/table-subject-summary.tex}
 
-\input{../tables/table-stroop-replication-reaction-time.tex}
+\input{../tables/table-task-switching-replication-reaction-time.tex}
 
 
 ## Figures {-}

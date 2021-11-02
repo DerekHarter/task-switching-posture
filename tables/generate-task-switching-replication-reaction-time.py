@@ -64,15 +64,17 @@ def save_table(reaction_time_df, output_file):
     reaction_time_df - A dataframe of the summarized reaction time data.
     output_file - The name of the file to save the table into.
     """
-    caption = " Means and standard deviations of reaction times (in ms) as a function of posture and condition"
+    caption = "Means and standard deviations of reaction times (in ms) as a function of posture and condition"
     label = "table-task-switching-replication-reaction-time"
+    header = ['rt', 'std']
     reaction_time_df.to_latex(output_file,
                               index=True,
-                              header=True,
+                              #header=True,
                               bold_rows=False,
                               float_format="%0.4f",
-                              #caption=caption,
-                              #label=label,
+                              caption=caption,
+                              label=label,
+                              header=header,
                               longtable=False)
 
 
