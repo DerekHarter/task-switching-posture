@@ -15,6 +15,7 @@ hostnamectl set-hostname stroop
 # need some basic dev tools available and editor
 # remove emacs or vim if you don't use
 apt -y install emacs vim build-essential git curl wget
+apt -y install python-is-python3 python3-seaborn
 
 # some personal aliases and settings, let dash user administor
 # with passwordless sudo

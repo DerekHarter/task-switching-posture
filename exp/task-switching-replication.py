@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Tue 02 Nov 2021 08:02:52 AM CDT
+    on Tue 02 Nov 2021 07:38:47 PM CDT
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'../data/%s_%s_%s' % (expInfo['participant'], ex
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/home/experimenter/cognitive-control-posture/exp/task-switching-replication.py',
+    originPath='/home/dash/cognitive-control-posture/exp/task-switching-replication.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -88,6 +88,7 @@ InitializeClock = core.Clock()
 import random
 import itertools
 import sys
+import time
 
 # determine experiment settings from participant condition
 conditionStr = expInfo['condition']
@@ -2030,6 +2031,8 @@ for thisUntimedTrial in untimedTrials:
                     untimed_resp.corr = 0
                 # a response ends the routine
                 continueRoutine = False
+        if True:
+            untimedTrials.addData("utcTime", time.time())
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -2803,6 +2806,8 @@ for thisTimedTrial in timedTrials:
                     timed_resp.corr = 0
                 # a response ends the routine
                 continueRoutine = False
+        if True:
+            timedTrials.addData("utcTime", time.time())
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -3748,6 +3753,8 @@ for thisPosture in postures:
                             exp_resp.corr = 0
                         # a response ends the routine
                         continueRoutine = False
+                if True:
+                    trials.addData("utcTime", time.time())
                 
                 # check for quit (typically the Esc key)
                 if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
