@@ -47,8 +47,8 @@ papers :
 ##
 .PHONY : backup
 backup :
-	git add data
-	git commit -m "Subject project data backup `date`"
+	git add data figures tables papers
+	git commit -m "Project backup target: `date`"
 	git push
 
 
