@@ -70,6 +70,7 @@ def extract_task_switching_replication_data():
          task switching replication data.
     """
     # will hold result to return
+    initDf = True
     df = None
     
     # find files matching raw PsychoPy subject trial/data name
@@ -86,7 +87,7 @@ def extract_task_switching_replication_data():
         # read csv into a dataframe
         #print('Processing file <%s>' % raw_data_file)
         subject_df = pd.read_csv(raw_data_file)
-
+        
         # for this tidy data, only keep the actual experiment trialType trials
         mask = subject_df.trialType == 'experiment'
         subject_df = subject_df[mask]
@@ -98,8 +99,9 @@ def extract_task_switching_replication_data():
         subject_df = subject_df.rename(columns=final_features)
 
         # append this subject data to the final data frame
-        if df == None:
+        if initDf:
             df = subject_df
+            initDf = False
         else:
             df = pd.concat([df, subject_df], ignore_index=True)
 
