@@ -17,6 +17,10 @@ subjects, grouped by the experiment posture and congruancy
 conditions.
 """
 
+correct_map = {
+    'no': 0.0,
+    'yes': 1.0,
+}
 
 def generate_reaction_time_df(data_file):
     """Generate summary dataframe of reaction time results
@@ -34,6 +38,7 @@ def generate_reaction_time_df(data_file):
     """
     # load input data frame
     df = pd.read_csv(data_file)
+    df['correctValue'] = df.correct.map(correct_map)
 
     # drop all buffer trials, not needed in results here
     # NOTE: Is this true?  We do have reaction times for the buffer trials.
@@ -47,6 +52,8 @@ def generate_reaction_time_df(data_file):
     # construct a resulting summary dataframe of this grouped
     # data
     summary_dict = {
+        'accuracyMean': gdf['correctValue'].mean(),
+        'accuracyStd': gdf['correctValue'].std(),
         'reactionTimeMean': gdf['reactionTime'].mean(),
         'reactionTimeStd': gdf['reactionTime'].std()
     }
@@ -64,9 +71,9 @@ def save_table(reaction_time_df, output_file):
     reaction_time_df - A dataframe of the summarized reaction time data.
     output_file - The name of the file to save the table into.
     """
-    caption = "Means and standard deviations of reaction times (in ms) as a function of posture and condition"
+    caption = "Means and standard deviations of accuracy and reaction times (in ms) as a function of posture and experiment trial types."
     label = "table-task-switching-replication-reaction-time"
-    header = ['rt', 'std']
+    header = ['accuracy', 'std', 'rt', 'std']
     reaction_time_df.to_latex(output_file,
                               index=True,
                               #header=True,
