@@ -60,7 +60,7 @@ backup :
 ##
 .PHONY : clean
 clean  :
-	cd data && $(MAKE) clean  && cd ../tables && $(MAKE) clean && cd ../figures && $(MAKE) clean && cd ../papers && $(MAKE)
+	cd data && $(MAKE) clean  && cd ../tables && $(MAKE) clean && cd ../figures && $(MAKE) clean && cd ../papers && $(MAKE) clean
 
 ## help       : Get all build targets supported by this build.
 ##
