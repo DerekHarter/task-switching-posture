@@ -45,13 +45,14 @@ def generate_subject_summary_df(data_file):
     df = df[mask]
     
     # group data by posture and congruant conditions
-    gdf = df.groupby(['participant'])
+    gdf = df.groupby(['date'])
 
     # construct a resulting summary dataframe of this grouped
     # data
     summary_dict = {
-        'condition': gdf['condition'].first(),
-        'date': gdf['date'].first(),
+        'participant': gdf['participant'].first().astype(int),
+        'condition': gdf['condition'].first().astype(int),
+        'numTrials': gdf['participant'].count().astype(int),
         'accuracyMean': gdf['correctValue'].mean(),
         'accuracyStd': gdf['correctValue'].std(),
         'reactionTimeMean': gdf['reactionTime'].mean(),
@@ -73,7 +74,7 @@ def save_table(subject_summary_df, output_file):
     """
     caption = "Summary of experiment participants results"
     label = "table-subject-summary"
-    header = ['cond', 'date', 'accuracy', 'std', 'rt', 'std']
+    header = ['part', 'cond', 'trials', 'accuracy', 'std', 'rt', 'std']
     subject_summary_df.to_latex(output_file,
                                 index=True,
                                 #header=True,
