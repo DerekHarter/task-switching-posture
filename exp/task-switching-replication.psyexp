@@ -58,7 +58,7 @@
       <CodeComponent name="code">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="import random&amp;#10;import itertools&amp;#10;import sys&amp;#10;import time&amp;#10;&amp;#10;# determine experiment settings from participant condition&amp;#10;conditionStr = expInfo['condition']&amp;#10;condition = int(conditionStr)&amp;#10;numBlocks = 4&amp;#10;numTrialsPerBlock = 48&amp;#10;numTrialsUntimed = 12&amp;#10;numTrialsTimed = 24&amp;#10;&amp;#10;# set up instrcution and experiment image stimuli based on condition&amp;#10;untimedInstruction01   = 'instructions/cond-%02d-untimed-01.png' % (condition)&amp;#10;untimedInstruction02   = 'instructions/cond-%02d-untimed-02.png' % (condition)&amp;#10;untimedInstruction03   = 'instructions/cond-%02d-untimed-03.png' % (condition)&amp;#10;untimedInstruction04   = 'instructions/cond-%02d-untimed-04.png' % (condition)&amp;#10;untimedInstruction05   = 'instructions/cond-%02d-untimed-05.png' % (condition)&amp;#10;untimedInstruction06   = 'instructions/cond-%02d-untimed-06.png' % (condition)&amp;#10;untimedInstruction07   = 'instructions/cond-%02d-untimed-07.png' % (condition)&amp;#10;untimedInstruction08   = 'instructions/cond-%02d-untimed-08.png' % (condition)&amp;#10;timedInstruction01     = 'instructions/cond-%02d-timed-01.png' % (condition)&amp;#10;timedInstruction02     = 'instructions/cond-%02d-timed-02.png' % (condition)&amp;#10;expInstruction01       = 'instructions/cond-%02d-experiment-01.png' % (condition)&amp;#10;errorInstructionDashed = 'instructions/cond-%02d-error-dashed.png' % (condition)&amp;#10;errorInstructionSolid  = 'instructions/cond-%02d-error-solid.png' % (condition)&amp;#10;&amp;#10;# experiment trial variable enumerated types&amp;#10;cue_types = ['dashed', 'solid']&amp;#10;shape_types = ['square', 'triangle']&amp;#10;shape_colors = ['blue', 'yellow']&amp;#10;&amp;#10;# mapping of subject condition number to counter balanced experiment settings for&amp;#10;# cues and expected correct responses&amp;#10;# NOTE: should we try and move these two tables/dicts into an external csv file and&amp;#10;# load it instead of having it hardcoded in the psycopy code?&amp;#10;counter_balancing = {&amp;#10;    #    posture     cueSolid cueDashed colorLeft colorRight shapeLeft  shapeRight&amp;#10;     1: ['standing', 'color', 'shape', 'blue',   'yellow', 'triangle', 'square'],&amp;#10;     2: ['standing', 'color', 'shape', 'blue',   'yellow', 'square',   'triangle'],&amp;#10;     3: ['standing', 'color', 'shape', 'yellow', 'blue',   'triangle', 'square'],&amp;#10;     4: ['standing', 'color', 'shape', 'yellow', 'blue',   'square',   'triangle'],&amp;#10;&amp;#10;     5: ['standing', 'shape', 'color', 'blue',   'yellow', 'triangle', 'square'],&amp;#10;     6: ['standing', 'shape', 'color', 'blue',   'yellow', 'square',   'triangle'],&amp;#10;     7: ['standing', 'shape', 'color', 'yellow', 'blue',   'triangle', 'square'],&amp;#10;     8: ['standing', 'shape', 'color', 'yellow', 'blue',   'square',   'triangle'],&amp;#10;&amp;#10;     9: ['sitting',  'color', 'shape', 'blue',   'yellow', 'triangle', 'square'],&amp;#10;    10: ['sitting',  'color', 'shape', 'blue',   'yellow', 'square',   'triangle'],&amp;#10;    11: ['sitting',  'color', 'shape', 'yellow', 'blue',   'triangle', 'square'],&amp;#10;    12: ['sitting',  'color', 'shape', 'yellow', 'blue',   'square',   'triangle'],&amp;#10;&amp;#10;    13: ['sitting',  'shape', 'color', 'blue',   'yellow', 'triangle', 'square'],&amp;#10;    14: ['sitting',  'shape', 'color', 'blue',   'yellow', 'square',   'triangle'],&amp;#10;    15: ['sitting',  'shape', 'color', 'yellow', 'blue',   'triangle', 'square'],&amp;#10;    16: ['sitting',  'shape', 'color', 'yellow', 'blue',   'square',   'triangle'],&amp;#10;}&amp;#10;&amp;#10;# given selected subject condition, determine experiment variables and settings being&amp;#10;# used&amp;#10;posture, cueSolid, cueDashed, colorLeft, colorRight, shapeLeft, shapeRight = counter_balancing[condition]&amp;#10;&amp;#10;# mapping of subject counter balanced conditions to expected correct button&amp;#10;# press, 1 for left and 2 for right.  Used explicitly when creating randomized&amp;#10;# trials to correctly set all trial variables for current subject condition&amp;#10;subject_condition_responses = {&amp;#10;    # condition 1, dashed=shape, solid=color&amp;#10;    (1, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (1, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (1, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (1, 'dashed', 'blue',   'square'): 2,&amp;#10;    (1, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (1, 'solid',  'yellow', 'square'): 2,&amp;#10;    (1, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (1, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 2, dashed=shape, solid=color&amp;#10;    (2, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (2, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (2, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (2, 'dashed', 'blue',   'square'): 1,&amp;#10;    (2, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (2, 'solid',  'yellow', 'square'): 2,&amp;#10;    (2, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (2, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 3, dashed=shape, solid=color&amp;#10;    (3, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (3, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (3, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (3, 'dashed', 'blue',   'square'): 2,&amp;#10;    (3, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (3, 'solid',  'yellow', 'square'): 1,&amp;#10;    (3, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (3, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 4, dashed=shape, solid=color&amp;#10;    (4, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (4, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (4, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (4, 'dashed', 'blue',   'square'): 1,&amp;#10;    (4, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (4, 'solid',  'yellow', 'square'): 1,&amp;#10;    (4, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (4, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 5, dashed=color, solid=shape&amp;#10;    (5, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (5, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (5, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (5, 'dashed', 'blue',   'square'): 1,&amp;#10;    (5, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (5, 'solid',  'yellow', 'square'): 2,&amp;#10;    (5, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (5, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 6, dashed=color, solid=shape&amp;#10;    (6, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (6, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (6, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (6, 'dashed', 'blue',   'square'): 1,&amp;#10;    (6, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (6, 'solid',  'yellow', 'square'): 1,&amp;#10;    (6, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (6, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 7, dashed=color, solid=shape&amp;#10;    (7, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (7, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (7, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (7, 'dashed', 'blue',   'square'): 2,&amp;#10;    (7, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (7, 'solid',  'yellow', 'square'): 2,&amp;#10;    (7, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (7, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 8, dashed=color, solid=shape&amp;#10;    (8, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (8, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (8, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (8, 'dashed', 'blue',   'square'): 2,&amp;#10;    (8, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (8, 'solid',  'yellow', 'square'): 1,&amp;#10;    (8, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (8, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 9, dashed=shape, solid=color&amp;#10;    (9, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (9, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (9, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (9, 'dashed', 'blue',   'square'): 2,&amp;#10;    (9, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (9, 'solid',  'yellow', 'square'): 2,&amp;#10;    (9, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (9, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 10, dashed=shape, solid=color&amp;#10;    (10, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (10, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (10, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (10, 'dashed', 'blue',   'square'): 1,&amp;#10;    (10, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (10, 'solid',  'yellow', 'square'): 2,&amp;#10;    (10, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (10, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 11, dashed=shape, solid=color&amp;#10;    (11, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (11, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (11, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (11, 'dashed', 'blue',   'square'): 2,&amp;#10;    (11, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (11, 'solid',  'yellow', 'square'): 1,&amp;#10;    (11, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (11, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 12, dashed=shape, solid=color&amp;#10;    (12, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (12, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (12, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (12, 'dashed', 'blue',   'square'): 1,&amp;#10;    (12, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (12, 'solid',  'yellow', 'square'): 1,&amp;#10;    (12, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (12, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 13, dashed=color, solid=shape&amp;#10;    (13, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (13, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (13, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (13, 'dashed', 'blue',   'square'): 1,&amp;#10;    (13, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (13, 'solid',  'yellow', 'square'): 2,&amp;#10;    (13, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (13, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 14, dashed=color, solid=shape&amp;#10;    (14, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (14, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (14, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (14, 'dashed', 'blue',   'square'): 1,&amp;#10;    (14, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (14, 'solid',  'yellow', 'square'): 1,&amp;#10;    (14, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (14, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 15, dashed=color, solid=shape&amp;#10;    (15, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (15, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (15, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (15, 'dashed', 'blue',   'square'): 2,&amp;#10;    (15, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (15, 'solid',  'yellow', 'square'): 2,&amp;#10;    (15, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (15, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 16, dashed=color, solid=shape&amp;#10;    (16, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (16, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (16, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (16, 'dashed', 'blue',   'square'): 2,&amp;#10;    (16, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (16, 'solid',  'yellow', 'square'): 1,&amp;#10;    (16, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (16, 'solid',  'blue',   'square'): 1,&amp;#10;}&amp;#10;&amp;#10;def determine_expected_response(condition, trial):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Given subject condition and the trial variables (cue, shape and color), determine&amp;#10;    correct response.  We basically use a lookup table / dictionary&amp;#10;    to map from these to expected correct response.  The lookup table could (should?)&amp;#10;    be moved to a file that is read in on experiment startup.&amp;#10;    &quot;&quot;&quot;&amp;#10;    response = 0&amp;#10;    cue_type, shape_type, shape_color = trial&amp;#10;    response = subject_condition_responses[(condition, cue_type, shape_color, shape_type)]&amp;#10;&amp;#10;    # it is an error if response is still 0, should probably&amp;#10;    # stop or throw an exception to be defensive&amp;#10;    return response&amp;#10;&amp;#10;&amp;#10;def is_balanced(trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Return true if both switch/noswitch and congruant/incongruant&amp;#10;    are balanced, false otherwise.&amp;#10;&amp;#10;    NOTE: this method always assumes there is a first buffer&amp;#10;    trial which is ignored when determining balance&amp;#10;    &quot;&quot;&quot;&amp;#10;    return is_switch_balanced(trials) and is_congruant_balanced(trials)&amp;#10;&amp;#10;&amp;#10;def is_switch_balanced(trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Return true if switch/noswitch are balanced, false if not.&amp;#10;    &quot;&quot;&quot;&amp;#10;    switch_count = 0&amp;#10;    for _, _, _, _, _, switch_type, *_ in trials:&amp;#10;        if switch_type == 'switch':&amp;#10;            switch_count += 1&amp;#10;&amp;#10;    num_trials = len(trials) - 1&amp;#10;    half_trials = num_trials // 2&amp;#10;    &amp;#10;    #print('is_switch_balanced %d switched out of %d trials' % (switch_count, num_trials))&amp;#10;    return switch_count == half_trials&amp;#10;&amp;#10;        &amp;#10;def is_congruant_balanced(trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Return true if congruant/incongruant are balanced, false if not.&amp;#10;    &quot;&quot;&quot;&amp;#10;    congruant_count = 0&amp;#10;    for _, _, _, _, _, _, congruant_type, *_ in trials:&amp;#10;        if congruant_type == 'congruant':&amp;#10;            congruant_count += 1&amp;#10;&amp;#10;    num_trials = len(trials) - 1&amp;#10;    half_trials = num_trials // 2&amp;#10;    &amp;#10;    #print('is_congruant_balanced %d congruant out of %d trials' % (congruant_count, num_trials))&amp;#10;    return congruant_count == half_trials&amp;#10;&amp;#10;&amp;#10;def random_trials(block_num, trial_type, condition, posture, num_trials, add_buffer_trial=False):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Create the indicated number of trials and shuffle them&amp;#10;    randomly.  Return result as a list of the trial variables.&amp;#10;&amp;#10;    The add_buffer_trial flag determines if a random initial trial is&amp;#10;    added to the beginning of the trial sequence.  Normally we systematically&amp;#10;    use the trial variable combinations, repeating all possible combinations&amp;#10;    as many times as needed.  But when we are explicitly enforcing that&amp;#10;    trial blocks have equal switch/noswitch and congruant/incongruant, we need&amp;#10;    an initial buffer trial where switch and congruant are NA, this is not&amp;#10;    defined except in relation to a previous trial, so the initial trial is always&amp;#10;    NA with respect to switch/noswitch and congruant/incongruant&amp;#10;    &quot;&quot;&quot;&amp;#10;    &amp;#10;    # create list of 8 basic trial variable combinations&amp;#10;    vars = [cue_types, shape_types, shape_colors]&amp;#10;    base_trials = list(itertools.product(*vars))&amp;#10;    num_base_trials = len(base_trials)&amp;#10;&amp;#10;    # Repeat basic trial combinations whole number of times&amp;#10;    # that we can, then select some more combinations at random&amp;#10;    # to get exactly the asked for num_trials&amp;#10;    num_base_repeats = num_trials // num_base_trials&amp;#10;    num_remaining = num_trials % num_base_trials&amp;#10;    trial_list = base_trials * num_base_repeats&amp;#10;    trial_list += random.sample(base_trials, num_remaining)&amp;#10;&amp;#10;    # now shuffle the trial_list randomly&amp;#10;    random.shuffle(trial_list)&amp;#10;&amp;#10;    # if we are to add a buffer trial, choose one at random and prepend&amp;#10;    # it to the trial list&amp;#10;    if add_buffer_trial:&amp;#10;        trial = random.choice(base_trials)&amp;#10;        trial_list = [trial] + trial_list&amp;#10;        num_trials += 1&amp;#10;        &amp;#10;    # collect trial variables as a list of trials to return&amp;#10;    trials = []&amp;#10;&amp;#10;    # rest of trials, determine switch and congruant from previous&amp;#10;    for trial_num in range(0, num_trials):&amp;#10;        cue_type, shape_type, shape_color = trial_list[trial_num]&amp;#10;        current_response = determine_expected_response(condition, trial_list[trial_num])&amp;#10;&amp;#10;        # first trial is a buffer&amp;#10;        # if no previous, then switch and congrunt are not applicable to this trial&amp;#10;        if trial_num == 0:&amp;#10;            switch_type = 'buffer'&amp;#10;            congruant_type = 'buffer'&amp;#10;        # otherwise determine switch and congruant for this trial based on previous trial&amp;#10;        else:&amp;#10;            prev_cue_type, prev_shape_type, prev_shape_color = trial_list[trial_num - 1]&amp;#10;&amp;#10;            # determine if switch or noswitch&amp;#10;            if cue_type == prev_cue_type:&amp;#10;                switch_type = 'noswitch'&amp;#10;            else:&amp;#10;                switch_type = 'switch'&amp;#10;&amp;#10;            # determine if congruant or not congruant, this is more complicated, it depends&amp;#10;            # on the expected response of previous trial and the response of current trial&amp;#10;            if current_response == prev_response:&amp;#10;                congruant_type = 'congruant'&amp;#10;            else:&amp;#10;                congruant_type = 'incongruant'&amp;#10;&amp;#10;        # remember the previous response for next iteration to determine congruant / incongruant&amp;#10;        prev_response = current_response&amp;#10;        &amp;#10;        trials.append( (block_num, trial_num + 1, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, current_response) )&amp;#10;&amp;#10;    # return the resulting constructed and randomly shuffled list of trials&amp;#10;    return trials&amp;#10;&amp;#10;&amp;#10;def counter_balanced_trials(block_num, trial_type, condition, posture, num_trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    We brute force solution here.  Generate random trials&amp;#10;    with a buffer trial before the requested num_trials, then&amp;#10;    test to see if resulting random shuffle of trials is balanced&amp;#10;    or not.  Usually should take no more than 100 random generations&amp;#10;    to find a trial that is both balanced by switch/noswitch and&amp;#10;    congruant/incongruant&amp;#10;    &quot;&quot;&quot;&amp;#10;    # get an initial set of random trials&amp;#10;    MAX_ATTEMPTS = 1000&amp;#10;    trials = random_trials(block_num, trial_type, condition, posture, num_trials, True)&amp;#10;&amp;#10;    # keep generating random trials of the requested size until&amp;#10;    # we find a balanced one, or until we reach some maximum&amp;#10;    # attempts, in which case something may be wrong&amp;#10;    num_attempts = 1&amp;#10;    while not is_balanced(trials) and num_attempts &lt;= MAX_ATTEMPTS:&amp;#10;        trials = random_trials(block_num, trial_type, condition, posture, num_trials, True)&amp;#10;        num_attempts += 1&amp;#10;&amp;#10;    # sanity check, make sure we found a balanced trial&amp;#10;    if not is_balanced(trials):&amp;#10;        print(&quot;&lt;counter_balanced_trials&gt; Error: could not achieve block balance in %d attempts, aborting&quot; % (MAX_ATTEMPTS))&amp;#10;        sys.exit(1)&amp;#10;        &amp;#10;    # at this point we should have found a balanced trial&amp;#10;    return trials&amp;#10;                    &amp;#10;&amp;#10;def trials_to_csv(filename, trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Given a list of trials (which constitutes a single block of trials usually&amp;#10;    for the experiment), save the block trial list to a comma seperated values (csv)&amp;#10;    file.  This file can be loaded by Psychopy for an experiment block of trials.&amp;#10;    &quot;&quot;&quot;&amp;#10;    f = open(filename, 'w')&amp;#10;    &amp;#10;    # file header&amp;#10;    f.write(&quot;blockNum,trialNum,trialType,condition,posture,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer\n&quot;)&amp;#10;&amp;#10;    # loop to generate trial settings/variables&amp;#10;    for block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:&amp;#10;        # file names for cue/stimuli to use for this trial&amp;#10;        cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)&amp;#10;        stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)&amp;#10;&amp;#10;        # output this trial&amp;#10;        f.write('%d,%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d\n' %&amp;#10;              (block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, cue_filename, stimuli_filename, correct_response))&amp;#10;&amp;#10;    f.close()&amp;#10;&amp;#10;&amp;#10;def trials_to_triallist(trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Return a list of dictionaries, where keys are the trial feature/variable names.  Can be used&amp;#10;    directly in Psychopy code instead of saving to a csv file then loading the file for a&amp;#10;    block of trials.&amp;#10;    &quot;&quot;&quot;&amp;#10;    trial_list = []&amp;#10;    &amp;#10;    # loop to generate trial settings/variables&amp;#10;    for block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:&amp;#10;        # file names for cue/stimuli to use for this trial&amp;#10;        cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)&amp;#10;        stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)&amp;#10;&amp;#10;        trial_dict = {&amp;#10;            'blockNum': block_num,&amp;#10;            'trialNum': trial_num,&amp;#10;            'trialType': trial_type,&amp;#10;            'condition': condition,&amp;#10;            'posture': posture,&amp;#10;            'switchTrialType': switch_type,&amp;#10;            'congruantTrialType': congruant_type,&amp;#10;            'cueType': cue_type,&amp;#10;            'shapeType': shape_type,&amp;#10;            'shapeColor': shape_color,&amp;#10;            'cueFileName': cue_filename,&amp;#10;            'stimuliFileName': stimuli_filename,&amp;#10;            'correctAnswer': correct_response,&amp;#10;        }&amp;#10;&amp;#10;        trial_list.append(trial_dict)&amp;#10;&amp;#10;    return trial_list&amp;#10;&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="import random&amp;#10;import itertools&amp;#10;import sys&amp;#10;import time&amp;#10;&amp;#10;# determine experiment settings from participant condition&amp;#10;conditionStr = expInfo['condition']&amp;#10;condition = int(conditionStr)&amp;#10;numBlocks = 4&amp;#10;numTrialsPerBlock = 48&amp;#10;numTrialsUntimed = 12&amp;#10;numTrialsTimed = 24&amp;#10;#numTrialsPerBlock = 4&amp;#10;#numTrialsUntimed = 4&amp;#10;#numTrialsTimed = 4&amp;#10;&amp;#10;# set up instrcution and experiment image stimuli based on condition&amp;#10;untimedInstruction01   = 'instructions/cond-%02d-untimed-01.png' % (condition)&amp;#10;untimedInstruction02   = 'instructions/cond-%02d-untimed-02.png' % (condition)&amp;#10;untimedInstruction03   = 'instructions/cond-%02d-untimed-03.png' % (condition)&amp;#10;untimedInstruction04   = 'instructions/cond-%02d-untimed-04.png' % (condition)&amp;#10;untimedInstruction05   = 'instructions/cond-%02d-untimed-05.png' % (condition)&amp;#10;untimedInstruction06   = 'instructions/cond-%02d-untimed-06.png' % (condition)&amp;#10;untimedInstruction07   = 'instructions/cond-%02d-untimed-07.png' % (condition)&amp;#10;untimedInstruction08   = 'instructions/cond-%02d-untimed-08.png' % (condition)&amp;#10;timedInstruction01     = 'instructions/cond-%02d-timed-01.png' % (condition)&amp;#10;timedInstruction02     = 'instructions/cond-%02d-timed-02.png' % (condition)&amp;#10;expInstruction01       = 'instructions/cond-%02d-experiment-01.png' % (condition)&amp;#10;errorInstructionIncorrectResponseDashed = 'instructions/cond-%02d-error-dashed-incorrect-response.png' % (condition)&amp;#10;errorInstructionIncorrectResponseSolid  = 'instructions/cond-%02d-error-solid-incorrect-response.png' % (condition)&amp;#10;errorInstructionTimeoutDashed = 'instructions/cond-%02d-error-dashed-timeout.png' % (condition)&amp;#10;errorInstructionTimeoutSolid  = 'instructions/cond-%02d-error-solid-timeout.png' % (condition)&amp;#10;&amp;#10;# experiment trial variable enumerated types&amp;#10;cue_types = ['dashed', 'solid']&amp;#10;shape_types = ['square', 'triangle']&amp;#10;shape_colors = ['blue', 'yellow']&amp;#10;&amp;#10;# mapping of subject condition number to counter balanced experiment settings for&amp;#10;# cues and expected correct responses&amp;#10;# NOTE: should we try and move these two tables/dicts into an external csv file and&amp;#10;# load it instead of having it hardcoded in the psycopy code?&amp;#10;counter_balancing = {&amp;#10;    #    posture     cueSolid cueDashed colorLeft colorRight shapeLeft  shapeRight&amp;#10;     1: ['standing', 'color', 'shape', 'blue',   'yellow', 'triangle', 'square'],&amp;#10;     2: ['standing', 'color', 'shape', 'blue',   'yellow', 'square',   'triangle'],&amp;#10;     3: ['standing', 'color', 'shape', 'yellow', 'blue',   'triangle', 'square'],&amp;#10;     4: ['standing', 'color', 'shape', 'yellow', 'blue',   'square',   'triangle'],&amp;#10;&amp;#10;     5: ['standing', 'shape', 'color', 'blue',   'yellow', 'triangle', 'square'],&amp;#10;     6: ['standing', 'shape', 'color', 'blue',   'yellow', 'square',   'triangle'],&amp;#10;     7: ['standing', 'shape', 'color', 'yellow', 'blue',   'triangle', 'square'],&amp;#10;     8: ['standing', 'shape', 'color', 'yellow', 'blue',   'square',   'triangle'],&amp;#10;&amp;#10;     9: ['sitting',  'color', 'shape', 'blue',   'yellow', 'triangle', 'square'],&amp;#10;    10: ['sitting',  'color', 'shape', 'blue',   'yellow', 'square',   'triangle'],&amp;#10;    11: ['sitting',  'color', 'shape', 'yellow', 'blue',   'triangle', 'square'],&amp;#10;    12: ['sitting',  'color', 'shape', 'yellow', 'blue',   'square',   'triangle'],&amp;#10;&amp;#10;    13: ['sitting',  'shape', 'color', 'blue',   'yellow', 'triangle', 'square'],&amp;#10;    14: ['sitting',  'shape', 'color', 'blue',   'yellow', 'square',   'triangle'],&amp;#10;    15: ['sitting',  'shape', 'color', 'yellow', 'blue',   'triangle', 'square'],&amp;#10;    16: ['sitting',  'shape', 'color', 'yellow', 'blue',   'square',   'triangle'],&amp;#10;}&amp;#10;&amp;#10;# given selected subject condition, determine experiment variables and settings being&amp;#10;# used&amp;#10;posture, cueSolid, cueDashed, colorLeft, colorRight, shapeLeft, shapeRight = counter_balancing[condition]&amp;#10;&amp;#10;# mapping of subject counter balanced conditions to expected correct button&amp;#10;# press, 1 for left and 2 for right.  Used explicitly when creating randomized&amp;#10;# trials to correctly set all trial variables for current subject condition&amp;#10;subject_condition_responses = {&amp;#10;    # condition 1, dashed=shape, solid=color&amp;#10;    (1, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (1, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (1, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (1, 'dashed', 'blue',   'square'): 2,&amp;#10;    (1, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (1, 'solid',  'yellow', 'square'): 2,&amp;#10;    (1, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (1, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 2, dashed=shape, solid=color&amp;#10;    (2, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (2, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (2, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (2, 'dashed', 'blue',   'square'): 1,&amp;#10;    (2, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (2, 'solid',  'yellow', 'square'): 2,&amp;#10;    (2, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (2, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 3, dashed=shape, solid=color&amp;#10;    (3, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (3, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (3, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (3, 'dashed', 'blue',   'square'): 2,&amp;#10;    (3, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (3, 'solid',  'yellow', 'square'): 1,&amp;#10;    (3, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (3, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 4, dashed=shape, solid=color&amp;#10;    (4, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (4, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (4, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (4, 'dashed', 'blue',   'square'): 1,&amp;#10;    (4, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (4, 'solid',  'yellow', 'square'): 1,&amp;#10;    (4, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (4, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 5, dashed=color, solid=shape&amp;#10;    (5, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (5, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (5, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (5, 'dashed', 'blue',   'square'): 1,&amp;#10;    (5, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (5, 'solid',  'yellow', 'square'): 2,&amp;#10;    (5, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (5, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 6, dashed=color, solid=shape&amp;#10;    (6, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (6, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (6, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (6, 'dashed', 'blue',   'square'): 1,&amp;#10;    (6, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (6, 'solid',  'yellow', 'square'): 1,&amp;#10;    (6, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (6, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 7, dashed=color, solid=shape&amp;#10;    (7, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (7, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (7, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (7, 'dashed', 'blue',   'square'): 2,&amp;#10;    (7, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (7, 'solid',  'yellow', 'square'): 2,&amp;#10;    (7, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (7, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 8, dashed=color, solid=shape&amp;#10;    (8, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (8, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (8, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (8, 'dashed', 'blue',   'square'): 2,&amp;#10;    (8, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (8, 'solid',  'yellow', 'square'): 1,&amp;#10;    (8, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (8, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 9, dashed=shape, solid=color&amp;#10;    (9, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (9, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (9, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (9, 'dashed', 'blue',   'square'): 2,&amp;#10;    (9, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (9, 'solid',  'yellow', 'square'): 2,&amp;#10;    (9, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (9, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 10, dashed=shape, solid=color&amp;#10;    (10, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (10, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (10, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (10, 'dashed', 'blue',   'square'): 1,&amp;#10;    (10, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (10, 'solid',  'yellow', 'square'): 2,&amp;#10;    (10, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (10, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 11, dashed=shape, solid=color&amp;#10;    (11, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (11, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (11, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (11, 'dashed', 'blue',   'square'): 2,&amp;#10;    (11, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (11, 'solid',  'yellow', 'square'): 1,&amp;#10;    (11, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (11, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 12, dashed=shape, solid=color&amp;#10;    (12, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (12, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (12, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (12, 'dashed', 'blue',   'square'): 1,&amp;#10;    (12, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (12, 'solid',  'yellow', 'square'): 1,&amp;#10;    (12, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (12, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 13, dashed=color, solid=shape&amp;#10;    (13, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (13, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (13, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (13, 'dashed', 'blue',   'square'): 1,&amp;#10;    (13, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (13, 'solid',  'yellow', 'square'): 2,&amp;#10;    (13, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (13, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 14, dashed=color, solid=shape&amp;#10;    (14, 'dashed', 'yellow', 'triangle'): 2,&amp;#10;    (14, 'dashed', 'yellow', 'square'): 2,&amp;#10;    (14, 'dashed', 'blue',   'triangle'): 1,&amp;#10;    (14, 'dashed', 'blue',   'square'): 1,&amp;#10;    (14, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (14, 'solid',  'yellow', 'square'): 1,&amp;#10;    (14, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (14, 'solid',  'blue',   'square'): 1,&amp;#10;&amp;#10;    # condition 15, dashed=color, solid=shape&amp;#10;    (15, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (15, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (15, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (15, 'dashed', 'blue',   'square'): 2,&amp;#10;    (15, 'solid',  'yellow', 'triangle'): 1,&amp;#10;    (15, 'solid',  'yellow', 'square'): 2,&amp;#10;    (15, 'solid',  'blue',   'triangle'): 1,&amp;#10;    (15, 'solid',  'blue',   'square'): 2,&amp;#10;&amp;#10;    # condition 16, dashed=color, solid=shape&amp;#10;    (16, 'dashed', 'yellow', 'triangle'): 1,&amp;#10;    (16, 'dashed', 'yellow', 'square'): 1,&amp;#10;    (16, 'dashed', 'blue',   'triangle'): 2,&amp;#10;    (16, 'dashed', 'blue',   'square'): 2,&amp;#10;    (16, 'solid',  'yellow', 'triangle'): 2,&amp;#10;    (16, 'solid',  'yellow', 'square'): 1,&amp;#10;    (16, 'solid',  'blue',   'triangle'): 2,&amp;#10;    (16, 'solid',  'blue',   'square'): 1,&amp;#10;}&amp;#10;&amp;#10;def determine_expected_response(condition, trial):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Given subject condition and the trial variables (cue, shape and color), determine&amp;#10;    correct response.  We basically use a lookup table / dictionary&amp;#10;    to map from these to expected correct response.  The lookup table could (should?)&amp;#10;    be moved to a file that is read in on experiment startup.&amp;#10;    &quot;&quot;&quot;&amp;#10;    response = 0&amp;#10;    cue_type, shape_type, shape_color = trial&amp;#10;    response = subject_condition_responses[(condition, cue_type, shape_color, shape_type)]&amp;#10;&amp;#10;    # it is an error if response is still 0, should probably&amp;#10;    # stop or throw an exception to be defensive&amp;#10;    return response&amp;#10;&amp;#10;&amp;#10;def is_balanced(trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Return true if both switch/noswitch and congruant/incongruant&amp;#10;    are balanced, false otherwise.&amp;#10;&amp;#10;    NOTE: this method always assumes there is a first buffer&amp;#10;    trial which is ignored when determining balance&amp;#10;    &quot;&quot;&quot;&amp;#10;    return is_switch_balanced(trials) and is_congruant_balanced(trials)&amp;#10;&amp;#10;&amp;#10;def is_switch_balanced(trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Return true if switch/noswitch are balanced, false if not.&amp;#10;    &quot;&quot;&quot;&amp;#10;    switch_count = 0&amp;#10;    for _, _, _, _, _, switch_type, *_ in trials:&amp;#10;        if switch_type == 'switch':&amp;#10;            switch_count += 1&amp;#10;&amp;#10;    num_trials = len(trials) - 1&amp;#10;    half_trials = num_trials // 2&amp;#10;    &amp;#10;    #print('is_switch_balanced %d switched out of %d trials' % (switch_count, num_trials))&amp;#10;    return switch_count == half_trials&amp;#10;&amp;#10;        &amp;#10;def is_congruant_balanced(trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Return true if congruant/incongruant are balanced, false if not.&amp;#10;    &quot;&quot;&quot;&amp;#10;    congruant_count = 0&amp;#10;    for _, _, _, _, _, _, congruant_type, *_ in trials:&amp;#10;        if congruant_type == 'congruant':&amp;#10;            congruant_count += 1&amp;#10;&amp;#10;    num_trials = len(trials) - 1&amp;#10;    half_trials = num_trials // 2&amp;#10;    &amp;#10;    #print('is_congruant_balanced %d congruant out of %d trials' % (congruant_count, num_trials))&amp;#10;    return congruant_count == half_trials&amp;#10;&amp;#10;&amp;#10;def random_trials(block_num, trial_type, condition, posture, num_trials, add_buffer_trial=False):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Create the indicated number of trials and shuffle them&amp;#10;    randomly.  Return result as a list of the trial variables.&amp;#10;&amp;#10;    The add_buffer_trial flag determines if a random initial trial is&amp;#10;    added to the beginning of the trial sequence.  Normally we systematically&amp;#10;    use the trial variable combinations, repeating all possible combinations&amp;#10;    as many times as needed.  But when we are explicitly enforcing that&amp;#10;    trial blocks have equal switch/noswitch and congruant/incongruant, we need&amp;#10;    an initial buffer trial where switch and congruant are NA, this is not&amp;#10;    defined except in relation to a previous trial, so the initial trial is always&amp;#10;    NA with respect to switch/noswitch and congruant/incongruant&amp;#10;    &quot;&quot;&quot;&amp;#10;    &amp;#10;    # create list of 8 basic trial variable combinations&amp;#10;    vars = [cue_types, shape_types, shape_colors]&amp;#10;    base_trials = list(itertools.product(*vars))&amp;#10;    num_base_trials = len(base_trials)&amp;#10;&amp;#10;    # Repeat basic trial combinations whole number of times&amp;#10;    # that we can, then select some more combinations at random&amp;#10;    # to get exactly the asked for num_trials&amp;#10;    num_base_repeats = num_trials // num_base_trials&amp;#10;    num_remaining = num_trials % num_base_trials&amp;#10;    trial_list = base_trials * num_base_repeats&amp;#10;    trial_list += random.sample(base_trials, num_remaining)&amp;#10;&amp;#10;    # now shuffle the trial_list randomly&amp;#10;    random.shuffle(trial_list)&amp;#10;&amp;#10;    # if we are to add a buffer trial, choose one at random and prepend&amp;#10;    # it to the trial list&amp;#10;    if add_buffer_trial:&amp;#10;        trial = random.choice(base_trials)&amp;#10;        trial_list = [trial] + trial_list&amp;#10;        num_trials += 1&amp;#10;        &amp;#10;    # collect trial variables as a list of trials to return&amp;#10;    trials = []&amp;#10;&amp;#10;    # rest of trials, determine switch and congruant from previous&amp;#10;    for trial_num in range(0, num_trials):&amp;#10;        cue_type, shape_type, shape_color = trial_list[trial_num]&amp;#10;        current_response = determine_expected_response(condition, trial_list[trial_num])&amp;#10;&amp;#10;        # first trial is a buffer&amp;#10;        # if no previous, then switch and congrunt are not applicable to this trial&amp;#10;        if trial_num == 0:&amp;#10;            switch_type = 'buffer'&amp;#10;            congruant_type = 'buffer'&amp;#10;        # otherwise determine switch and congruant for this trial based on previous trial&amp;#10;        else:&amp;#10;            prev_cue_type, prev_shape_type, prev_shape_color = trial_list[trial_num - 1]&amp;#10;&amp;#10;            # determine if switch or noswitch&amp;#10;            if cue_type == prev_cue_type:&amp;#10;                switch_type = 'noswitch'&amp;#10;            else:&amp;#10;                switch_type = 'switch'&amp;#10;&amp;#10;            # determine if congruant or not congruant, this is more complicated, it depends&amp;#10;            # on the expected response of previous trial and the response of current trial&amp;#10;            if current_response == prev_response:&amp;#10;                congruant_type = 'congruant'&amp;#10;            else:&amp;#10;                congruant_type = 'incongruant'&amp;#10;&amp;#10;        # remember the previous response for next iteration to determine congruant / incongruant&amp;#10;        prev_response = current_response&amp;#10;        &amp;#10;        trials.append( (block_num, trial_num + 1, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, current_response) )&amp;#10;&amp;#10;    # return the resulting constructed and randomly shuffled list of trials&amp;#10;    return trials&amp;#10;&amp;#10;&amp;#10;def counter_balanced_trials(block_num, trial_type, condition, posture, num_trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    We brute force solution here.  Generate random trials&amp;#10;    with a buffer trial before the requested num_trials, then&amp;#10;    test to see if resulting random shuffle of trials is balanced&amp;#10;    or not.  Usually should take no more than 100 random generations&amp;#10;    to find a trial that is both balanced by switch/noswitch and&amp;#10;    congruant/incongruant&amp;#10;    &quot;&quot;&quot;&amp;#10;    # get an initial set of random trials&amp;#10;    MAX_ATTEMPTS = 1000&amp;#10;    trials = random_trials(block_num, trial_type, condition, posture, num_trials, True)&amp;#10;&amp;#10;    # keep generating random trials of the requested size until&amp;#10;    # we find a balanced one, or until we reach some maximum&amp;#10;    # attempts, in which case something may be wrong&amp;#10;    num_attempts = 1&amp;#10;    while not is_balanced(trials) and num_attempts &lt;= MAX_ATTEMPTS:&amp;#10;        trials = random_trials(block_num, trial_type, condition, posture, num_trials, True)&amp;#10;        num_attempts += 1&amp;#10;&amp;#10;    # sanity check, make sure we found a balanced trial&amp;#10;    if not is_balanced(trials):&amp;#10;        print(&quot;&lt;counter_balanced_trials&gt; Error: could not achieve block balance in %d attempts, aborting&quot; % (MAX_ATTEMPTS))&amp;#10;        sys.exit(1)&amp;#10;        &amp;#10;    # at this point we should have found a balanced trial&amp;#10;    return trials&amp;#10;                    &amp;#10;&amp;#10;def trials_to_csv(filename, trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Given a list of trials (which constitutes a single block of trials usually&amp;#10;    for the experiment), save the block trial list to a comma seperated values (csv)&amp;#10;    file.  This file can be loaded by Psychopy for an experiment block of trials.&amp;#10;    &quot;&quot;&quot;&amp;#10;    f = open(filename, 'w')&amp;#10;    &amp;#10;    # file header&amp;#10;    f.write(&quot;blockNum,trialNum,trialType,condition,posture,switchTrialType,congruantTrialType,cueType,shapeType,shapeColor,cueFileName,stimuliFileName,correctAnswer\n&quot;)&amp;#10;&amp;#10;    # loop to generate trial settings/variables&amp;#10;    for block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:&amp;#10;        # file names for cue/stimuli to use for this trial&amp;#10;        cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)&amp;#10;        stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)&amp;#10;&amp;#10;        # output this trial&amp;#10;        f.write('%d,%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d\n' %&amp;#10;              (block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, cue_filename, stimuli_filename, correct_response))&amp;#10;&amp;#10;    f.close()&amp;#10;&amp;#10;&amp;#10;def trials_to_triallist(trials):&amp;#10;    &quot;&quot;&quot;&amp;#10;    Return a list of dictionaries, where keys are the trial feature/variable names.  Can be used&amp;#10;    directly in Psychopy code instead of saving to a csv file then loading the file for a&amp;#10;    block of trials.&amp;#10;    &quot;&quot;&quot;&amp;#10;    trial_list = []&amp;#10;    &amp;#10;    # loop to generate trial settings/variables&amp;#10;    for block_num, trial_num, trial_type, condition, posture, switch_type, congruant_type, cue_type, shape_type, shape_color, correct_response in trials:&amp;#10;        # file names for cue/stimuli to use for this trial&amp;#10;        cue_filename = 'stimuli/%s-rectangle.png' % (cue_type)&amp;#10;        stimuli_filename = 'stimuli/%s-%s.png' % (shape_color, shape_type)&amp;#10;&amp;#10;        trial_dict = {&amp;#10;            'blockNum': block_num,&amp;#10;            'trialNum': trial_num,&amp;#10;            'trialType': trial_type,&amp;#10;            'condition': condition,&amp;#10;            'posture': posture,&amp;#10;            'switchTrialType': switch_type,&amp;#10;            'congruantTrialType': congruant_type,&amp;#10;            'cueType': cue_type,&amp;#10;            'shapeType': shape_type,&amp;#10;            'shapeColor': shape_color,&amp;#10;            'cueFileName': cue_filename,&amp;#10;            'stimuliFileName': stimuli_filename,&amp;#10;            'correctAnswer': correct_response,&amp;#10;        }&amp;#10;&amp;#10;        trial_list.append(trial_dict)&amp;#10;&amp;#10;    return trial_list&amp;#10;&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="/* Syntax Error: Fix Python code */" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
@@ -289,100 +289,14 @@
         <Param val="code_4" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
-    <Routine name="SolidFeedback">
-      <SoundComponent name="sound_1">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="True" valType="bool" updates="constant" name="hamming"/>
-        <Param val="sound_1" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="A" valType="str" updates="constant" name="sound"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
-        <Param val="1" valType="num" updates="constant" name="volume"/>
-      </SoundComponent>
-      <ImageComponent name="image_2">
-        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
-        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="$errorInstructionSolid" valType="file" updates="constant" name="image"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="" valType="str" updates="constant" name="mask"/>
-        <Param val="image_2" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(53, 30)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-      </ImageComponent>
-    </Routine>
-    <Routine name="DashedFeedback">
-      <SoundComponent name="sound_2">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="True" valType="bool" updates="constant" name="hamming"/>
-        <Param val="sound_2" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="A" valType="str" updates="constant" name="sound"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
-        <Param val="1" valType="num" updates="constant" name="volume"/>
-      </SoundComponent>
-      <ImageComponent name="image_3">
-        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
-        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="$errorInstructionDashed" valType="file" updates="constant" name="image"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="" valType="str" updates="constant" name="mask"/>
-        <Param val="image_3" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(53, 30)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-      </ImageComponent>
-    </Routine>
     <Routine name="DetermineExpFeedback">
       <CodeComponent name="code_3">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="selectCorrect = 0&amp;#10;selectIncorrectSolid = 0&amp;#10;selectIncorrectDashed= 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="selectCorrect = 0;&amp;#10;selectIncorrectSolid = 0;&amp;#10;selectIncorrectDashed = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="selectCorrect = 0&amp;#10;selectIncorrectResponseSolid = 0&amp;#10;selectIncorrectResponseDashed= 0&amp;#10;selectTimeoutSolid = 0&amp;#10;selectTimeoutDashed = 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="selectCorrect = 0;&amp;#10;selectIncorrectResponseSolid = 0;&amp;#10;selectIncorrectResponseDashed = 0;&amp;#10;selectTimeoutSolid = 0;&amp;#10;selectTimeoutDashed = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="/* Syntax Error: Fix Python code */" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="totalTrialsAttempted += 1&amp;#10;&amp;#10;if type(exp_resp.rt) == float:&amp;#10;    reactionTimeSum += exp_resp.rt&amp;#10;    totalTrialsReactedSuccessfully += 1&amp;#10;    #print('rt:  %f, sum: %f, totalTrials: %d' % (exp_resp.rt, reactionTimeSum, totalTrialsReactedSuccessfully))&amp;#10;    &amp;#10;if exp_resp.corr == 1:&amp;#10;    selectCorrect = 1&amp;#10;    selectIncorrectSolid = 0&amp;#10;    selectIncorrectDashed = 0&amp;#10;    numCorrectTrials += 1&amp;#10;else:&amp;#10;    selectCorrect = 0&amp;#10;    if cueType == 'solid':&amp;#10;        selectIncorrectSolid = 1&amp;#10;        selectIncorrectDashed = 0&amp;#10;    else:&amp;#10;        selectIncorrectSolid = 0&amp;#10;        selectIncorrectDashed = 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="totalTrialsAttempted += 1&amp;#10;&amp;#10;if type(exp_resp.rt) == float:&amp;#10;    reactionTimeSum += exp_resp.rt&amp;#10;    totalTrialsReactedSuccessfully += 1&amp;#10;    #print('rt:  %f, sum: %f, totalTrials: %d' % (exp_resp.rt, reactionTimeSum, totalTrialsReactedSuccessfully))&amp;#10;    &amp;#10;# initialize all to 0&amp;#10;selectCorrect = 0&amp;#10;selectIncorrectResponseSolid = 0&amp;#10;selectIncorrectResponseDashed= 0&amp;#10;selectTimeoutSolid = 0&amp;#10;selectTimeoutDashed = 0&amp;#10;&amp;#10;# then select the correct action&amp;#10;if exp_resp.corr == 1:&amp;#10;    selectCorrect = 1&amp;#10;else:&amp;#10;    if cueType == 'solid':&amp;#10;        if exp_resp.keys == None:&amp;#10;            selectTimeoutSolid = 1&amp;#10;        else:&amp;#10;            selectIncorrectResponseSolid = 1&amp;#10;    else:&amp;#10;        if exp_resp.keys == None:&amp;#10;            selectTimeoutDashed = 1&amp;#10;        else:&amp;#10;            selectIncorrectResponseDashed = 1&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1025,10 +939,10 @@
       <CodeComponent name="code_7">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="selectCorrect = 0&amp;#10;selectIncorrectSolid = 0&amp;#10;selectIncorrectDashed= 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="selectCorrect = 0;&amp;#10;selectIncorrectSolid = 0;&amp;#10;selectIncorrectDashed = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="if ((untimed_resp.corr === 1)) {&amp;#10;    selectCorrect = 1;&amp;#10;    selectIncorrectSolid = 0;&amp;#10;    selectIncorrectDashed = 0;&amp;#10;} else {&amp;#10;    selectCorrect = 0;&amp;#10;    if ((cueType === &quot;solid&quot;)) {&amp;#10;        selectIncorrectSolid = 1;&amp;#10;        selectIncorrectDashed = 0;&amp;#10;    } else {&amp;#10;        selectIncorrectSolid = 0;&amp;#10;        selectIncorrectDashed = 1;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="if untimed_resp.corr == 1:&amp;#10;    selectCorrect = 1&amp;#10;    selectIncorrectSolid = 0&amp;#10;    selectIncorrectDashed = 0&amp;#10;else:&amp;#10;    selectCorrect = 0&amp;#10;    if cueType == 'solid':&amp;#10;        selectIncorrectSolid = 1&amp;#10;        selectIncorrectDashed = 0&amp;#10;    else:&amp;#10;        selectIncorrectSolid = 0&amp;#10;        selectIncorrectDashed = 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="selectCorrect = 0&amp;#10;selectIncorrectResponseSolid = 0&amp;#10;selectIncorrectResponseDashed= 0&amp;#10;selectTimeoutSolid = 0&amp;#10;selectTimeoutDashed = 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="selectCorrect = 0;&amp;#10;selectIncorrectResponseSolid = 0;&amp;#10;selectIncorrectResponseDashed = 0;&amp;#10;selectTimeoutSolid = 0;&amp;#10;selectTimeoutDashed = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="selectCorrect = 0;&amp;#10;selectIncorrectResponseSolid = 0;&amp;#10;selectIncorrectResponseDashed = 0;&amp;#10;selectTimeoutSolid = 0;&amp;#10;selectTimeoutDashed = 0;&amp;#10;if ((untimed_resp.corr === 1)) {&amp;#10;    selectCorrect = 1;&amp;#10;} else {&amp;#10;    if ((cueType === &quot;solid&quot;)) {&amp;#10;        selectIncorrectResponseSolid = 1;&amp;#10;    } else {&amp;#10;        selectIncorrectResponseDashed = 1;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# initialize all to 0&amp;#10;selectCorrect = 0&amp;#10;selectIncorrectResponseSolid = 0&amp;#10;selectIncorrectResponseDashed= 0&amp;#10;selectTimeoutSolid = 0&amp;#10;selectTimeoutDashed = 0&amp;#10;&amp;#10;# then select the correct action&amp;#10;if untimed_resp.corr == 1:&amp;#10;    selectCorrect = 1&amp;#10;else:&amp;#10;    if cueType == 'solid':&amp;#10;        selectIncorrectResponseSolid = 1&amp;#10;    else:&amp;#10;        selectIncorrectResponseDashed = 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1244,10 +1158,10 @@
       <CodeComponent name="code_9">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="selectCorrect = 0&amp;#10;selectIncorrectSolid = 0&amp;#10;selectIncorrectDashed= 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="selectCorrect = 0;&amp;#10;selectIncorrectSolid = 0;&amp;#10;selectIncorrectDashed = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="if ((timed_resp.corr === 1)) {&amp;#10;    selectCorrect = 1;&amp;#10;    selectIncorrectSolid = 0;&amp;#10;    selectIncorrectDashed = 0;&amp;#10;} else {&amp;#10;    selectCorrect = 0;&amp;#10;    if ((cueType === &quot;solid&quot;)) {&amp;#10;        selectIncorrectSolid = 1;&amp;#10;        selectIncorrectDashed = 0;&amp;#10;    } else {&amp;#10;        selectIncorrectSolid = 0;&amp;#10;        selectIncorrectDashed = 1;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="if timed_resp.corr == 1:&amp;#10;    selectCorrect = 1&amp;#10;    selectIncorrectSolid = 0&amp;#10;    selectIncorrectDashed = 0&amp;#10;else:&amp;#10;    selectCorrect = 0&amp;#10;    if cueType == 'solid':&amp;#10;        selectIncorrectSolid = 1&amp;#10;        selectIncorrectDashed = 0&amp;#10;    else:&amp;#10;        selectIncorrectSolid = 0&amp;#10;        selectIncorrectDashed = 1" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="selectCorrect = 0&amp;#10;selectIncorrectResponseSolid = 0&amp;#10;selectIncorrectResponseDashed= 0&amp;#10;selectTimeoutSolid = 0&amp;#10;selectTimeoutDashed = 0&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="selectCorrect = 0;&amp;#10;selectIncorrectResponseSolid = 0;&amp;#10;selectIncorrectResponseDashed = 0;&amp;#10;selectTimeoutSolid = 0;&amp;#10;selectTimeoutDashed = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="selectCorrect = 0;&amp;#10;selectIncorrectResponseSolid = 0;&amp;#10;selectIncorrectResponseDashed = 0;&amp;#10;selectTimeoutSolid = 0;&amp;#10;selectTimeoutDashed = 0;&amp;#10;if ((timed_resp.corr === 1)) {&amp;#10;    selectCorrect = 1;&amp;#10;} else {&amp;#10;    if ((cueType === &quot;solid&quot;)) {&amp;#10;        if ((timed_resp.keys === null)) {&amp;#10;            selectTimeoutSolid = 1;&amp;#10;        } else {&amp;#10;            selectIncorrectResponseSolid = 1;&amp;#10;        }&amp;#10;    } else {&amp;#10;        if ((timed_resp.keys === null)) {&amp;#10;            selectTimeoutDashed = 1;&amp;#10;        } else {&amp;#10;            selectIncorrectResponseDashed = 1;&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# initialize all to 0&amp;#10;selectCorrect = 0&amp;#10;selectIncorrectResponseSolid = 0&amp;#10;selectIncorrectResponseDashed= 0&amp;#10;selectTimeoutSolid = 0&amp;#10;selectTimeoutDashed = 0&amp;#10;&amp;#10;# then select the correct action&amp;#10;if timed_resp.corr == 1:&amp;#10;    selectCorrect = 1&amp;#10;else:&amp;#10;    if cueType == 'solid':&amp;#10;        if timed_resp.keys == None:&amp;#10;            selectTimeoutSolid = 1&amp;#10;        else:&amp;#10;            selectIncorrectResponseSolid = 1&amp;#10;    else:&amp;#10;        if timed_resp.keys == None:&amp;#10;            selectTimeoutDashed = 1&amp;#10;        else:&amp;#10;            selectIncorrectResponseDashed = 1&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1258,6 +1172,178 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_9" valType="code" updates="None" name="name"/>
       </CodeComponent>
+    </Routine>
+    <Routine name="InorrectResponseSolidFeedback">
+      <SoundComponent name="sound_1">
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="sound_1" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="A" valType="str" updates="constant" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
+      <ImageComponent name="image_2">
+        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="$errorInstructionIncorrectResponseSolid" valType="file" updates="constant" name="image"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="" valType="str" updates="constant" name="mask"/>
+        <Param val="image_2" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(53, 30)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </ImageComponent>
+    </Routine>
+    <Routine name="IncorrectResponseDashedFeedback">
+      <SoundComponent name="sound_2">
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="sound_2" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="A" valType="str" updates="constant" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
+      <ImageComponent name="image_3">
+        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="$errorInstructionIncorrectResponseDashed" valType="file" updates="constant" name="image"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="" valType="str" updates="constant" name="mask"/>
+        <Param val="image_3" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(53, 30)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </ImageComponent>
+    </Routine>
+    <Routine name="TimeoutSolidFeedback">
+      <SoundComponent name="sound_3">
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="sound_3" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="A" valType="str" updates="constant" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
+      <ImageComponent name="image_14">
+        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="$errorInstructionTimeoutSolid" valType="file" updates="constant" name="image"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="" valType="str" updates="constant" name="mask"/>
+        <Param val="image_14" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(53, 30)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </ImageComponent>
+    </Routine>
+    <Routine name="TimeoutDashedFeedback">
+      <SoundComponent name="sound_4">
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="sound_4" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="A" valType="str" updates="constant" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
+      <ImageComponent name="image_15">
+        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="$errorInstructionTimeoutDashed" valType="file" updates="constant" name="image"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="" valType="str" updates="constant" name="mask"/>
+        <Param val="image_15" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(53, 30)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </ImageComponent>
     </Routine>
   </Routines>
   <Flow>
@@ -1285,32 +1371,32 @@
     </LoopInitiator>
     <Routine name="UntimedTrial"/>
     <Routine name="DetermineUntimedFeedback"/>
-    <LoopInitiator loopType="TrialHandler" name="selectSolid1">
+    <LoopInitiator loopType="TrialHandler" name="selectIncorrectResponseSolid1">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="selectIncorrectSolid" valType="num"/>
-      <Param name="name" updates="None" val="selectSolid1" valType="code"/>
+      <Param name="nReps" updates="None" val="selectIncorrectResponseSolid" valType="num"/>
+      <Param name="name" updates="None" val="selectIncorrectResponseSolid1" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="SolidFeedback"/>
-    <LoopTerminator name="selectSolid1"/>
-    <LoopInitiator loopType="TrialHandler" name="selectDashed1">
+    <Routine name="InorrectResponseSolidFeedback"/>
+    <LoopTerminator name="selectIncorrectResponseSolid1"/>
+    <LoopInitiator loopType="TrialHandler" name="selectIncorrectResponseDashed1">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="selectIncorrectDashed" valType="num"/>
-      <Param name="name" updates="None" val="selectDashed1" valType="code"/>
+      <Param name="nReps" updates="None" val="selectIncorrectResponseDashed" valType="num"/>
+      <Param name="name" updates="None" val="selectIncorrectResponseDashed1" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="DashedFeedback"/>
-    <LoopTerminator name="selectDashed1"/>
+    <Routine name="IncorrectResponseDashedFeedback"/>
+    <LoopTerminator name="selectIncorrectResponseDashed1"/>
     <Routine name="Delay"/>
     <LoopTerminator name="untimedTrials"/>
     <Routine name="TimedInstruction01"/>
@@ -1329,32 +1415,58 @@
     </LoopInitiator>
     <Routine name="TimedTrial"/>
     <Routine name="DetermineTimedFeedback"/>
-    <LoopInitiator loopType="TrialHandler" name="selectSolid2">
+    <LoopInitiator loopType="TrialHandler" name="selectIncorrectResponseSolid2">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="selectIncorrectSolid" valType="num"/>
-      <Param name="name" updates="None" val="selectSolid2" valType="code"/>
+      <Param name="nReps" updates="None" val="selectIncorrectResponseSolid" valType="num"/>
+      <Param name="name" updates="None" val="selectIncorrectResponseSolid2" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="SolidFeedback"/>
-    <LoopTerminator name="selectSolid2"/>
-    <LoopInitiator loopType="TrialHandler" name="selectDashed2">
+    <Routine name="InorrectResponseSolidFeedback"/>
+    <LoopTerminator name="selectIncorrectResponseSolid2"/>
+    <LoopInitiator loopType="TrialHandler" name="selectTimeoutSolid2">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="selectIncorrectDashed" valType="num"/>
-      <Param name="name" updates="None" val="selectDashed2" valType="code"/>
+      <Param name="nReps" updates="None" val="selectTimeoutSolid" valType="num"/>
+      <Param name="name" updates="None" val="selectTimeoutSolid2" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="DashedFeedback"/>
-    <LoopTerminator name="selectDashed2"/>
+    <Routine name="TimeoutSolidFeedback"/>
+    <LoopTerminator name="selectTimeoutSolid2"/>
+    <LoopInitiator loopType="TrialHandler" name="selectIncorrectResponseDashed2">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="selectIncorrectResponseDashed" valType="num"/>
+      <Param name="name" updates="None" val="selectIncorrectResponseDashed2" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="IncorrectResponseDashedFeedback"/>
+    <LoopTerminator name="selectIncorrectResponseDashed2"/>
+    <LoopInitiator loopType="TrialHandler" name="selectTimeoutDashed2">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="selectTimeoutDashed" valType="num"/>
+      <Param name="name" updates="None" val="selectTimeoutDashed2" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="TimeoutDashedFeedback"/>
+    <LoopTerminator name="selectTimeoutDashed2"/>
     <Routine name="Delay"/>
     <LoopTerminator name="timedTrials"/>
     <LoopInitiator loopType="TrialHandler" name="postures">
@@ -1396,32 +1508,58 @@
     </LoopInitiator>
     <Routine name="ExpTrial"/>
     <Routine name="DetermineExpFeedback"/>
-    <LoopInitiator loopType="TrialHandler" name="selectSolid">
+    <LoopInitiator loopType="TrialHandler" name="selectIncorrectResponseSolid">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="selectIncorrectSolid" valType="num"/>
-      <Param name="name" updates="None" val="selectSolid" valType="code"/>
+      <Param name="nReps" updates="None" val="selectIncorrectResponseSolid" valType="num"/>
+      <Param name="name" updates="None" val="selectIncorrectResponseSolid" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="SolidFeedback"/>
-    <LoopTerminator name="selectSolid"/>
-    <LoopInitiator loopType="TrialHandler" name="selectDashed">
+    <Routine name="InorrectResponseSolidFeedback"/>
+    <LoopTerminator name="selectIncorrectResponseSolid"/>
+    <LoopInitiator loopType="TrialHandler" name="selectTimeoutSolid">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="selectIncorrectDashed" valType="num"/>
-      <Param name="name" updates="None" val="selectDashed" valType="code"/>
+      <Param name="nReps" updates="None" val="selectTimeoutSolid" valType="num"/>
+      <Param name="name" updates="None" val="selectTimeoutSolid" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="DashedFeedback"/>
-    <LoopTerminator name="selectDashed"/>
+    <Routine name="TimeoutSolidFeedback"/>
+    <LoopTerminator name="selectTimeoutSolid"/>
+    <LoopInitiator loopType="TrialHandler" name="selectIncorrectResponseDashed">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="selectIncorrectResponseDashed" valType="num"/>
+      <Param name="name" updates="None" val="selectIncorrectResponseDashed" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="IncorrectResponseDashedFeedback"/>
+    <LoopTerminator name="selectIncorrectResponseDashed"/>
+    <LoopInitiator loopType="TrialHandler" name="selectTimeoutDashed">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="selectTimeoutDashed" valType="num"/>
+      <Param name="name" updates="None" val="selectTimeoutDashed" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="TimeoutDashedFeedback"/>
+    <LoopTerminator name="selectTimeoutDashed"/>
     <Routine name="Delay"/>
     <LoopTerminator name="trials"/>
     <LoopTerminator name="blocks"/>

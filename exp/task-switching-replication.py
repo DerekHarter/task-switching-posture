@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Tue 02 Nov 2021 07:38:47 PM CDT
+    on Mon 08 Nov 2021 02:12:51 PM CST
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -97,6 +97,9 @@ numBlocks = 4
 numTrialsPerBlock = 48
 numTrialsUntimed = 12
 numTrialsTimed = 24
+#numTrialsPerBlock = 4
+#numTrialsUntimed = 4
+#numTrialsTimed = 4
 
 # set up instrcution and experiment image stimuli based on condition
 untimedInstruction01   = 'instructions/cond-%02d-untimed-01.png' % (condition)
@@ -110,8 +113,10 @@ untimedInstruction08   = 'instructions/cond-%02d-untimed-08.png' % (condition)
 timedInstruction01     = 'instructions/cond-%02d-timed-01.png' % (condition)
 timedInstruction02     = 'instructions/cond-%02d-timed-02.png' % (condition)
 expInstruction01       = 'instructions/cond-%02d-experiment-01.png' % (condition)
-errorInstructionDashed = 'instructions/cond-%02d-error-dashed.png' % (condition)
-errorInstructionSolid  = 'instructions/cond-%02d-error-solid.png' % (condition)
+errorInstructionIncorrectResponseDashed = 'instructions/cond-%02d-error-dashed-incorrect-response.png' % (condition)
+errorInstructionIncorrectResponseSolid  = 'instructions/cond-%02d-error-solid-incorrect-response.png' % (condition)
+errorInstructionTimeoutDashed = 'instructions/cond-%02d-error-dashed-timeout.png' % (condition)
+errorInstructionTimeoutSolid  = 'instructions/cond-%02d-error-solid-timeout.png' % (condition)
 
 # experiment trial variable enumerated types
 cue_types = ['dashed', 'solid']
@@ -680,32 +685,34 @@ untimed_resp = keyboard.Keyboard()
 # Initialize components for Routine "DetermineUntimedFeedback"
 DetermineUntimedFeedbackClock = core.Clock()
 selectCorrect = 0
-selectIncorrectSolid = 0
-selectIncorrectDashed= 0
+selectIncorrectResponseSolid = 0
+selectIncorrectResponseDashed= 0
+selectTimeoutSolid = 0
+selectTimeoutDashed = 0
 
-# Initialize components for Routine "SolidFeedback"
-SolidFeedbackClock = core.Clock()
+# Initialize components for Routine "InorrectResponseSolidFeedback"
+InorrectResponseSolidFeedbackClock = core.Clock()
 sound_1 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
     name='sound_1')
 sound_1.setVolume(1.0)
 image_2 = visual.ImageStim(
     win=win,
     name='image_2', 
-    image=errorInstructionSolid, mask=None,
+    image=errorInstructionIncorrectResponseSolid, mask=None,
     ori=0.0, pos=(0, 0), size=(53, 30),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-1.0)
 
-# Initialize components for Routine "DashedFeedback"
-DashedFeedbackClock = core.Clock()
+# Initialize components for Routine "IncorrectResponseDashedFeedback"
+IncorrectResponseDashedFeedbackClock = core.Clock()
 sound_2 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
     name='sound_2')
 sound_2.setVolume(1.0)
 image_3 = visual.ImageStim(
     win=win,
     name='image_3', 
-    image=errorInstructionDashed, mask=None,
+    image=errorInstructionIncorrectResponseDashed, mask=None,
     ori=0.0, pos=(0, 0), size=(53, 30),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
@@ -771,32 +778,63 @@ timed_resp = keyboard.Keyboard()
 # Initialize components for Routine "DetermineTimedFeedback"
 DetermineTimedFeedbackClock = core.Clock()
 selectCorrect = 0
-selectIncorrectSolid = 0
-selectIncorrectDashed= 0
+selectIncorrectResponseSolid = 0
+selectIncorrectResponseDashed= 0
+selectTimeoutSolid = 0
+selectTimeoutDashed = 0
 
-# Initialize components for Routine "SolidFeedback"
-SolidFeedbackClock = core.Clock()
+
+# Initialize components for Routine "InorrectResponseSolidFeedback"
+InorrectResponseSolidFeedbackClock = core.Clock()
 sound_1 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
     name='sound_1')
 sound_1.setVolume(1.0)
 image_2 = visual.ImageStim(
     win=win,
     name='image_2', 
-    image=errorInstructionSolid, mask=None,
+    image=errorInstructionIncorrectResponseSolid, mask=None,
     ori=0.0, pos=(0, 0), size=(53, 30),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-1.0)
 
-# Initialize components for Routine "DashedFeedback"
-DashedFeedbackClock = core.Clock()
+# Initialize components for Routine "TimeoutSolidFeedback"
+TimeoutSolidFeedbackClock = core.Clock()
+sound_3 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
+    name='sound_3')
+sound_3.setVolume(1.0)
+image_14 = visual.ImageStim(
+    win=win,
+    name='image_14', 
+    image=errorInstructionTimeoutSolid, mask=None,
+    ori=0.0, pos=(0, 0), size=(53, 30),
+    color=[1,1,1], colorSpace='rgb', opacity=None,
+    flipHoriz=False, flipVert=False,
+    texRes=128.0, interpolate=True, depth=-1.0)
+
+# Initialize components for Routine "IncorrectResponseDashedFeedback"
+IncorrectResponseDashedFeedbackClock = core.Clock()
 sound_2 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
     name='sound_2')
 sound_2.setVolume(1.0)
 image_3 = visual.ImageStim(
     win=win,
     name='image_3', 
-    image=errorInstructionDashed, mask=None,
+    image=errorInstructionIncorrectResponseDashed, mask=None,
+    ori=0.0, pos=(0, 0), size=(53, 30),
+    color=[1,1,1], colorSpace='rgb', opacity=None,
+    flipHoriz=False, flipVert=False,
+    texRes=128.0, interpolate=True, depth=-1.0)
+
+# Initialize components for Routine "TimeoutDashedFeedback"
+TimeoutDashedFeedbackClock = core.Clock()
+sound_4 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
+    name='sound_4')
+sound_4.setVolume(1.0)
+image_15 = visual.ImageStim(
+    win=win,
+    name='image_15', 
+    image=errorInstructionTimeoutDashed, mask=None,
     ori=0.0, pos=(0, 0), size=(53, 30),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
@@ -880,32 +918,62 @@ exp_resp = keyboard.Keyboard()
 # Initialize components for Routine "DetermineExpFeedback"
 DetermineExpFeedbackClock = core.Clock()
 selectCorrect = 0
-selectIncorrectSolid = 0
-selectIncorrectDashed= 0
+selectIncorrectResponseSolid = 0
+selectIncorrectResponseDashed= 0
+selectTimeoutSolid = 0
+selectTimeoutDashed = 0
 
-# Initialize components for Routine "SolidFeedback"
-SolidFeedbackClock = core.Clock()
+# Initialize components for Routine "InorrectResponseSolidFeedback"
+InorrectResponseSolidFeedbackClock = core.Clock()
 sound_1 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
     name='sound_1')
 sound_1.setVolume(1.0)
 image_2 = visual.ImageStim(
     win=win,
     name='image_2', 
-    image=errorInstructionSolid, mask=None,
+    image=errorInstructionIncorrectResponseSolid, mask=None,
     ori=0.0, pos=(0, 0), size=(53, 30),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-1.0)
 
-# Initialize components for Routine "DashedFeedback"
-DashedFeedbackClock = core.Clock()
+# Initialize components for Routine "TimeoutSolidFeedback"
+TimeoutSolidFeedbackClock = core.Clock()
+sound_3 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
+    name='sound_3')
+sound_3.setVolume(1.0)
+image_14 = visual.ImageStim(
+    win=win,
+    name='image_14', 
+    image=errorInstructionTimeoutSolid, mask=None,
+    ori=0.0, pos=(0, 0), size=(53, 30),
+    color=[1,1,1], colorSpace='rgb', opacity=None,
+    flipHoriz=False, flipVert=False,
+    texRes=128.0, interpolate=True, depth=-1.0)
+
+# Initialize components for Routine "IncorrectResponseDashedFeedback"
+IncorrectResponseDashedFeedbackClock = core.Clock()
 sound_2 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
     name='sound_2')
 sound_2.setVolume(1.0)
 image_3 = visual.ImageStim(
     win=win,
     name='image_3', 
-    image=errorInstructionDashed, mask=None,
+    image=errorInstructionIncorrectResponseDashed, mask=None,
+    ori=0.0, pos=(0, 0), size=(53, 30),
+    color=[1,1,1], colorSpace='rgb', opacity=None,
+    flipHoriz=False, flipVert=False,
+    texRes=128.0, interpolate=True, depth=-1.0)
+
+# Initialize components for Routine "TimeoutDashedFeedback"
+TimeoutDashedFeedbackClock = core.Clock()
+sound_4 = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
+    name='sound_4')
+sound_4.setVolume(1.0)
+image_15 = visual.ImageStim(
+    win=win,
+    name='image_15', 
+    image=errorInstructionTimeoutDashed, mask=None,
     ori=0.0, pos=(0, 0), size=(53, 30),
     color=[1,1,1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
@@ -2080,18 +2148,21 @@ for thisUntimedTrial in untimedTrials:
     # ------Prepare to start Routine "DetermineUntimedFeedback"-------
     continueRoutine = True
     # update component parameters for each repeat
+    # initialize all to 0
+    selectCorrect = 0
+    selectIncorrectResponseSolid = 0
+    selectIncorrectResponseDashed= 0
+    selectTimeoutSolid = 0
+    selectTimeoutDashed = 0
+    
+    # then select the correct action
     if untimed_resp.corr == 1:
         selectCorrect = 1
-        selectIncorrectSolid = 0
-        selectIncorrectDashed = 0
     else:
-        selectCorrect = 0
         if cueType == 'solid':
-            selectIncorrectSolid = 1
-            selectIncorrectDashed = 0
+            selectIncorrectResponseSolid = 1
         else:
-            selectIncorrectSolid = 0
-            selectIncorrectDashed = 1
+            selectIncorrectResponseDashed = 1
     # keep track of which components have finished
     DetermineUntimedFeedbackComponents = []
     for thisComponent in DetermineUntimedFeedbackComponents:
@@ -2141,33 +2212,33 @@ for thisUntimedTrial in untimedTrials:
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
-    selectSolid1 = data.TrialHandler(nReps=selectIncorrectSolid, method='sequential', 
+    selectIncorrectResponseSolid1 = data.TrialHandler(nReps=selectIncorrectResponseSolid, method='sequential', 
         extraInfo=expInfo, originPath=-1,
         trialList=[None],
-        seed=None, name='selectSolid1')
-    thisExp.addLoop(selectSolid1)  # add the loop to the experiment
-    thisSelectSolid1 = selectSolid1.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb = thisSelectSolid1.rgb)
-    if thisSelectSolid1 != None:
-        for paramName in thisSelectSolid1:
-            exec('{} = thisSelectSolid1[paramName]'.format(paramName))
+        seed=None, name='selectIncorrectResponseSolid1')
+    thisExp.addLoop(selectIncorrectResponseSolid1)  # add the loop to the experiment
+    thisSelectIncorrectResponseSolid1 = selectIncorrectResponseSolid1.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseSolid1.rgb)
+    if thisSelectIncorrectResponseSolid1 != None:
+        for paramName in thisSelectIncorrectResponseSolid1:
+            exec('{} = thisSelectIncorrectResponseSolid1[paramName]'.format(paramName))
     
-    for thisSelectSolid1 in selectSolid1:
-        currentLoop = selectSolid1
-        # abbreviate parameter names if possible (e.g. rgb = thisSelectSolid1.rgb)
-        if thisSelectSolid1 != None:
-            for paramName in thisSelectSolid1:
-                exec('{} = thisSelectSolid1[paramName]'.format(paramName))
+    for thisSelectIncorrectResponseSolid1 in selectIncorrectResponseSolid1:
+        currentLoop = selectIncorrectResponseSolid1
+        # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseSolid1.rgb)
+        if thisSelectIncorrectResponseSolid1 != None:
+            for paramName in thisSelectIncorrectResponseSolid1:
+                exec('{} = thisSelectIncorrectResponseSolid1[paramName]'.format(paramName))
         
-        # ------Prepare to start Routine "SolidFeedback"-------
+        # ------Prepare to start Routine "InorrectResponseSolidFeedback"-------
         continueRoutine = True
         routineTimer.add(5.000000)
         # update component parameters for each repeat
         sound_1.setSound('A', secs=1.0, hamming=True)
         sound_1.setVolume(1.0, log=False)
         # keep track of which components have finished
-        SolidFeedbackComponents = [sound_1, image_2]
-        for thisComponent in SolidFeedbackComponents:
+        InorrectResponseSolidFeedbackComponents = [sound_1, image_2]
+        for thisComponent in InorrectResponseSolidFeedbackComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -2177,14 +2248,14 @@ for thisUntimedTrial in untimedTrials:
         # reset timers
         t = 0
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        SolidFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+        InorrectResponseSolidFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
         frameN = -1
         
-        # -------Run Routine "SolidFeedback"-------
+        # -------Run Routine "InorrectResponseSolidFeedback"-------
         while continueRoutine and routineTimer.getTime() > 0:
             # get current time
-            t = SolidFeedbackClock.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=SolidFeedbackClock)
+            t = InorrectResponseSolidFeedbackClock.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=InorrectResponseSolidFeedbackClock)
             tThisFlipGlobal = win.getFutureFlipTime(clock=None)
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
@@ -2229,7 +2300,7 @@ for thisUntimedTrial in untimedTrials:
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in SolidFeedbackComponents:
+            for thisComponent in InorrectResponseSolidFeedbackComponents:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -2238,48 +2309,48 @@ for thisUntimedTrial in untimedTrials:
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # -------Ending Routine "SolidFeedback"-------
-        for thisComponent in SolidFeedbackComponents:
+        # -------Ending Routine "InorrectResponseSolidFeedback"-------
+        for thisComponent in InorrectResponseSolidFeedbackComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
         sound_1.stop()  # ensure sound has stopped at end of routine
-        selectSolid1.addData('sound_1.started', sound_1.tStartRefresh)
-        selectSolid1.addData('sound_1.stopped', sound_1.tStopRefresh)
-        selectSolid1.addData('image_2.started', image_2.tStartRefresh)
-        selectSolid1.addData('image_2.stopped', image_2.tStopRefresh)
+        selectIncorrectResponseSolid1.addData('sound_1.started', sound_1.tStartRefresh)
+        selectIncorrectResponseSolid1.addData('sound_1.stopped', sound_1.tStopRefresh)
+        selectIncorrectResponseSolid1.addData('image_2.started', image_2.tStartRefresh)
+        selectIncorrectResponseSolid1.addData('image_2.stopped', image_2.tStopRefresh)
         thisExp.nextEntry()
         
-    # completed selectIncorrectSolid repeats of 'selectSolid1'
+    # completed selectIncorrectResponseSolid repeats of 'selectIncorrectResponseSolid1'
     
     
     # set up handler to look after randomisation of conditions etc
-    selectDashed1 = data.TrialHandler(nReps=selectIncorrectDashed, method='sequential', 
+    selectIncorrectResponseDashed1 = data.TrialHandler(nReps=selectIncorrectResponseDashed, method='sequential', 
         extraInfo=expInfo, originPath=-1,
         trialList=[None],
-        seed=None, name='selectDashed1')
-    thisExp.addLoop(selectDashed1)  # add the loop to the experiment
-    thisSelectDashed1 = selectDashed1.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb = thisSelectDashed1.rgb)
-    if thisSelectDashed1 != None:
-        for paramName in thisSelectDashed1:
-            exec('{} = thisSelectDashed1[paramName]'.format(paramName))
+        seed=None, name='selectIncorrectResponseDashed1')
+    thisExp.addLoop(selectIncorrectResponseDashed1)  # add the loop to the experiment
+    thisSelectIncorrectResponseDashed1 = selectIncorrectResponseDashed1.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseDashed1.rgb)
+    if thisSelectIncorrectResponseDashed1 != None:
+        for paramName in thisSelectIncorrectResponseDashed1:
+            exec('{} = thisSelectIncorrectResponseDashed1[paramName]'.format(paramName))
     
-    for thisSelectDashed1 in selectDashed1:
-        currentLoop = selectDashed1
-        # abbreviate parameter names if possible (e.g. rgb = thisSelectDashed1.rgb)
-        if thisSelectDashed1 != None:
-            for paramName in thisSelectDashed1:
-                exec('{} = thisSelectDashed1[paramName]'.format(paramName))
+    for thisSelectIncorrectResponseDashed1 in selectIncorrectResponseDashed1:
+        currentLoop = selectIncorrectResponseDashed1
+        # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseDashed1.rgb)
+        if thisSelectIncorrectResponseDashed1 != None:
+            for paramName in thisSelectIncorrectResponseDashed1:
+                exec('{} = thisSelectIncorrectResponseDashed1[paramName]'.format(paramName))
         
-        # ------Prepare to start Routine "DashedFeedback"-------
+        # ------Prepare to start Routine "IncorrectResponseDashedFeedback"-------
         continueRoutine = True
         routineTimer.add(5.000000)
         # update component parameters for each repeat
         sound_2.setSound('A', secs=1.0, hamming=True)
         sound_2.setVolume(1.0, log=False)
         # keep track of which components have finished
-        DashedFeedbackComponents = [sound_2, image_3]
-        for thisComponent in DashedFeedbackComponents:
+        IncorrectResponseDashedFeedbackComponents = [sound_2, image_3]
+        for thisComponent in IncorrectResponseDashedFeedbackComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -2289,14 +2360,14 @@ for thisUntimedTrial in untimedTrials:
         # reset timers
         t = 0
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        DashedFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+        IncorrectResponseDashedFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
         frameN = -1
         
-        # -------Run Routine "DashedFeedback"-------
+        # -------Run Routine "IncorrectResponseDashedFeedback"-------
         while continueRoutine and routineTimer.getTime() > 0:
             # get current time
-            t = DashedFeedbackClock.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=DashedFeedbackClock)
+            t = IncorrectResponseDashedFeedbackClock.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=IncorrectResponseDashedFeedbackClock)
             tThisFlipGlobal = win.getFutureFlipTime(clock=None)
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
@@ -2341,7 +2412,7 @@ for thisUntimedTrial in untimedTrials:
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in DashedFeedbackComponents:
+            for thisComponent in IncorrectResponseDashedFeedbackComponents:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -2350,18 +2421,18 @@ for thisUntimedTrial in untimedTrials:
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # -------Ending Routine "DashedFeedback"-------
-        for thisComponent in DashedFeedbackComponents:
+        # -------Ending Routine "IncorrectResponseDashedFeedback"-------
+        for thisComponent in IncorrectResponseDashedFeedbackComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
         sound_2.stop()  # ensure sound has stopped at end of routine
-        selectDashed1.addData('sound_2.started', sound_2.tStartRefresh)
-        selectDashed1.addData('sound_2.stopped', sound_2.tStopRefresh)
-        selectDashed1.addData('image_3.started', image_3.tStartRefresh)
-        selectDashed1.addData('image_3.stopped', image_3.tStopRefresh)
+        selectIncorrectResponseDashed1.addData('sound_2.started', sound_2.tStartRefresh)
+        selectIncorrectResponseDashed1.addData('sound_2.stopped', sound_2.tStopRefresh)
+        selectIncorrectResponseDashed1.addData('image_3.started', image_3.tStartRefresh)
+        selectIncorrectResponseDashed1.addData('image_3.stopped', image_3.tStopRefresh)
         thisExp.nextEntry()
         
-    # completed selectIncorrectDashed repeats of 'selectDashed1'
+    # completed selectIncorrectResponseDashed repeats of 'selectIncorrectResponseDashed1'
     
     
     # ------Prepare to start Routine "Delay"-------
@@ -2853,18 +2924,28 @@ for thisTimedTrial in timedTrials:
     # ------Prepare to start Routine "DetermineTimedFeedback"-------
     continueRoutine = True
     # update component parameters for each repeat
+    # initialize all to 0
+    selectCorrect = 0
+    selectIncorrectResponseSolid = 0
+    selectIncorrectResponseDashed= 0
+    selectTimeoutSolid = 0
+    selectTimeoutDashed = 0
+    
+    # then select the correct action
     if timed_resp.corr == 1:
         selectCorrect = 1
-        selectIncorrectSolid = 0
-        selectIncorrectDashed = 0
     else:
-        selectCorrect = 0
         if cueType == 'solid':
-            selectIncorrectSolid = 1
-            selectIncorrectDashed = 0
+            if timed_resp.keys == None:
+                selectTimeoutSolid = 1
+            else:
+                selectIncorrectResponseSolid = 1
         else:
-            selectIncorrectSolid = 0
-            selectIncorrectDashed = 1
+            if timed_resp.keys == None:
+                selectTimeoutDashed = 1
+            else:
+                selectIncorrectResponseDashed = 1
+    
     # keep track of which components have finished
     DetermineTimedFeedbackComponents = []
     for thisComponent in DetermineTimedFeedbackComponents:
@@ -2914,33 +2995,33 @@ for thisTimedTrial in timedTrials:
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
-    selectSolid2 = data.TrialHandler(nReps=selectIncorrectSolid, method='sequential', 
+    selectIncorrectResponseSolid2 = data.TrialHandler(nReps=selectIncorrectResponseSolid, method='sequential', 
         extraInfo=expInfo, originPath=-1,
         trialList=[None],
-        seed=None, name='selectSolid2')
-    thisExp.addLoop(selectSolid2)  # add the loop to the experiment
-    thisSelectSolid2 = selectSolid2.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb = thisSelectSolid2.rgb)
-    if thisSelectSolid2 != None:
-        for paramName in thisSelectSolid2:
-            exec('{} = thisSelectSolid2[paramName]'.format(paramName))
+        seed=None, name='selectIncorrectResponseSolid2')
+    thisExp.addLoop(selectIncorrectResponseSolid2)  # add the loop to the experiment
+    thisSelectIncorrectResponseSolid2 = selectIncorrectResponseSolid2.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseSolid2.rgb)
+    if thisSelectIncorrectResponseSolid2 != None:
+        for paramName in thisSelectIncorrectResponseSolid2:
+            exec('{} = thisSelectIncorrectResponseSolid2[paramName]'.format(paramName))
     
-    for thisSelectSolid2 in selectSolid2:
-        currentLoop = selectSolid2
-        # abbreviate parameter names if possible (e.g. rgb = thisSelectSolid2.rgb)
-        if thisSelectSolid2 != None:
-            for paramName in thisSelectSolid2:
-                exec('{} = thisSelectSolid2[paramName]'.format(paramName))
+    for thisSelectIncorrectResponseSolid2 in selectIncorrectResponseSolid2:
+        currentLoop = selectIncorrectResponseSolid2
+        # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseSolid2.rgb)
+        if thisSelectIncorrectResponseSolid2 != None:
+            for paramName in thisSelectIncorrectResponseSolid2:
+                exec('{} = thisSelectIncorrectResponseSolid2[paramName]'.format(paramName))
         
-        # ------Prepare to start Routine "SolidFeedback"-------
+        # ------Prepare to start Routine "InorrectResponseSolidFeedback"-------
         continueRoutine = True
         routineTimer.add(5.000000)
         # update component parameters for each repeat
         sound_1.setSound('A', secs=1.0, hamming=True)
         sound_1.setVolume(1.0, log=False)
         # keep track of which components have finished
-        SolidFeedbackComponents = [sound_1, image_2]
-        for thisComponent in SolidFeedbackComponents:
+        InorrectResponseSolidFeedbackComponents = [sound_1, image_2]
+        for thisComponent in InorrectResponseSolidFeedbackComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -2950,14 +3031,14 @@ for thisTimedTrial in timedTrials:
         # reset timers
         t = 0
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        SolidFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+        InorrectResponseSolidFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
         frameN = -1
         
-        # -------Run Routine "SolidFeedback"-------
+        # -------Run Routine "InorrectResponseSolidFeedback"-------
         while continueRoutine and routineTimer.getTime() > 0:
             # get current time
-            t = SolidFeedbackClock.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=SolidFeedbackClock)
+            t = InorrectResponseSolidFeedbackClock.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=InorrectResponseSolidFeedbackClock)
             tThisFlipGlobal = win.getFutureFlipTime(clock=None)
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
@@ -3002,7 +3083,7 @@ for thisTimedTrial in timedTrials:
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in SolidFeedbackComponents:
+            for thisComponent in InorrectResponseSolidFeedbackComponents:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -3011,48 +3092,48 @@ for thisTimedTrial in timedTrials:
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # -------Ending Routine "SolidFeedback"-------
-        for thisComponent in SolidFeedbackComponents:
+        # -------Ending Routine "InorrectResponseSolidFeedback"-------
+        for thisComponent in InorrectResponseSolidFeedbackComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
         sound_1.stop()  # ensure sound has stopped at end of routine
-        selectSolid2.addData('sound_1.started', sound_1.tStartRefresh)
-        selectSolid2.addData('sound_1.stopped', sound_1.tStopRefresh)
-        selectSolid2.addData('image_2.started', image_2.tStartRefresh)
-        selectSolid2.addData('image_2.stopped', image_2.tStopRefresh)
+        selectIncorrectResponseSolid2.addData('sound_1.started', sound_1.tStartRefresh)
+        selectIncorrectResponseSolid2.addData('sound_1.stopped', sound_1.tStopRefresh)
+        selectIncorrectResponseSolid2.addData('image_2.started', image_2.tStartRefresh)
+        selectIncorrectResponseSolid2.addData('image_2.stopped', image_2.tStopRefresh)
         thisExp.nextEntry()
         
-    # completed selectIncorrectSolid repeats of 'selectSolid2'
+    # completed selectIncorrectResponseSolid repeats of 'selectIncorrectResponseSolid2'
     
     
     # set up handler to look after randomisation of conditions etc
-    selectDashed2 = data.TrialHandler(nReps=selectIncorrectDashed, method='sequential', 
+    selectTimeoutSolid2 = data.TrialHandler(nReps=selectTimeoutSolid, method='sequential', 
         extraInfo=expInfo, originPath=-1,
         trialList=[None],
-        seed=None, name='selectDashed2')
-    thisExp.addLoop(selectDashed2)  # add the loop to the experiment
-    thisSelectDashed2 = selectDashed2.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb = thisSelectDashed2.rgb)
-    if thisSelectDashed2 != None:
-        for paramName in thisSelectDashed2:
-            exec('{} = thisSelectDashed2[paramName]'.format(paramName))
+        seed=None, name='selectTimeoutSolid2')
+    thisExp.addLoop(selectTimeoutSolid2)  # add the loop to the experiment
+    thisSelectTimeoutSolid2 = selectTimeoutSolid2.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisSelectTimeoutSolid2.rgb)
+    if thisSelectTimeoutSolid2 != None:
+        for paramName in thisSelectTimeoutSolid2:
+            exec('{} = thisSelectTimeoutSolid2[paramName]'.format(paramName))
     
-    for thisSelectDashed2 in selectDashed2:
-        currentLoop = selectDashed2
-        # abbreviate parameter names if possible (e.g. rgb = thisSelectDashed2.rgb)
-        if thisSelectDashed2 != None:
-            for paramName in thisSelectDashed2:
-                exec('{} = thisSelectDashed2[paramName]'.format(paramName))
+    for thisSelectTimeoutSolid2 in selectTimeoutSolid2:
+        currentLoop = selectTimeoutSolid2
+        # abbreviate parameter names if possible (e.g. rgb = thisSelectTimeoutSolid2.rgb)
+        if thisSelectTimeoutSolid2 != None:
+            for paramName in thisSelectTimeoutSolid2:
+                exec('{} = thisSelectTimeoutSolid2[paramName]'.format(paramName))
         
-        # ------Prepare to start Routine "DashedFeedback"-------
+        # ------Prepare to start Routine "TimeoutSolidFeedback"-------
         continueRoutine = True
         routineTimer.add(5.000000)
         # update component parameters for each repeat
-        sound_2.setSound('A', secs=1.0, hamming=True)
-        sound_2.setVolume(1.0, log=False)
+        sound_3.setSound('A', secs=1.0, hamming=True)
+        sound_3.setVolume(1.0, log=False)
         # keep track of which components have finished
-        DashedFeedbackComponents = [sound_2, image_3]
-        for thisComponent in DashedFeedbackComponents:
+        TimeoutSolidFeedbackComponents = [sound_3, image_14]
+        for thisComponent in TimeoutSolidFeedbackComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
             thisComponent.tStartRefresh = None
@@ -3062,14 +3143,126 @@ for thisTimedTrial in timedTrials:
         # reset timers
         t = 0
         _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        DashedFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+        TimeoutSolidFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
         frameN = -1
         
-        # -------Run Routine "DashedFeedback"-------
+        # -------Run Routine "TimeoutSolidFeedback"-------
         while continueRoutine and routineTimer.getTime() > 0:
             # get current time
-            t = DashedFeedbackClock.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=DashedFeedbackClock)
+            t = TimeoutSolidFeedbackClock.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=TimeoutSolidFeedbackClock)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            # start/stop sound_3
+            if sound_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                sound_3.frameNStart = frameN  # exact frame index
+                sound_3.tStart = t  # local t and not account for scr refresh
+                sound_3.tStartRefresh = tThisFlipGlobal  # on global time
+                sound_3.play(when=win)  # sync with win flip
+            if sound_3.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > sound_3.tStartRefresh + 1.0-frameTolerance:
+                    # keep track of stop time/frame for later
+                    sound_3.tStop = t  # not accounting for scr refresh
+                    sound_3.frameNStop = frameN  # exact frame index
+                    win.timeOnFlip(sound_3, 'tStopRefresh')  # time at next scr refresh
+                    sound_3.stop()
+            
+            # *image_14* updates
+            if image_14.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                image_14.frameNStart = frameN  # exact frame index
+                image_14.tStart = t  # local t and not account for scr refresh
+                image_14.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(image_14, 'tStartRefresh')  # time at next scr refresh
+                image_14.setAutoDraw(True)
+            if image_14.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > image_14.tStartRefresh + 5.0-frameTolerance:
+                    # keep track of stop time/frame for later
+                    image_14.tStop = t  # not accounting for scr refresh
+                    image_14.frameNStop = frameN  # exact frame index
+                    win.timeOnFlip(image_14, 'tStopRefresh')  # time at next scr refresh
+                    image_14.setAutoDraw(False)
+            
+            # check for quit (typically the Esc key)
+            if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+                core.quit()
+            
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+            for thisComponent in TimeoutSolidFeedbackComponents:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        # -------Ending Routine "TimeoutSolidFeedback"-------
+        for thisComponent in TimeoutSolidFeedbackComponents:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        sound_3.stop()  # ensure sound has stopped at end of routine
+        selectTimeoutSolid2.addData('sound_3.started', sound_3.tStartRefresh)
+        selectTimeoutSolid2.addData('sound_3.stopped', sound_3.tStopRefresh)
+        selectTimeoutSolid2.addData('image_14.started', image_14.tStartRefresh)
+        selectTimeoutSolid2.addData('image_14.stopped', image_14.tStopRefresh)
+        thisExp.nextEntry()
+        
+    # completed selectTimeoutSolid repeats of 'selectTimeoutSolid2'
+    
+    
+    # set up handler to look after randomisation of conditions etc
+    selectIncorrectResponseDashed2 = data.TrialHandler(nReps=selectIncorrectResponseDashed, method='sequential', 
+        extraInfo=expInfo, originPath=-1,
+        trialList=[None],
+        seed=None, name='selectIncorrectResponseDashed2')
+    thisExp.addLoop(selectIncorrectResponseDashed2)  # add the loop to the experiment
+    thisSelectIncorrectResponseDashed2 = selectIncorrectResponseDashed2.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseDashed2.rgb)
+    if thisSelectIncorrectResponseDashed2 != None:
+        for paramName in thisSelectIncorrectResponseDashed2:
+            exec('{} = thisSelectIncorrectResponseDashed2[paramName]'.format(paramName))
+    
+    for thisSelectIncorrectResponseDashed2 in selectIncorrectResponseDashed2:
+        currentLoop = selectIncorrectResponseDashed2
+        # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseDashed2.rgb)
+        if thisSelectIncorrectResponseDashed2 != None:
+            for paramName in thisSelectIncorrectResponseDashed2:
+                exec('{} = thisSelectIncorrectResponseDashed2[paramName]'.format(paramName))
+        
+        # ------Prepare to start Routine "IncorrectResponseDashedFeedback"-------
+        continueRoutine = True
+        routineTimer.add(5.000000)
+        # update component parameters for each repeat
+        sound_2.setSound('A', secs=1.0, hamming=True)
+        sound_2.setVolume(1.0, log=False)
+        # keep track of which components have finished
+        IncorrectResponseDashedFeedbackComponents = [sound_2, image_3]
+        for thisComponent in IncorrectResponseDashedFeedbackComponents:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        IncorrectResponseDashedFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+        frameN = -1
+        
+        # -------Run Routine "IncorrectResponseDashedFeedback"-------
+        while continueRoutine and routineTimer.getTime() > 0:
+            # get current time
+            t = IncorrectResponseDashedFeedbackClock.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=IncorrectResponseDashedFeedbackClock)
             tThisFlipGlobal = win.getFutureFlipTime(clock=None)
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
@@ -3114,7 +3307,7 @@ for thisTimedTrial in timedTrials:
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in DashedFeedbackComponents:
+            for thisComponent in IncorrectResponseDashedFeedbackComponents:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -3123,18 +3316,130 @@ for thisTimedTrial in timedTrials:
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # -------Ending Routine "DashedFeedback"-------
-        for thisComponent in DashedFeedbackComponents:
+        # -------Ending Routine "IncorrectResponseDashedFeedback"-------
+        for thisComponent in IncorrectResponseDashedFeedbackComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
         sound_2.stop()  # ensure sound has stopped at end of routine
-        selectDashed2.addData('sound_2.started', sound_2.tStartRefresh)
-        selectDashed2.addData('sound_2.stopped', sound_2.tStopRefresh)
-        selectDashed2.addData('image_3.started', image_3.tStartRefresh)
-        selectDashed2.addData('image_3.stopped', image_3.tStopRefresh)
+        selectIncorrectResponseDashed2.addData('sound_2.started', sound_2.tStartRefresh)
+        selectIncorrectResponseDashed2.addData('sound_2.stopped', sound_2.tStopRefresh)
+        selectIncorrectResponseDashed2.addData('image_3.started', image_3.tStartRefresh)
+        selectIncorrectResponseDashed2.addData('image_3.stopped', image_3.tStopRefresh)
         thisExp.nextEntry()
         
-    # completed selectIncorrectDashed repeats of 'selectDashed2'
+    # completed selectIncorrectResponseDashed repeats of 'selectIncorrectResponseDashed2'
+    
+    
+    # set up handler to look after randomisation of conditions etc
+    selectTimeoutDashed2 = data.TrialHandler(nReps=selectTimeoutDashed, method='sequential', 
+        extraInfo=expInfo, originPath=-1,
+        trialList=[None],
+        seed=None, name='selectTimeoutDashed2')
+    thisExp.addLoop(selectTimeoutDashed2)  # add the loop to the experiment
+    thisSelectTimeoutDashed2 = selectTimeoutDashed2.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb = thisSelectTimeoutDashed2.rgb)
+    if thisSelectTimeoutDashed2 != None:
+        for paramName in thisSelectTimeoutDashed2:
+            exec('{} = thisSelectTimeoutDashed2[paramName]'.format(paramName))
+    
+    for thisSelectTimeoutDashed2 in selectTimeoutDashed2:
+        currentLoop = selectTimeoutDashed2
+        # abbreviate parameter names if possible (e.g. rgb = thisSelectTimeoutDashed2.rgb)
+        if thisSelectTimeoutDashed2 != None:
+            for paramName in thisSelectTimeoutDashed2:
+                exec('{} = thisSelectTimeoutDashed2[paramName]'.format(paramName))
+        
+        # ------Prepare to start Routine "TimeoutDashedFeedback"-------
+        continueRoutine = True
+        routineTimer.add(5.000000)
+        # update component parameters for each repeat
+        sound_4.setSound('A', secs=1.0, hamming=True)
+        sound_4.setVolume(1.0, log=False)
+        # keep track of which components have finished
+        TimeoutDashedFeedbackComponents = [sound_4, image_15]
+        for thisComponent in TimeoutDashedFeedbackComponents:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        TimeoutDashedFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+        frameN = -1
+        
+        # -------Run Routine "TimeoutDashedFeedback"-------
+        while continueRoutine and routineTimer.getTime() > 0:
+            # get current time
+            t = TimeoutDashedFeedbackClock.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=TimeoutDashedFeedbackClock)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            # start/stop sound_4
+            if sound_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                sound_4.frameNStart = frameN  # exact frame index
+                sound_4.tStart = t  # local t and not account for scr refresh
+                sound_4.tStartRefresh = tThisFlipGlobal  # on global time
+                sound_4.play(when=win)  # sync with win flip
+            if sound_4.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > sound_4.tStartRefresh + 1.0-frameTolerance:
+                    # keep track of stop time/frame for later
+                    sound_4.tStop = t  # not accounting for scr refresh
+                    sound_4.frameNStop = frameN  # exact frame index
+                    win.timeOnFlip(sound_4, 'tStopRefresh')  # time at next scr refresh
+                    sound_4.stop()
+            
+            # *image_15* updates
+            if image_15.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                image_15.frameNStart = frameN  # exact frame index
+                image_15.tStart = t  # local t and not account for scr refresh
+                image_15.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(image_15, 'tStartRefresh')  # time at next scr refresh
+                image_15.setAutoDraw(True)
+            if image_15.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > image_15.tStartRefresh + 5.0-frameTolerance:
+                    # keep track of stop time/frame for later
+                    image_15.tStop = t  # not accounting for scr refresh
+                    image_15.frameNStop = frameN  # exact frame index
+                    win.timeOnFlip(image_15, 'tStopRefresh')  # time at next scr refresh
+                    image_15.setAutoDraw(False)
+            
+            # check for quit (typically the Esc key)
+            if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+                core.quit()
+            
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+            for thisComponent in TimeoutDashedFeedbackComponents:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        # -------Ending Routine "TimeoutDashedFeedback"-------
+        for thisComponent in TimeoutDashedFeedbackComponents:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        sound_4.stop()  # ensure sound has stopped at end of routine
+        selectTimeoutDashed2.addData('sound_4.started', sound_4.tStartRefresh)
+        selectTimeoutDashed2.addData('sound_4.stopped', sound_4.tStopRefresh)
+        selectTimeoutDashed2.addData('image_15.started', image_15.tStartRefresh)
+        selectTimeoutDashed2.addData('image_15.stopped', image_15.tStopRefresh)
+        thisExp.nextEntry()
+        
+    # completed selectTimeoutDashed repeats of 'selectTimeoutDashed2'
     
     
     # ------Prepare to start Routine "Delay"-------
@@ -3807,19 +4112,28 @@ for thisPosture in postures:
                 totalTrialsReactedSuccessfully += 1
                 #print('rt:  %f, sum: %f, totalTrials: %d' % (exp_resp.rt, reactionTimeSum, totalTrialsReactedSuccessfully))
                 
+            # initialize all to 0
+            selectCorrect = 0
+            selectIncorrectResponseSolid = 0
+            selectIncorrectResponseDashed= 0
+            selectTimeoutSolid = 0
+            selectTimeoutDashed = 0
+            
+            # then select the correct action
             if exp_resp.corr == 1:
                 selectCorrect = 1
-                selectIncorrectSolid = 0
-                selectIncorrectDashed = 0
-                numCorrectTrials += 1
             else:
-                selectCorrect = 0
                 if cueType == 'solid':
-                    selectIncorrectSolid = 1
-                    selectIncorrectDashed = 0
+                    if exp_resp.keys == None:
+                        selectTimeoutSolid = 1
+                    else:
+                        selectIncorrectResponseSolid = 1
                 else:
-                    selectIncorrectSolid = 0
-                    selectIncorrectDashed = 1
+                    if exp_resp.keys == None:
+                        selectTimeoutDashed = 1
+                    else:
+                        selectIncorrectResponseDashed = 1
+            
             # keep track of which components have finished
             DetermineExpFeedbackComponents = []
             for thisComponent in DetermineExpFeedbackComponents:
@@ -3869,33 +4183,33 @@ for thisPosture in postures:
             routineTimer.reset()
             
             # set up handler to look after randomisation of conditions etc
-            selectSolid = data.TrialHandler(nReps=selectIncorrectSolid, method='sequential', 
+            selectIncorrectResponseSolid = data.TrialHandler(nReps=selectIncorrectResponseSolid, method='sequential', 
                 extraInfo=expInfo, originPath=-1,
                 trialList=[None],
-                seed=None, name='selectSolid')
-            thisExp.addLoop(selectSolid)  # add the loop to the experiment
-            thisSelectSolid = selectSolid.trialList[0]  # so we can initialise stimuli with some values
-            # abbreviate parameter names if possible (e.g. rgb = thisSelectSolid.rgb)
-            if thisSelectSolid != None:
-                for paramName in thisSelectSolid:
-                    exec('{} = thisSelectSolid[paramName]'.format(paramName))
+                seed=None, name='selectIncorrectResponseSolid')
+            thisExp.addLoop(selectIncorrectResponseSolid)  # add the loop to the experiment
+            thisSelectIncorrectResponseSolid = selectIncorrectResponseSolid.trialList[0]  # so we can initialise stimuli with some values
+            # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseSolid.rgb)
+            if thisSelectIncorrectResponseSolid != None:
+                for paramName in thisSelectIncorrectResponseSolid:
+                    exec('{} = thisSelectIncorrectResponseSolid[paramName]'.format(paramName))
             
-            for thisSelectSolid in selectSolid:
-                currentLoop = selectSolid
-                # abbreviate parameter names if possible (e.g. rgb = thisSelectSolid.rgb)
-                if thisSelectSolid != None:
-                    for paramName in thisSelectSolid:
-                        exec('{} = thisSelectSolid[paramName]'.format(paramName))
+            for thisSelectIncorrectResponseSolid in selectIncorrectResponseSolid:
+                currentLoop = selectIncorrectResponseSolid
+                # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseSolid.rgb)
+                if thisSelectIncorrectResponseSolid != None:
+                    for paramName in thisSelectIncorrectResponseSolid:
+                        exec('{} = thisSelectIncorrectResponseSolid[paramName]'.format(paramName))
                 
-                # ------Prepare to start Routine "SolidFeedback"-------
+                # ------Prepare to start Routine "InorrectResponseSolidFeedback"-------
                 continueRoutine = True
                 routineTimer.add(5.000000)
                 # update component parameters for each repeat
                 sound_1.setSound('A', secs=1.0, hamming=True)
                 sound_1.setVolume(1.0, log=False)
                 # keep track of which components have finished
-                SolidFeedbackComponents = [sound_1, image_2]
-                for thisComponent in SolidFeedbackComponents:
+                InorrectResponseSolidFeedbackComponents = [sound_1, image_2]
+                for thisComponent in InorrectResponseSolidFeedbackComponents:
                     thisComponent.tStart = None
                     thisComponent.tStop = None
                     thisComponent.tStartRefresh = None
@@ -3905,14 +4219,14 @@ for thisPosture in postures:
                 # reset timers
                 t = 0
                 _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-                SolidFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+                InorrectResponseSolidFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
                 frameN = -1
                 
-                # -------Run Routine "SolidFeedback"-------
+                # -------Run Routine "InorrectResponseSolidFeedback"-------
                 while continueRoutine and routineTimer.getTime() > 0:
                     # get current time
-                    t = SolidFeedbackClock.getTime()
-                    tThisFlip = win.getFutureFlipTime(clock=SolidFeedbackClock)
+                    t = InorrectResponseSolidFeedbackClock.getTime()
+                    tThisFlip = win.getFutureFlipTime(clock=InorrectResponseSolidFeedbackClock)
                     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
                     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
                     # update/draw components on each frame
@@ -3957,7 +4271,7 @@ for thisPosture in postures:
                     if not continueRoutine:  # a component has requested a forced-end of Routine
                         break
                     continueRoutine = False  # will revert to True if at least one component still running
-                    for thisComponent in SolidFeedbackComponents:
+                    for thisComponent in InorrectResponseSolidFeedbackComponents:
                         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                             continueRoutine = True
                             break  # at least one component has not yet finished
@@ -3966,48 +4280,48 @@ for thisPosture in postures:
                     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                         win.flip()
                 
-                # -------Ending Routine "SolidFeedback"-------
-                for thisComponent in SolidFeedbackComponents:
+                # -------Ending Routine "InorrectResponseSolidFeedback"-------
+                for thisComponent in InorrectResponseSolidFeedbackComponents:
                     if hasattr(thisComponent, "setAutoDraw"):
                         thisComponent.setAutoDraw(False)
                 sound_1.stop()  # ensure sound has stopped at end of routine
-                selectSolid.addData('sound_1.started', sound_1.tStartRefresh)
-                selectSolid.addData('sound_1.stopped', sound_1.tStopRefresh)
-                selectSolid.addData('image_2.started', image_2.tStartRefresh)
-                selectSolid.addData('image_2.stopped', image_2.tStopRefresh)
+                selectIncorrectResponseSolid.addData('sound_1.started', sound_1.tStartRefresh)
+                selectIncorrectResponseSolid.addData('sound_1.stopped', sound_1.tStopRefresh)
+                selectIncorrectResponseSolid.addData('image_2.started', image_2.tStartRefresh)
+                selectIncorrectResponseSolid.addData('image_2.stopped', image_2.tStopRefresh)
                 thisExp.nextEntry()
                 
-            # completed selectIncorrectSolid repeats of 'selectSolid'
+            # completed selectIncorrectResponseSolid repeats of 'selectIncorrectResponseSolid'
             
             
             # set up handler to look after randomisation of conditions etc
-            selectDashed = data.TrialHandler(nReps=selectIncorrectDashed, method='sequential', 
+            selectTimeoutSolid = data.TrialHandler(nReps=selectTimeoutSolid, method='sequential', 
                 extraInfo=expInfo, originPath=-1,
                 trialList=[None],
-                seed=None, name='selectDashed')
-            thisExp.addLoop(selectDashed)  # add the loop to the experiment
-            thisSelectDashed = selectDashed.trialList[0]  # so we can initialise stimuli with some values
-            # abbreviate parameter names if possible (e.g. rgb = thisSelectDashed.rgb)
-            if thisSelectDashed != None:
-                for paramName in thisSelectDashed:
-                    exec('{} = thisSelectDashed[paramName]'.format(paramName))
+                seed=None, name='selectTimeoutSolid')
+            thisExp.addLoop(selectTimeoutSolid)  # add the loop to the experiment
+            thisSelectTimeoutSolid = selectTimeoutSolid.trialList[0]  # so we can initialise stimuli with some values
+            # abbreviate parameter names if possible (e.g. rgb = thisSelectTimeoutSolid.rgb)
+            if thisSelectTimeoutSolid != None:
+                for paramName in thisSelectTimeoutSolid:
+                    exec('{} = thisSelectTimeoutSolid[paramName]'.format(paramName))
             
-            for thisSelectDashed in selectDashed:
-                currentLoop = selectDashed
-                # abbreviate parameter names if possible (e.g. rgb = thisSelectDashed.rgb)
-                if thisSelectDashed != None:
-                    for paramName in thisSelectDashed:
-                        exec('{} = thisSelectDashed[paramName]'.format(paramName))
+            for thisSelectTimeoutSolid in selectTimeoutSolid:
+                currentLoop = selectTimeoutSolid
+                # abbreviate parameter names if possible (e.g. rgb = thisSelectTimeoutSolid.rgb)
+                if thisSelectTimeoutSolid != None:
+                    for paramName in thisSelectTimeoutSolid:
+                        exec('{} = thisSelectTimeoutSolid[paramName]'.format(paramName))
                 
-                # ------Prepare to start Routine "DashedFeedback"-------
+                # ------Prepare to start Routine "TimeoutSolidFeedback"-------
                 continueRoutine = True
                 routineTimer.add(5.000000)
                 # update component parameters for each repeat
-                sound_2.setSound('A', secs=1.0, hamming=True)
-                sound_2.setVolume(1.0, log=False)
+                sound_3.setSound('A', secs=1.0, hamming=True)
+                sound_3.setVolume(1.0, log=False)
                 # keep track of which components have finished
-                DashedFeedbackComponents = [sound_2, image_3]
-                for thisComponent in DashedFeedbackComponents:
+                TimeoutSolidFeedbackComponents = [sound_3, image_14]
+                for thisComponent in TimeoutSolidFeedbackComponents:
                     thisComponent.tStart = None
                     thisComponent.tStop = None
                     thisComponent.tStartRefresh = None
@@ -4017,14 +4331,126 @@ for thisPosture in postures:
                 # reset timers
                 t = 0
                 _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-                DashedFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+                TimeoutSolidFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
                 frameN = -1
                 
-                # -------Run Routine "DashedFeedback"-------
+                # -------Run Routine "TimeoutSolidFeedback"-------
                 while continueRoutine and routineTimer.getTime() > 0:
                     # get current time
-                    t = DashedFeedbackClock.getTime()
-                    tThisFlip = win.getFutureFlipTime(clock=DashedFeedbackClock)
+                    t = TimeoutSolidFeedbackClock.getTime()
+                    tThisFlip = win.getFutureFlipTime(clock=TimeoutSolidFeedbackClock)
+                    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+                    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+                    # update/draw components on each frame
+                    # start/stop sound_3
+                    if sound_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                        # keep track of start time/frame for later
+                        sound_3.frameNStart = frameN  # exact frame index
+                        sound_3.tStart = t  # local t and not account for scr refresh
+                        sound_3.tStartRefresh = tThisFlipGlobal  # on global time
+                        sound_3.play(when=win)  # sync with win flip
+                    if sound_3.status == STARTED:
+                        # is it time to stop? (based on global clock, using actual start)
+                        if tThisFlipGlobal > sound_3.tStartRefresh + 1.0-frameTolerance:
+                            # keep track of stop time/frame for later
+                            sound_3.tStop = t  # not accounting for scr refresh
+                            sound_3.frameNStop = frameN  # exact frame index
+                            win.timeOnFlip(sound_3, 'tStopRefresh')  # time at next scr refresh
+                            sound_3.stop()
+                    
+                    # *image_14* updates
+                    if image_14.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                        # keep track of start time/frame for later
+                        image_14.frameNStart = frameN  # exact frame index
+                        image_14.tStart = t  # local t and not account for scr refresh
+                        image_14.tStartRefresh = tThisFlipGlobal  # on global time
+                        win.timeOnFlip(image_14, 'tStartRefresh')  # time at next scr refresh
+                        image_14.setAutoDraw(True)
+                    if image_14.status == STARTED:
+                        # is it time to stop? (based on global clock, using actual start)
+                        if tThisFlipGlobal > image_14.tStartRefresh + 5.0-frameTolerance:
+                            # keep track of stop time/frame for later
+                            image_14.tStop = t  # not accounting for scr refresh
+                            image_14.frameNStop = frameN  # exact frame index
+                            win.timeOnFlip(image_14, 'tStopRefresh')  # time at next scr refresh
+                            image_14.setAutoDraw(False)
+                    
+                    # check for quit (typically the Esc key)
+                    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+                        core.quit()
+                    
+                    # check if all components have finished
+                    if not continueRoutine:  # a component has requested a forced-end of Routine
+                        break
+                    continueRoutine = False  # will revert to True if at least one component still running
+                    for thisComponent in TimeoutSolidFeedbackComponents:
+                        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                            continueRoutine = True
+                            break  # at least one component has not yet finished
+                    
+                    # refresh the screen
+                    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                        win.flip()
+                
+                # -------Ending Routine "TimeoutSolidFeedback"-------
+                for thisComponent in TimeoutSolidFeedbackComponents:
+                    if hasattr(thisComponent, "setAutoDraw"):
+                        thisComponent.setAutoDraw(False)
+                sound_3.stop()  # ensure sound has stopped at end of routine
+                selectTimeoutSolid.addData('sound_3.started', sound_3.tStartRefresh)
+                selectTimeoutSolid.addData('sound_3.stopped', sound_3.tStopRefresh)
+                selectTimeoutSolid.addData('image_14.started', image_14.tStartRefresh)
+                selectTimeoutSolid.addData('image_14.stopped', image_14.tStopRefresh)
+                thisExp.nextEntry()
+                
+            # completed selectTimeoutSolid repeats of 'selectTimeoutSolid'
+            
+            
+            # set up handler to look after randomisation of conditions etc
+            selectIncorrectResponseDashed = data.TrialHandler(nReps=selectIncorrectResponseDashed, method='sequential', 
+                extraInfo=expInfo, originPath=-1,
+                trialList=[None],
+                seed=None, name='selectIncorrectResponseDashed')
+            thisExp.addLoop(selectIncorrectResponseDashed)  # add the loop to the experiment
+            thisSelectIncorrectResponseDashed = selectIncorrectResponseDashed.trialList[0]  # so we can initialise stimuli with some values
+            # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseDashed.rgb)
+            if thisSelectIncorrectResponseDashed != None:
+                for paramName in thisSelectIncorrectResponseDashed:
+                    exec('{} = thisSelectIncorrectResponseDashed[paramName]'.format(paramName))
+            
+            for thisSelectIncorrectResponseDashed in selectIncorrectResponseDashed:
+                currentLoop = selectIncorrectResponseDashed
+                # abbreviate parameter names if possible (e.g. rgb = thisSelectIncorrectResponseDashed.rgb)
+                if thisSelectIncorrectResponseDashed != None:
+                    for paramName in thisSelectIncorrectResponseDashed:
+                        exec('{} = thisSelectIncorrectResponseDashed[paramName]'.format(paramName))
+                
+                # ------Prepare to start Routine "IncorrectResponseDashedFeedback"-------
+                continueRoutine = True
+                routineTimer.add(5.000000)
+                # update component parameters for each repeat
+                sound_2.setSound('A', secs=1.0, hamming=True)
+                sound_2.setVolume(1.0, log=False)
+                # keep track of which components have finished
+                IncorrectResponseDashedFeedbackComponents = [sound_2, image_3]
+                for thisComponent in IncorrectResponseDashedFeedbackComponents:
+                    thisComponent.tStart = None
+                    thisComponent.tStop = None
+                    thisComponent.tStartRefresh = None
+                    thisComponent.tStopRefresh = None
+                    if hasattr(thisComponent, 'status'):
+                        thisComponent.status = NOT_STARTED
+                # reset timers
+                t = 0
+                _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+                IncorrectResponseDashedFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+                frameN = -1
+                
+                # -------Run Routine "IncorrectResponseDashedFeedback"-------
+                while continueRoutine and routineTimer.getTime() > 0:
+                    # get current time
+                    t = IncorrectResponseDashedFeedbackClock.getTime()
+                    tThisFlip = win.getFutureFlipTime(clock=IncorrectResponseDashedFeedbackClock)
                     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
                     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
                     # update/draw components on each frame
@@ -4069,7 +4495,7 @@ for thisPosture in postures:
                     if not continueRoutine:  # a component has requested a forced-end of Routine
                         break
                     continueRoutine = False  # will revert to True if at least one component still running
-                    for thisComponent in DashedFeedbackComponents:
+                    for thisComponent in IncorrectResponseDashedFeedbackComponents:
                         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                             continueRoutine = True
                             break  # at least one component has not yet finished
@@ -4078,18 +4504,130 @@ for thisPosture in postures:
                     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                         win.flip()
                 
-                # -------Ending Routine "DashedFeedback"-------
-                for thisComponent in DashedFeedbackComponents:
+                # -------Ending Routine "IncorrectResponseDashedFeedback"-------
+                for thisComponent in IncorrectResponseDashedFeedbackComponents:
                     if hasattr(thisComponent, "setAutoDraw"):
                         thisComponent.setAutoDraw(False)
                 sound_2.stop()  # ensure sound has stopped at end of routine
-                selectDashed.addData('sound_2.started', sound_2.tStartRefresh)
-                selectDashed.addData('sound_2.stopped', sound_2.tStopRefresh)
-                selectDashed.addData('image_3.started', image_3.tStartRefresh)
-                selectDashed.addData('image_3.stopped', image_3.tStopRefresh)
+                selectIncorrectResponseDashed.addData('sound_2.started', sound_2.tStartRefresh)
+                selectIncorrectResponseDashed.addData('sound_2.stopped', sound_2.tStopRefresh)
+                selectIncorrectResponseDashed.addData('image_3.started', image_3.tStartRefresh)
+                selectIncorrectResponseDashed.addData('image_3.stopped', image_3.tStopRefresh)
                 thisExp.nextEntry()
                 
-            # completed selectIncorrectDashed repeats of 'selectDashed'
+            # completed selectIncorrectResponseDashed repeats of 'selectIncorrectResponseDashed'
+            
+            
+            # set up handler to look after randomisation of conditions etc
+            selectTimeoutDashed = data.TrialHandler(nReps=selectTimeoutDashed, method='sequential', 
+                extraInfo=expInfo, originPath=-1,
+                trialList=[None],
+                seed=None, name='selectTimeoutDashed')
+            thisExp.addLoop(selectTimeoutDashed)  # add the loop to the experiment
+            thisSelectTimeoutDashed = selectTimeoutDashed.trialList[0]  # so we can initialise stimuli with some values
+            # abbreviate parameter names if possible (e.g. rgb = thisSelectTimeoutDashed.rgb)
+            if thisSelectTimeoutDashed != None:
+                for paramName in thisSelectTimeoutDashed:
+                    exec('{} = thisSelectTimeoutDashed[paramName]'.format(paramName))
+            
+            for thisSelectTimeoutDashed in selectTimeoutDashed:
+                currentLoop = selectTimeoutDashed
+                # abbreviate parameter names if possible (e.g. rgb = thisSelectTimeoutDashed.rgb)
+                if thisSelectTimeoutDashed != None:
+                    for paramName in thisSelectTimeoutDashed:
+                        exec('{} = thisSelectTimeoutDashed[paramName]'.format(paramName))
+                
+                # ------Prepare to start Routine "TimeoutDashedFeedback"-------
+                continueRoutine = True
+                routineTimer.add(5.000000)
+                # update component parameters for each repeat
+                sound_4.setSound('A', secs=1.0, hamming=True)
+                sound_4.setVolume(1.0, log=False)
+                # keep track of which components have finished
+                TimeoutDashedFeedbackComponents = [sound_4, image_15]
+                for thisComponent in TimeoutDashedFeedbackComponents:
+                    thisComponent.tStart = None
+                    thisComponent.tStop = None
+                    thisComponent.tStartRefresh = None
+                    thisComponent.tStopRefresh = None
+                    if hasattr(thisComponent, 'status'):
+                        thisComponent.status = NOT_STARTED
+                # reset timers
+                t = 0
+                _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+                TimeoutDashedFeedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+                frameN = -1
+                
+                # -------Run Routine "TimeoutDashedFeedback"-------
+                while continueRoutine and routineTimer.getTime() > 0:
+                    # get current time
+                    t = TimeoutDashedFeedbackClock.getTime()
+                    tThisFlip = win.getFutureFlipTime(clock=TimeoutDashedFeedbackClock)
+                    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+                    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+                    # update/draw components on each frame
+                    # start/stop sound_4
+                    if sound_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                        # keep track of start time/frame for later
+                        sound_4.frameNStart = frameN  # exact frame index
+                        sound_4.tStart = t  # local t and not account for scr refresh
+                        sound_4.tStartRefresh = tThisFlipGlobal  # on global time
+                        sound_4.play(when=win)  # sync with win flip
+                    if sound_4.status == STARTED:
+                        # is it time to stop? (based on global clock, using actual start)
+                        if tThisFlipGlobal > sound_4.tStartRefresh + 1.0-frameTolerance:
+                            # keep track of stop time/frame for later
+                            sound_4.tStop = t  # not accounting for scr refresh
+                            sound_4.frameNStop = frameN  # exact frame index
+                            win.timeOnFlip(sound_4, 'tStopRefresh')  # time at next scr refresh
+                            sound_4.stop()
+                    
+                    # *image_15* updates
+                    if image_15.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                        # keep track of start time/frame for later
+                        image_15.frameNStart = frameN  # exact frame index
+                        image_15.tStart = t  # local t and not account for scr refresh
+                        image_15.tStartRefresh = tThisFlipGlobal  # on global time
+                        win.timeOnFlip(image_15, 'tStartRefresh')  # time at next scr refresh
+                        image_15.setAutoDraw(True)
+                    if image_15.status == STARTED:
+                        # is it time to stop? (based on global clock, using actual start)
+                        if tThisFlipGlobal > image_15.tStartRefresh + 5.0-frameTolerance:
+                            # keep track of stop time/frame for later
+                            image_15.tStop = t  # not accounting for scr refresh
+                            image_15.frameNStop = frameN  # exact frame index
+                            win.timeOnFlip(image_15, 'tStopRefresh')  # time at next scr refresh
+                            image_15.setAutoDraw(False)
+                    
+                    # check for quit (typically the Esc key)
+                    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+                        core.quit()
+                    
+                    # check if all components have finished
+                    if not continueRoutine:  # a component has requested a forced-end of Routine
+                        break
+                    continueRoutine = False  # will revert to True if at least one component still running
+                    for thisComponent in TimeoutDashedFeedbackComponents:
+                        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                            continueRoutine = True
+                            break  # at least one component has not yet finished
+                    
+                    # refresh the screen
+                    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                        win.flip()
+                
+                # -------Ending Routine "TimeoutDashedFeedback"-------
+                for thisComponent in TimeoutDashedFeedbackComponents:
+                    if hasattr(thisComponent, "setAutoDraw"):
+                        thisComponent.setAutoDraw(False)
+                sound_4.stop()  # ensure sound has stopped at end of routine
+                selectTimeoutDashed.addData('sound_4.started', sound_4.tStartRefresh)
+                selectTimeoutDashed.addData('sound_4.stopped', sound_4.tStopRefresh)
+                selectTimeoutDashed.addData('image_15.started', image_15.tStartRefresh)
+                selectTimeoutDashed.addData('image_15.stopped', image_15.tStopRefresh)
+                thisExp.nextEntry()
+                
+            # completed selectTimeoutDashed repeats of 'selectTimeoutDashed'
             
             
             # ------Prepare to start Routine "Delay"-------
