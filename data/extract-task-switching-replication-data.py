@@ -83,6 +83,8 @@ def extract_task_switching_replication_data():
         if 'trials' in raw_data_file:
             continue
 
+        print('processing file: ', raw_data_file)
+        
         # otherwise raw psychopy data file, process it
         # read csv into a dataframe
         #print('Processing file <%s>' % raw_data_file)
