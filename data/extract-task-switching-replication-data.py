@@ -87,7 +87,6 @@ def extract_task_switching_replication_data():
         
         # otherwise raw psychopy data file, process it
         # read csv into a dataframe
-        #print('Processing file <%s>' % raw_data_file)
         subject_df = pd.read_csv(raw_data_file)
         
         # for this tidy data, only keep the actual experiment trialType trials
