@@ -1,0 +1,379 @@
+0.6483 	WARNING 	We strongly recommend you activate the PTB sound engine in PsychoPy prefs as the preferred audio engine. Its timing is vastly superior. Your prefs are currently set to use ['pygame', 'PTB', 'sounddevice', 'pyo'] (in that order).
+10.7059 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, autoLog=True, backendConf=UNKNOWN, bitsMode=UNKNOWN, blendMode='avg', bpc=(8, 8, 8), color=array([-1, -1, -1]), colorSpace='rgb', depthBits=8, fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x7fad4f701cd0>, gamma=None, gammaErrorPolicy='raise', lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x7fad46fda0d0>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stencilBits=0, stereo=False, units='deg', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+10.7061 	EXP 	window1: mouseVisible = True
+10.7061 	EXP 	window1: recordFrameIntervals = False
+10.8717 	EXP 	window1: recordFrameIntervals = True
+11.0553 	EXP 	window1: recordFrameIntervals = False
+11.1764 	EXP 	Created text_3 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=1.0, italic=False, languageStyle='LTR', name='text_3', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='deg', win=Window(...), wrapWidth=30.0)
+11.2088 	EXP 	Created image_4 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-untimed-01.png', interpolate=True, mask=None, maskParams=None, name='image_4', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.2303 	EXP 	Created image_5 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-untimed-02.png', interpolate=True, mask=None, maskParams=None, name='image_5', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.2477 	EXP 	Created image_6 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-untimed-03.png', interpolate=True, mask=None, maskParams=None, name='image_6', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.2646 	EXP 	Created image_7 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-untimed-04.png', interpolate=True, mask=None, maskParams=None, name='image_7', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.2837 	EXP 	Created image_8 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-untimed-05.png', interpolate=True, mask=None, maskParams=None, name='image_8', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.2995 	EXP 	Created image_9 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-untimed-06.png', interpolate=True, mask=None, maskParams=None, name='image_9', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.3151 	EXP 	Created image_10 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-untimed-07.png', interpolate=True, mask=None, maskParams=None, name='image_10', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.3345 	EXP 	Created image_11 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-untimed-08.png', interpolate=True, mask=None, maskParams=None, name='image_11', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.3395 	EXP 	Created cue_untimed_image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='cue_untimed_image', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([30., 30.]), texRes=128.0, units='cm', win=Window(...))
+11.3441 	EXP 	Created stimuli_untimed_image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='stimuli_untimed_image', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([15., 15.]), texRes=128.0, units='cm', win=Window(...))
+11.3493 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.3511 	EXP 	Set sound_1 sound=A
+11.3512 	EXP 	Set Sound sound_1 volume=1.000
+11.3689 	EXP 	Created image_2 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image=str(...), interpolate=True, mask=None, maskParams=None, name='image_2', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.3689 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.3703 	EXP 	Set sound_2 sound=A
+11.3704 	EXP 	Set Sound sound_2 volume=1.000
+11.3882 	EXP 	Created image_3 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image=str(...), interpolate=True, mask=None, maskParams=None, name='image_3', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.4094 	EXP 	Created text_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text_2', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='deg', win=Window(...), wrapWidth=15.0)
+11.4328 	EXP 	Created image_12 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-timed-01.png', interpolate=True, mask=None, maskParams=None, name='image_12', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.4522 	EXP 	Created image_13 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-timed-02.png', interpolate=True, mask=None, maskParams=None, name='image_13', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.4575 	EXP 	Created cue_timed_image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='cue_timed_image', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([25., 25.]), texRes=128.0, units='deg', win=Window(...))
+11.4622 	EXP 	Created stimuli_timed_image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='stimuli_timed_image', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([12., 12.]), texRes=128.0, units='deg', win=Window(...))
+11.4625 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.4640 	EXP 	Set sound_1 sound=A
+11.4641 	EXP 	Set Sound sound_1 volume=1.000
+11.4799 	EXP 	Created image_2 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image=str(...), interpolate=True, mask=None, maskParams=None, name='image_2', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.4800 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.4815 	EXP 	Set sound_3 sound=A
+11.4815 	EXP 	Set Sound sound_3 volume=1.000
+11.5119 	EXP 	Created image_14 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-error-solid-timeout.png', interpolate=True, mask=None, maskParams=None, name='image_14', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.5120 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.5135 	EXP 	Set sound_2 sound=A
+11.5135 	EXP 	Set Sound sound_2 volume=1.000
+11.5305 	EXP 	Created image_3 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image=str(...), interpolate=True, mask=None, maskParams=None, name='image_3', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.5306 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.5321 	EXP 	Set sound_4 sound=A
+11.5322 	EXP 	Set Sound sound_4 volume=1.000
+11.5612 	EXP 	Created image_15 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-error-dashed-timeout.png', interpolate=True, mask=None, maskParams=None, name='image_15', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.5631 	EXP 	Created text_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text_2', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='deg', win=Window(...), wrapWidth=15.0)
+11.5648 	EXP 	Created text_3 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=1.0, italic=False, languageStyle='LTR', name='text_3', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='deg', win=Window(...), wrapWidth=30.0)
+11.5845 	EXP 	Created image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-experiment-01.png', interpolate=True, mask=None, maskParams=None, name='image', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.5865 	EXP 	Created text = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=1.0, italic=False, languageStyle='LTR', name='text', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='deg', win=Window(...), wrapWidth=30.0)
+11.5913 	EXP 	Created cue_image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='cue_image', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([25., 25.]), texRes=128.0, units='deg', win=Window(...))
+11.5957 	EXP 	Created stimuli_image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='stimuli_image', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([12., 12.]), texRes=128.0, units='deg', win=Window(...))
+11.5959 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.5974 	EXP 	Set sound_1 sound=A
+11.5974 	EXP 	Set Sound sound_1 volume=1.000
+11.6124 	EXP 	Created image_2 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image=str(...), interpolate=True, mask=None, maskParams=None, name='image_2', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.6125 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.6140 	EXP 	Set sound_3 sound=A
+11.6141 	EXP 	Set Sound sound_3 volume=1.000
+11.6434 	EXP 	Created image_14 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-error-solid-timeout.png', interpolate=True, mask=None, maskParams=None, name='image_14', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.6435 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.6451 	EXP 	Set sound_2 sound=A
+11.6451 	EXP 	Set Sound sound_2 volume=1.000
+11.6617 	EXP 	Created image_3 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image=str(...), interpolate=True, mask=None, maskParams=None, name='image_3', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.6618 	WARNING 	Hamming was requested using the 'pygame' sound library but hamming is not supported there.
+11.6634 	EXP 	Set sound_4 sound=A
+11.6634 	EXP 	Set Sound sound_4 volume=1.000
+11.6916 	EXP 	Created image_15 = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='instructions/cond-05-error-dashed-timeout.png', interpolate=True, mask=None, maskParams=None, name='image_15', opacity=1, ori=0.0, pos=array([0., 0.]), size=array([53., 30.]), texRes=128.0, units='deg', win=Window(...))
+11.6937 	EXP 	Created text_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='text_2', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='deg', win=Window(...), wrapWidth=15.0)
+11.6954 	EXP 	Created text_4 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz=method-wrapper(...), alignText='center', alignVert=method-wrapper(...), anchorHoriz='center', anchorVert='center', antialias=True, autoLog=True, bold=False, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Open Sans', fontFiles=[], height=1.0, italic=False, languageStyle='LTR', name='text_4', opacity=1, ori=0.0, pos=array([0., 0.]), rgb=UNKNOWN, text='', units='deg', win=Window(...), wrapWidth=30.0)
+11.7450 	EXP 	text_3: text = '\nYou will be performing this experiment in\ntwo separate postures.\n\nAt this time you should be in the\n`standing` posture\n\nPlease have the experimenter help you\nget yourself into position for this\nportion of the experiment. \n\nPress any button when you are ready to continue.\n'
+11.7450 	EXP 	text_3: autoDraw = True
+15.7675 	DATA 	Keypress: 2
+15.8088 	EXP 	text_3: autoDraw = False
+15.8088 	EXP 	image_4: autoDraw = True
+18.4608 	DATA 	Keypress: 2
+18.5056 	EXP 	image_4: autoDraw = False
+18.5056 	EXP 	image_5: autoDraw = True
+19.6710 	DATA 	Keypress: 1
+19.7232 	EXP 	image_5: autoDraw = False
+19.7232 	EXP 	image_6: autoDraw = True
+20.0602 	DATA 	Keypress: 2
+20.0694 	EXP 	image_6: autoDraw = False
+20.0694 	EXP 	image_7: autoDraw = True
+20.3834 	DATA 	Keypress: 1
+20.3924 	EXP 	image_7: autoDraw = False
+20.3924 	EXP 	image_8: autoDraw = True
+20.6553 	DATA 	Keypress: 2
+20.9549 	DATA 	Keypress: 1
+21.0219 	EXP 	image_8: autoDraw = False
+21.0219 	EXP 	image_9: autoDraw = True
+21.2836 	DATA 	Keypress: 2
+21.3505 	EXP 	image_9: autoDraw = False
+21.3505 	EXP 	image_10: autoDraw = True
+21.5848 	DATA 	Keypress: 1
+21.5939 	EXP 	image_10: autoDraw = False
+21.5939 	EXP 	image_11: autoDraw = True
+22.9716 	DATA 	Keypress: 1
+23.0402 	EXP 	Imported ../data/8015_task-switching-replication_2021_Nov_09_1104-untimed-01-trials.csv as conditions, 12 conditions, 13 params
+23.0407 	EXP 	Created sequence: sequential, trialTypes=12, nReps=1, seed=None
+23.0413 	EXP 	New trial (rep=0, index=0): OrderedDict([('blockNum', 1), ('trialNum', 1), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'buffer'), ('congruantTrialType', 'buffer'), ('cueType', 'dashed'), ('shapeType', 'triangle'), ('shapeColor', 'yellow'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/yellow-triangle.png'), ('correctAnswer', 2)])
+23.0671 	EXP 	image_11: autoDraw = False
+23.0671 	EXP 	cue_untimed_image: image = 'stimuli/dashed-rectangle.png'
+23.0671 	EXP 	stimuli_untimed_image: image = 'stimuli/yellow-triangle.png'
+23.0671 	EXP 	cue_untimed_image: autoDraw = True
+24.0462 	EXP 	stimuli_untimed_image: autoDraw = True
+24.3163 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+24.3167 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+24.3170 	EXP 	New trial (rep=0, index=0): None
+24.3190 	EXP 	Set sound_2 sound=A
+24.3191 	EXP 	Sound sound_2 started
+24.3361 	DATA 	Keypress: 1
+24.3451 	EXP 	cue_untimed_image: autoDraw = False
+24.3451 	EXP 	stimuli_untimed_image: autoDraw = False
+24.3451 	EXP 	image_3: autoDraw = True
+25.3404 	EXP 	Sound sound_2 stopped
+29.3197 	EXP 	Sound sound_2 stopped
+29.3433 	EXP 	image_3: autoDraw = False
+29.3433 	EXP 	text_2: autoDraw = True
+29.5265 	EXP 	New trial (rep=0, index=1): OrderedDict([('blockNum', 1), ('trialNum', 2), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'incongruant'), ('cueType', 'dashed'), ('shapeType', 'square'), ('shapeColor', 'blue'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/blue-square.png'), ('correctAnswer', 1)])
+29.5521 	EXP 	text_2: autoDraw = False
+29.5521 	EXP 	cue_untimed_image: image = 'stimuli/dashed-rectangle.png'
+29.5521 	EXP 	stimuli_untimed_image: image = 'stimuli/blue-square.png'
+29.5521 	EXP 	cue_untimed_image: autoDraw = True
+30.5303 	EXP 	stimuli_untimed_image: autoDraw = True
+30.9897 	DATA 	Keypress: 2
+31.0468 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+31.0472 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+31.0474 	EXP 	New trial (rep=0, index=0): None
+31.0493 	EXP 	Set sound_2 sound=A
+31.0493 	EXP 	Sound sound_2 started
+31.0750 	EXP 	cue_untimed_image: autoDraw = False
+31.0750 	EXP 	stimuli_untimed_image: autoDraw = False
+31.0750 	EXP 	image_3: autoDraw = True
+32.0704 	EXP 	Sound sound_2 stopped
+36.0598 	EXP 	Sound sound_2 stopped
+36.0857 	EXP 	image_3: autoDraw = False
+36.0857 	EXP 	text_2: autoDraw = True
+36.2622 	EXP 	New trial (rep=0, index=2): OrderedDict([('blockNum', 1), ('trialNum', 3), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'switch'), ('congruantTrialType', 'congruant'), ('cueType', 'solid'), ('shapeType', 'triangle'), ('shapeColor', 'yellow'), ('cueFileName', 'stimuli/solid-rectangle.png'), ('stimuliFileName', 'stimuli/yellow-triangle.png'), ('correctAnswer', 1)])
+36.2900 	EXP 	text_2: autoDraw = False
+36.2900 	EXP 	cue_untimed_image: image = 'stimuli/solid-rectangle.png'
+36.2900 	EXP 	stimuli_untimed_image: image = 'stimuli/yellow-triangle.png'
+36.2900 	EXP 	cue_untimed_image: autoDraw = True
+36.6525 	DATA 	Keypress: 1
+37.2647 	EXP 	stimuli_untimed_image: autoDraw = True
+37.6134 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+37.6139 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+37.6339 	DATA 	Keypress: 1
+37.6392 	EXP 	cue_untimed_image: autoDraw = False
+37.6392 	EXP 	stimuli_untimed_image: autoDraw = False
+37.6392 	EXP 	text_2: autoDraw = True
+37.8164 	EXP 	New trial (rep=0, index=3): OrderedDict([('blockNum', 1), ('trialNum', 4), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'switch'), ('congruantTrialType', 'incongruant'), ('cueType', 'dashed'), ('shapeType', 'square'), ('shapeColor', 'yellow'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/yellow-square.png'), ('correctAnswer', 2)])
+37.8443 	EXP 	text_2: autoDraw = False
+37.8443 	EXP 	cue_untimed_image: image = 'stimuli/dashed-rectangle.png'
+37.8443 	EXP 	stimuli_untimed_image: image = 'stimuli/yellow-square.png'
+37.8443 	EXP 	cue_untimed_image: autoDraw = True
+38.8157 	EXP 	stimuli_untimed_image: autoDraw = True
+39.6195 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+39.6199 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+39.6201 	EXP 	New trial (rep=0, index=0): None
+39.6221 	EXP 	Set sound_2 sound=A
+39.6222 	EXP 	Sound sound_2 started
+39.6414 	DATA 	Keypress: 1
+39.6504 	EXP 	cue_untimed_image: autoDraw = False
+39.6504 	EXP 	stimuli_untimed_image: autoDraw = False
+39.6504 	EXP 	image_3: autoDraw = True
+40.6265 	EXP 	Sound sound_2 stopped
+44.6377 	EXP 	Sound sound_2 stopped
+44.6659 	EXP 	image_3: autoDraw = False
+44.6659 	EXP 	text_2: autoDraw = True
+44.8313 	EXP 	New trial (rep=0, index=4): OrderedDict([('blockNum', 1), ('trialNum', 5), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'incongruant'), ('cueType', 'dashed'), ('shapeType', 'triangle'), ('shapeColor', 'blue'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/blue-triangle.png'), ('correctAnswer', 1)])
+44.8617 	EXP 	text_2: autoDraw = False
+44.8617 	EXP 	cue_untimed_image: image = 'stimuli/dashed-rectangle.png'
+44.8617 	EXP 	stimuli_untimed_image: image = 'stimuli/blue-triangle.png'
+44.8617 	EXP 	cue_untimed_image: autoDraw = True
+45.1454 	DATA 	Keypress: 2
+45.8420 	EXP 	stimuli_untimed_image: autoDraw = True
+46.1573 	DATA 	Keypress: 2
+46.2293 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+46.2298 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+46.2300 	EXP 	New trial (rep=0, index=0): None
+46.2321 	EXP 	Set sound_2 sound=A
+46.2322 	EXP 	Sound sound_2 started
+46.2626 	EXP 	cue_untimed_image: autoDraw = False
+46.2626 	EXP 	stimuli_untimed_image: autoDraw = False
+46.2626 	EXP 	image_3: autoDraw = True
+47.2336 	EXP 	Sound sound_2 stopped
+49.0434 	DATA 	Keypress: 1
+51.2362 	EXP 	Sound sound_2 stopped
+51.2644 	EXP 	image_3: autoDraw = False
+51.2644 	EXP 	text_2: autoDraw = True
+51.4299 	EXP 	New trial (rep=0, index=5): OrderedDict([('blockNum', 1), ('trialNum', 6), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'switch'), ('congruantTrialType', 'congruant'), ('cueType', 'solid'), ('shapeType', 'triangle'), ('shapeColor', 'blue'), ('cueFileName', 'stimuli/solid-rectangle.png'), ('stimuliFileName', 'stimuli/blue-triangle.png'), ('correctAnswer', 1)])
+51.4603 	EXP 	text_2: autoDraw = False
+51.4603 	EXP 	cue_untimed_image: image = 'stimuli/solid-rectangle.png'
+51.4603 	EXP 	stimuli_untimed_image: image = 'stimuli/blue-triangle.png'
+51.4603 	EXP 	cue_untimed_image: autoDraw = True
+52.4350 	EXP 	stimuli_untimed_image: autoDraw = True
+52.7216 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+52.7220 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+52.7444 	DATA 	Keypress: 1
+52.7498 	EXP 	cue_untimed_image: autoDraw = False
+52.7498 	EXP 	stimuli_untimed_image: autoDraw = False
+52.7498 	EXP 	text_2: autoDraw = True
+52.9433 	EXP 	New trial (rep=0, index=6): OrderedDict([('blockNum', 1), ('trialNum', 7), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'congruant'), ('cueType', 'solid'), ('shapeType', 'triangle'), ('shapeColor', 'blue'), ('cueFileName', 'stimuli/solid-rectangle.png'), ('stimuliFileName', 'stimuli/blue-triangle.png'), ('correctAnswer', 1)])
+52.9736 	EXP 	text_2: autoDraw = False
+52.9736 	EXP 	cue_untimed_image: image = 'stimuli/solid-rectangle.png'
+52.9736 	EXP 	stimuli_untimed_image: image = 'stimuli/blue-triangle.png'
+52.9736 	EXP 	cue_untimed_image: autoDraw = True
+53.9476 	EXP 	stimuli_untimed_image: autoDraw = True
+54.4638 	DATA 	Keypress: 1
+54.5357 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+54.5361 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+54.5638 	EXP 	cue_untimed_image: autoDraw = False
+54.5638 	EXP 	stimuli_untimed_image: autoDraw = False
+54.5638 	EXP 	text_2: autoDraw = True
+54.7576 	EXP 	New trial (rep=0, index=7): OrderedDict([('blockNum', 1), ('trialNum', 8), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'incongruant'), ('cueType', 'solid'), ('shapeType', 'square'), ('shapeColor', 'blue'), ('cueFileName', 'stimuli/solid-rectangle.png'), ('stimuliFileName', 'stimuli/blue-square.png'), ('correctAnswer', 2)])
+54.7880 	EXP 	text_2: autoDraw = False
+54.7880 	EXP 	cue_untimed_image: image = 'stimuli/solid-rectangle.png'
+54.7880 	EXP 	stimuli_untimed_image: image = 'stimuli/blue-square.png'
+54.7880 	EXP 	cue_untimed_image: autoDraw = True
+55.7631 	EXP 	stimuli_untimed_image: autoDraw = True
+56.2003 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+56.2006 	EXP 	New trial (rep=0, index=0): None
+56.2026 	EXP 	Set sound_1 sound=A
+56.2027 	EXP 	Sound sound_1 started
+56.2244 	DATA 	Keypress: 1
+56.2335 	EXP 	cue_untimed_image: autoDraw = False
+56.2335 	EXP 	stimuli_untimed_image: autoDraw = False
+56.2335 	EXP 	image_2: autoDraw = True
+57.2028 	EXP 	Sound sound_1 stopped
+60.7101 	DATA 	Keypress: 2
+61.2044 	EXP 	Sound sound_1 stopped
+61.2055 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+61.2331 	EXP 	image_2: autoDraw = False
+61.2331 	EXP 	text_2: autoDraw = True
+61.4260 	EXP 	New trial (rep=0, index=8): OrderedDict([('blockNum', 1), ('trialNum', 9), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'incongruant'), ('cueType', 'solid'), ('shapeType', 'triangle'), ('shapeColor', 'yellow'), ('cueFileName', 'stimuli/solid-rectangle.png'), ('stimuliFileName', 'stimuli/yellow-triangle.png'), ('correctAnswer', 1)])
+61.4561 	EXP 	text_2: autoDraw = False
+61.4561 	EXP 	cue_untimed_image: image = 'stimuli/solid-rectangle.png'
+61.4561 	EXP 	stimuli_untimed_image: image = 'stimuli/yellow-triangle.png'
+61.4561 	EXP 	cue_untimed_image: autoDraw = True
+61.7640 	DATA 	Keypress: 2
+62.4306 	EXP 	stimuli_untimed_image: autoDraw = True
+62.6454 	DATA 	Keypress: 2
+62.7174 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+62.7177 	EXP 	New trial (rep=0, index=0): None
+62.7197 	EXP 	Set sound_1 sound=A
+62.7198 	EXP 	Sound sound_1 started
+62.7502 	EXP 	cue_untimed_image: autoDraw = False
+62.7502 	EXP 	stimuli_untimed_image: autoDraw = False
+62.7502 	EXP 	image_2: autoDraw = True
+63.7195 	EXP 	Sound sound_1 stopped
+65.2605 	DATA 	Keypress: 1
+67.7268 	EXP 	Sound sound_1 stopped
+67.7278 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+67.7553 	EXP 	image_2: autoDraw = False
+67.7553 	EXP 	text_2: autoDraw = True
+67.9205 	EXP 	New trial (rep=0, index=9): OrderedDict([('blockNum', 1), ('trialNum', 10), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'incongruant'), ('cueType', 'solid'), ('shapeType', 'square'), ('shapeColor', 'yellow'), ('cueFileName', 'stimuli/solid-rectangle.png'), ('stimuliFileName', 'stimuli/yellow-square.png'), ('correctAnswer', 2)])
+67.9507 	EXP 	text_2: autoDraw = False
+67.9507 	EXP 	cue_untimed_image: image = 'stimuli/solid-rectangle.png'
+67.9507 	EXP 	stimuli_untimed_image: image = 'stimuli/yellow-square.png'
+67.9507 	EXP 	cue_untimed_image: autoDraw = True
+68.5453 	DATA 	Keypress: 1
+68.9259 	EXP 	stimuli_untimed_image: autoDraw = True
+69.2627 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+69.2630 	EXP 	New trial (rep=0, index=0): None
+69.2650 	EXP 	Set sound_1 sound=A
+69.2651 	EXP 	Sound sound_1 started
+69.2867 	DATA 	Keypress: 1
+69.2957 	EXP 	cue_untimed_image: autoDraw = False
+69.2957 	EXP 	stimuli_untimed_image: autoDraw = False
+69.2957 	EXP 	image_2: autoDraw = True
+70.2654 	EXP 	Sound sound_1 stopped
+73.1055 	DATA 	Keypress: 2
+74.2659 	EXP 	Sound sound_1 stopped
+74.2669 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+74.2946 	EXP 	image_2: autoDraw = False
+74.2946 	EXP 	text_2: autoDraw = True
+74.4872 	EXP 	New trial (rep=0, index=10): OrderedDict([('blockNum', 1), ('trialNum', 11), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'switch'), ('congruantTrialType', 'congruant'), ('cueType', 'dashed'), ('shapeType', 'triangle'), ('shapeColor', 'yellow'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/yellow-triangle.png'), ('correctAnswer', 2)])
+74.5174 	EXP 	text_2: autoDraw = False
+74.5174 	EXP 	cue_untimed_image: image = 'stimuli/dashed-rectangle.png'
+74.5174 	EXP 	stimuli_untimed_image: image = 'stimuli/yellow-triangle.png'
+74.5174 	EXP 	cue_untimed_image: autoDraw = True
+74.7969 	DATA 	Keypress: 2
+75.4919 	EXP 	stimuli_untimed_image: autoDraw = True
+75.7783 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+75.7787 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+75.8012 	DATA 	Keypress: 2
+75.8066 	EXP 	cue_untimed_image: autoDraw = False
+75.8066 	EXP 	stimuli_untimed_image: autoDraw = False
+75.8066 	EXP 	text_2: autoDraw = True
+76.0000 	EXP 	New trial (rep=0, index=11): OrderedDict([('blockNum', 1), ('trialNum', 12), ('trialType', 'untimed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'congruant'), ('cueType', 'dashed'), ('shapeType', 'square'), ('shapeColor', 'yellow'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/yellow-square.png'), ('correctAnswer', 2)])
+76.0304 	EXP 	text_2: autoDraw = False
+76.0304 	EXP 	cue_untimed_image: image = 'stimuli/dashed-rectangle.png'
+76.0304 	EXP 	stimuli_untimed_image: image = 'stimuli/yellow-square.png'
+76.0304 	EXP 	cue_untimed_image: autoDraw = True
+77.0060 	EXP 	stimuli_untimed_image: autoDraw = True
+77.3715 	DATA 	Keypress: 2
+77.4435 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+77.4439 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+77.4715 	EXP 	cue_untimed_image: autoDraw = False
+77.4715 	EXP 	stimuli_untimed_image: autoDraw = False
+77.4715 	EXP 	text_2: autoDraw = True
+77.6947 	EXP 	text_2: autoDraw = False
+77.6947 	EXP 	image_12: autoDraw = True
+78.7309 	DATA 	Keypress: 1
+78.8121 	EXP 	image_12: autoDraw = False
+78.8121 	EXP 	image_13: autoDraw = True
+79.8004 	DATA 	Keypress: 2
+79.8812 	EXP 	Imported ../data/8015_task-switching-replication_2021_Nov_09_1104-timed-01-trials.csv as conditions, 24 conditions, 13 params
+79.8816 	EXP 	Created sequence: sequential, trialTypes=24, nReps=1, seed=None
+79.8821 	EXP 	New trial (rep=0, index=0): OrderedDict([('blockNum', 1), ('trialNum', 1), ('trialType', 'timed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'buffer'), ('congruantTrialType', 'buffer'), ('cueType', 'solid'), ('shapeType', 'triangle'), ('shapeColor', 'blue'), ('cueFileName', 'stimuli/solid-rectangle.png'), ('stimuliFileName', 'stimuli/blue-triangle.png'), ('correctAnswer', 1)])
+79.9121 	EXP 	image_13: autoDraw = False
+79.9121 	EXP 	cue_timed_image: image = 'stimuli/solid-rectangle.png'
+79.9121 	EXP 	stimuli_timed_image: image = 'stimuli/blue-triangle.png'
+79.9121 	EXP 	cue_timed_image: autoDraw = True
+80.8961 	EXP 	stimuli_timed_image: autoDraw = True
+82.4269 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+82.4274 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+82.4276 	EXP 	New trial (rep=0, index=0): None
+82.4297 	EXP 	Set sound_3 sound=A
+82.4298 	EXP 	Sound sound_3 started
+82.4605 	EXP 	cue_timed_image: autoDraw = False
+82.4605 	EXP 	stimuli_timed_image: autoDraw = False
+82.4605 	EXP 	image_14: autoDraw = True
+83.4344 	EXP 	Sound sound_3 stopped
+87.4531 	EXP 	Sound sound_3 stopped
+87.4540 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+87.4543 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+87.4819 	EXP 	image_14: autoDraw = False
+87.4819 	EXP 	text_2: autoDraw = True
+87.6480 	EXP 	New trial (rep=0, index=1): OrderedDict([('blockNum', 1), ('trialNum', 2), ('trialType', 'timed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'switch'), ('congruantTrialType', 'congruant'), ('cueType', 'dashed'), ('shapeType', 'square'), ('shapeColor', 'blue'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/blue-square.png'), ('correctAnswer', 1)])
+87.6778 	EXP 	text_2: autoDraw = False
+87.6778 	EXP 	cue_timed_image: image = 'stimuli/dashed-rectangle.png'
+87.6778 	EXP 	stimuli_timed_image: image = 'stimuli/blue-square.png'
+87.6778 	EXP 	cue_timed_image: autoDraw = True
+88.0965 	DATA 	Keypress: 1
+88.6669 	EXP 	stimuli_timed_image: autoDraw = True
+88.8796 	DATA 	Keypress: 1
+88.9510 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+88.9514 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+88.9518 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+88.9522 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+88.9799 	EXP 	cue_timed_image: autoDraw = False
+88.9799 	EXP 	stimuli_timed_image: autoDraw = False
+88.9799 	EXP 	text_2: autoDraw = True
+89.1729 	EXP 	New trial (rep=0, index=2): OrderedDict([('blockNum', 1), ('trialNum', 3), ('trialType', 'timed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'congruant'), ('cueType', 'dashed'), ('shapeType', 'triangle'), ('shapeColor', 'blue'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/blue-triangle.png'), ('correctAnswer', 1)])
+89.2027 	EXP 	text_2: autoDraw = False
+89.2027 	EXP 	cue_timed_image: image = 'stimuli/dashed-rectangle.png'
+89.2027 	EXP 	stimuli_timed_image: image = 'stimuli/blue-triangle.png'
+89.2027 	EXP 	cue_timed_image: autoDraw = True
+89.5337 	DATA 	Keypress: 1
+90.1874 	EXP 	stimuli_timed_image: autoDraw = True
+90.3998 	DATA 	Keypress: 1
+90.4710 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+90.4714 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+90.4718 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+90.4722 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+90.4998 	EXP 	cue_timed_image: autoDraw = False
+90.4998 	EXP 	stimuli_timed_image: autoDraw = False
+90.4998 	EXP 	text_2: autoDraw = True
+90.6928 	EXP 	New trial (rep=0, index=3): OrderedDict([('blockNum', 1), ('trialNum', 4), ('trialType', 'timed'), ('condition', 5), ('posture', 'standing'), ('switchTrialType', 'noswitch'), ('congruantTrialType', 'incongruant'), ('cueType', 'dashed'), ('shapeType', 'triangle'), ('shapeColor', 'yellow'), ('cueFileName', 'stimuli/dashed-rectangle.png'), ('stimuliFileName', 'stimuli/yellow-triangle.png'), ('correctAnswer', 2)])
+90.7223 	EXP 	text_2: autoDraw = False
+90.7223 	EXP 	cue_timed_image: image = 'stimuli/dashed-rectangle.png'
+90.7223 	EXP 	stimuli_timed_image: image = 'stimuli/yellow-triangle.png'
+90.7223 	EXP 	cue_timed_image: autoDraw = True
+91.7049 	EXP 	stimuli_timed_image: autoDraw = True
+92.0165 	DATA 	Keypress: 1
+92.0877 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+92.0882 	EXP 	Created sequence: sequential, trialTypes=1, nReps=0, seed=None
+92.0885 	EXP 	Created sequence: sequential, trialTypes=1, nReps=1, seed=None
+92.0888 	EXP 	New trial (rep=0, index=0): None
+92.0908 	EXP 	Set sound_2 sound=A
+92.0909 	EXP 	Sound sound_2 started
+92.1213 	EXP 	cue_timed_image: autoDraw = False
+92.1213 	EXP 	stimuli_timed_image: autoDraw = False
+92.1213 	EXP 	image_3: autoDraw = True
+93.0912 	EXP 	Sound sound_2 stopped
+94.8777 	DATA 	Keypress: escape
+94.9793 	EXP 	window1: mouseVisible = True
