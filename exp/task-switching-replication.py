@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.2.3),
-    on Mon 08 Nov 2021 02:12:51 PM CST
+    on Tue 09 Nov 2021 03:41:27 PM CST
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -4122,6 +4122,7 @@ for thisPosture in postures:
             # then select the correct action
             if exp_resp.corr == 1:
                 selectCorrect = 1
+                numCorrectTrials += 1
             else:
                 if cueType == 'solid':
                     if exp_resp.keys == None:
