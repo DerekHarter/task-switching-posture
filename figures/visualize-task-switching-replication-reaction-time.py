@@ -50,24 +50,32 @@ def create_reaction_time_figure(data_file, output_file):
     # using seaborn high-level df, visualize reaction time by posture, and
     # using the hue (color) to split by congruent/incongruent
     fig, axes = plt.subplots(1, 2, figsize=(12, 8))
-    sb.barplot(ax=axes[0], x='switchTrialType', y='reactionTime', hue='posture', data=df_congruant, ci=95)
+    sb.barplot(ax=axes[0],
+               x='switchTrialType', order=['noswitch', 'switch'],
+               y='reactionTime',
+               hue='posture', hue_order = ['sitting', 'standing'],
+               data=df_congruant, ci=95)
 
     # add in figure information and labels
     axes[0].set_xlabel('Condition')
-    axes[0].set_ylabel('Reaction Time (ms)')
+    axes[0].set_ylabel('Reaction Time (sec)')
     axes[0].set_title('Congruent')
-    axes[0].set_ylim([0.5, 1.0])
+    axes[0].set_ylim([0.4, 0.8])
 
     # plot incongruant figure results
     mask = df.congruantTrialType == 'incongruant'
     df_incongruant = df[mask]
-    sb.barplot(ax=axes[1], x='switchTrialType', y='reactionTime', hue='posture', data=df_incongruant, ci=95)
+    sb.barplot(ax=axes[1],
+               x='switchTrialType', order=['noswitch', 'switch'],
+               y='reactionTime',
+               hue='posture', hue_order = ['sitting', 'standing'],
+               data=df_incongruant, ci=95)
 
     # add in figure information and labels
     axes[1].set_xlabel('Condition')
-    axes[1].set_ylabel('Reaction Time (ms)')
+    axes[1].set_ylabel('Reaction Time (sec)')
     axes[1].set_title('Incongruent')
-    axes[1].set_ylim([0.5, 1.0])
+    axes[1].set_ylim([0.4, 0.8])
     
     # save the resulting figure
     plt.savefig(output_file, transparent=True, dpi=300)

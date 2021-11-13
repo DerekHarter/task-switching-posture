@@ -54,7 +54,11 @@ def create_accuracy_figure(data_file, output_file):
     df_congruant = df[mask]
     
     # plot congruant figure results
-    sb.barplot(ax=axes[0], x='switchTrialType', y='correctValue', hue='posture', data=df_congruant, ci=95)
+    sb.barplot(ax=axes[0],
+               x='switchTrialType', order = ['noswitch', 'switch'],
+               y='correctValue',
+               hue='posture', hue_order = ['sitting', 'standing'],
+               data=df_congruant, ci=95)
 
     # add in figure information and labels
     axes[0].set_xlabel('Condition')
@@ -65,7 +69,11 @@ def create_accuracy_figure(data_file, output_file):
     # plot incongruant figure results
     mask = df.congruantTrialType == 'incongruant'
     df_incongruant = df[mask]
-    sb.barplot(ax=axes[1], x='switchTrialType', y='correctValue', hue='posture', data=df_incongruant, ci=95)
+    sb.barplot(ax=axes[1],
+               x='switchTrialType', order = ['noswitch', 'switch'],
+               y='correctValue',
+               hue='posture', hue_order = ['sitting', 'standing'],
+               data=df_incongruant, ci=95)
 
     # add in figure information and labels
     axes[1].set_xlabel('Condition')

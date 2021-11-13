@@ -41,6 +41,7 @@ final_features = {
     'exp_resp.corr': 'correct',
     'exp_resp.rt': 'reactionTime',
     'date': 'date',
+    'utcTime': 'utcTime',
 }
 
 left_right_map = {
