@@ -1,0 +1,43 @@
+---
+title: 'Experiment Lab Notebook'
+author: |
+  | Authors
+  | Texas A\&M University - Commerce
+date: \today
+numbersections: true
+classoption: letterpaper, 12pt, onecolumn, oneside, notitlepage
+header-includes:
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{task-switching-replication.bib}
+  - \usepackage[nottoc,notlot,notlof]{tocbibind}
+  - \hypersetup{allcolors=blue, colorlinks=true}
+  - \usepackage[margin=1.0in]{geometry}
+  - \usepackage{tikz}
+  - \usetikzlibrary{shapes, arrows}
+  - \usepackage{longtable}
+---
+
+# Notes {-}
+
+## 11/10/2021 - 11/15-2021
+
+- Subjects 1-16 ran from 11/10/2021 - 11/15/2021
+  - button box labeled A was on left generating key 1
+  - button box labeled B was on right generting key 2
+- By convention, we will always have left button box generate key 1 and right
+  button box generate key 2.  This is what the PsychoPy experiment expects.
+- We will try and swtch physical button boxes every 16 subjects to randomize any
+  possible effects of physical differences.
+
+## 11/16/2021 
+- Switch button boxes physical location and key press on 11/16/2021 in preparation for
+  subjects 16-12
+  - button box labeled A now on right generating key 2
+  - button box labeled B now on left generating key 1
+  
+# Observations {-}
+
+- Original subject 0007 on 11/11/2021 became ill and/or experienced difficulties
+  during experiment.  Experiment was stopped and data was archived as BAD_0007.
+  We will use BAD_XXXX to archive any incomplete or stopped experiments in the
+  data repository for now.
