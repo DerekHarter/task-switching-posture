@@ -31,9 +31,15 @@ header-includes:
 
 ## 11/16/2021 
 - Switch button boxes physical location and key press on 11/16/2021 in preparation for
-  subjects 16-12
+  subjects 16-32
   - button box labeled A now on right generating key 2
   - button box labeled B now on left generating key 1
+
+## 11/22/2021
+- Switch button boxes again as we have now completed subjecs 16-32 in preparation for
+  subject 33
+  - button box labeled A now back to left generating key 1   111, confirming, left is always key 1
+  - button box labeled B now back to right generating key 2   222 confirming, right is always key 2
   
 # Observations {-}
 
