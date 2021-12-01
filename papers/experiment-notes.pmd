@@ -40,7 +40,12 @@ header-includes:
   subject 33
   - button box labeled A now back to left generating key 1   111, confirming, left is always key 1
   - button box labeled B now back to right generating key 2   222 confirming, right is always key 2
-  
+
+## 12/01/2021
+- Completed subject 48 today, switching button boxes
+  - button box labeled A now on right generating key 2 22222, confirming right is always key 2
+  - button box labeled B now on left generating key 1 111111, confirming left is always key 1 
+
 # Observations {-}
 
 - Original subject 0007 on 11/11/2021 became ill and/or experienced difficulties
