@@ -83,7 +83,7 @@ def save_table(subject_summary_df, output_file):
                                 caption=caption,
                                 label=label,
                                 header=header,
-                                longtable=False)
+                                longtable=True)
 
 
 def main():
