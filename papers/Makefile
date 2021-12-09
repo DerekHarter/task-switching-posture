@@ -26,7 +26,7 @@ endef
 ## ------------------------------------------
 ## all        : by default generate all pdf documents in this repository.
 .PHONY : all
-all : $(build)/appendix.pdf
+all : $(build)/appendix.pdf $(build)/experiment-notes.pdf
 
 
 ## appendix.pdf
@@ -42,6 +42,18 @@ appendix-src := $(appendix-docs) $(appendix-bibs) $(appendix-figures) $(appendix
 appendix-dest := $(addprefix $(cache)/, $(appendix-src))
 $(cache)/appendix.tex : PANDOC_FLAGS+=-s -N
 $(build)/appendix.pdf : $(appendix-dest)
+
+## experiment-notes.pdf
+##            : Generate experiment-notes.pdf from markdown/tex templates.
+##
+experiment-notes-docs := experiment-notes.tex
+experiment-notes-bibs := task-switching-replication.bib
+experiment-notes-figures := 
+experiment-notes-tables := 
+experiment-notes-src := $(experiment-notes-docs) $(experiment-notes-bibs) $(experiment-notes-figures) $(experiment-notes-tables)
+experiment-notes-dest := $(addprefix $(cache)/, $(experiment-notes-src))
+$(cache)/experiment-notes.tex : PANDOC_FLAGS+=-s -N
+$(build)/experiment-notes.pdf : $(experiment-notes-dest)
 
 $(cache)/%.tex : %.pmd
 	@echo "\n\n"

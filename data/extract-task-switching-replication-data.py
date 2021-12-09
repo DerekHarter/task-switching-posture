@@ -32,7 +32,7 @@ final_features = {
     'blockNum': 'blockNum',
     'trialNum': 'trialNum',
     'switchTrialType': 'switchTrialType',
-    'congruantTrialType': 'congruantTrialType',
+    'congruantTrialType': 'congruentTrialType',
     'cueType': 'cueType',
     'shapeType': 'shapeType',
     'shapeColor': 'shapeColor',
@@ -56,6 +56,79 @@ correct_map = {
     0.0: 'no',
     1.0: 'yes',
 }
+
+counter_balancing = {
+    #    posture     cueSolid cueDashed colorLeft colorRight shapeLeft  shapeRight
+     1: ['standing', 'color', 'shape', 'blue',   'yellow', 'triangle', 'square'],
+     2: ['standing', 'color', 'shape', 'blue',   'yellow', 'square',   'triangle'],
+     3: ['standing', 'color', 'shape', 'yellow', 'blue',   'triangle', 'square'],
+     4: ['standing', 'color', 'shape', 'yellow', 'blue',   'square',   'triangle'],
+
+     5: ['standing', 'shape', 'color', 'blue',   'yellow', 'triangle', 'square'],
+     6: ['standing', 'shape', 'color', 'blue',   'yellow', 'square',   'triangle'],
+     7: ['standing', 'shape', 'color', 'yellow', 'blue',   'triangle', 'square'],
+     8: ['standing', 'shape', 'color', 'yellow', 'blue',   'square',   'triangle'],
+
+     9: ['sitting',  'color', 'shape', 'blue',   'yellow', 'triangle', 'square'],
+    10: ['sitting',  'color', 'shape', 'blue',   'yellow', 'square',   'triangle'],
+    11: ['sitting',  'color', 'shape', 'yellow', 'blue',   'triangle', 'square'],
+    12: ['sitting',  'color', 'shape', 'yellow', 'blue',   'square',   'triangle'],
+
+    13: ['sitting',  'shape', 'color', 'blue',   'yellow', 'triangle', 'square'],
+    14: ['sitting',  'shape', 'color', 'blue',   'yellow', 'square',   'triangle'],
+    15: ['sitting',  'shape', 'color', 'yellow', 'blue',   'triangle', 'square'],
+    16: ['sitting',  'shape', 'color', 'yellow', 'blue',   'square',   'triangle'],
+}
+
+
+def get_congruent_map(condition):
+    """
+    Given the subject condition, return a dictionary which is a map of
+    the stimuli keys to the congruent / incongruent trial type
+    """
+    posture, cue_solid, cue_dashed, color_left, color_right, shape_left, shape_right = \
+       counter_balancing[condition]
+
+    congruent_dict = {
+        (color_left, shape_left): "congruent",
+        (color_right, shape_right): "congruent",
+        (color_left, shape_right): "incongruent",
+        (color_right, shape_left): "incongruent",
+    }
+    
+    return congruent_dict
+
+
+def determine_congruent_trial_type(subject_df):
+    """We were not quite coding congruent/incongruent correctly in initial
+    PsychoPy experiment setup.  Extract correct congruent/incongruent coding
+    for the given data frame.  Congruent/incongruent is a function of them
+    participants condition, and the key coding mapping for the color and shape 
+    stimuli responses.
+
+    Parameters
+    ----------
+    subject_df - A dataframe containing subject response information, including the
+       subject condition, and the stimuli for each trial the subject received.
+
+    Returns
+    -------
+    df - Returns a new pandas dataframe with a new congruentrialType feature added
+       coded from the subject condition and trial stimuli.
+    """
+    # the condition the subject was in, each row has the condition but the condition
+    # should never change, so get the first rows condition to determine this subjects
+    # condition
+    condition = subject_df.condition.iloc[0]
+
+    # get the map for this condition
+    congruent_map = get_congruent_map(condition)
+
+    # apply the mapping to recode the feature correctly
+    #subject_df['congruentTrialType'] = subject_df.apply(lambda row: recode_trial_congruent_mapping(row.condition, row.shapeColor, row.shapeType),  axis=1)
+    subject_df['congruentTrialType'] = subject_df.apply(lambda row: congruent_map[ (row.shapeColor, row.shapeType) ],  axis=1)
+    
+    return subject_df
 
 
 def extract_task_switching_replication_data():
@@ -99,7 +172,8 @@ def extract_task_switching_replication_data():
         # data analysis
         subject_df = subject_df[final_features.keys()]
         subject_df = subject_df.rename(columns=final_features)
-
+        subject_df = determine_congruent_trial_type(subject_df)
+        
         # append this subject data to the final data frame
         if initDf:
             df = subject_df
