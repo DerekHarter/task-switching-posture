@@ -41,10 +41,10 @@ def generate_subject_summary_df(data_file):
     # drop all buffer trials, not needed in results here
     # NOTE: Is this true?  We do have reaction times for the buffer trials.
     #   Should the be dropped from calculations of the results for this table?
-    mask = df.congruantTrialType != 'buffer'
+    mask = df.congruentTrialType != 'buffer'
     df = df[mask]
     
-    # group data by posture and congruant conditions
+    # group data by posture and congruent conditions
     gdf = df.groupby(['date'])
 
     # construct a resulting summary dataframe of this grouped

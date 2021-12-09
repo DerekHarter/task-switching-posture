@@ -32,7 +32,7 @@ final_features = {
     'blockNum': 'blockNum',
     'trialNum': 'trialNum',
     'switchTrialType': 'switchTrialType',
-    'congruantTrialType': 'congruantTrialType',
+    'congruantTrialType': 'congruentTrialType',
     'cueType': 'cueType',
     'shapeType': 'shapeType',
     'shapeColor': 'shapeColor',
@@ -81,28 +81,28 @@ counter_balancing = {
 }
 
 
-def get_congruant_map(condition):
+def get_congruent_map(condition):
     """
     Given the subject condition, return a dictionary which is a map of
-    the stimuli keys to the congruant / incongruant trial type
+    the stimuli keys to the congruent / incongruent trial type
     """
     posture, cue_solid, cue_dashed, color_left, color_right, shape_left, shape_right = \
        counter_balancing[condition]
 
-    congruant_dict = {
-        (color_left, shape_left): "congruant",
-        (color_right, shape_right): "congruant",
-        (color_left, shape_right): "incongruant",
-        (color_right, shape_left): "incongruant",
+    congruent_dict = {
+        (color_left, shape_left): "congruent",
+        (color_right, shape_right): "congruent",
+        (color_left, shape_right): "incongruent",
+        (color_right, shape_left): "incongruent",
     }
     
-    return congruant_dict
+    return congruent_dict
 
 
-def determine_congruant_trial_type(subject_df):
-    """We were not quite coding congruant/incongruant correctly in initial
-    PsychoPy experiment setup.  Extract correct congruant/incongruant coding
-    for the given data frame.  Congruant/incongruant is a function of them
+def determine_congruent_trial_type(subject_df):
+    """We were not quite coding congruent/incongruent correctly in initial
+    PsychoPy experiment setup.  Extract correct congruent/incongruent coding
+    for the given data frame.  Congruent/incongruent is a function of them
     participants condition, and the key coding mapping for the color and shape 
     stimuli responses.
 
@@ -113,7 +113,7 @@ def determine_congruant_trial_type(subject_df):
 
     Returns
     -------
-    df - Returns a new pandas dataframe with a new congruantrialType feature added
+    df - Returns a new pandas dataframe with a new congruentrialType feature added
        coded from the subject condition and trial stimuli.
     """
     # the condition the subject was in, each row has the condition but the condition
@@ -122,11 +122,11 @@ def determine_congruant_trial_type(subject_df):
     condition = subject_df.condition.iloc[0]
 
     # get the map for this condition
-    congruant_map = get_congruant_map(condition)
+    congruent_map = get_congruent_map(condition)
 
     # apply the mapping to recode the feature correctly
-    #subject_df['congruantTrialType'] = subject_df.apply(lambda row: recode_trial_congruant_mapping(row.condition, row.shapeColor, row.shapeType),  axis=1)
-    subject_df['congruantTrialType'] = subject_df.apply(lambda row: congruant_map[ (row.shapeColor, row.shapeType) ],  axis=1)
+    #subject_df['congruentTrialType'] = subject_df.apply(lambda row: recode_trial_congruent_mapping(row.condition, row.shapeColor, row.shapeType),  axis=1)
+    subject_df['congruentTrialType'] = subject_df.apply(lambda row: congruent_map[ (row.shapeColor, row.shapeType) ],  axis=1)
     
     return subject_df
 
@@ -172,7 +172,7 @@ def extract_task_switching_replication_data():
         # data analysis
         subject_df = subject_df[final_features.keys()]
         subject_df = subject_df.rename(columns=final_features)
-        subject_df = determine_congruant_trial_type(subject_df)
+        subject_df = determine_congruent_trial_type(subject_df)
         
         # append this subject data to the final data frame
         if initDf:

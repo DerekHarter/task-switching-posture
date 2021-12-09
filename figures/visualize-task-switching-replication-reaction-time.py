@@ -2,7 +2,7 @@
 """Create figure visualization of stroop replication
 experiment reaction time results.  This figure summarizes
 reaction times broken down by posture (sitting vs. standing)
-and congruancy (congruant vs. incongruant) conditions.
+and congruancy (congruent vs. incongruent) conditions.
 
 """
 import argparse
@@ -17,7 +17,7 @@ figure_dir = '.'
 description = """ This script creates a figure visualization of the task switching
 replication experiment reaction time results.  The figure summarizes
 reaction times of subjects broken down by posture (sitting
-vs. standing) and congruancy (congruant vs. incongruant) conditions.
+vs. standing) and congruancy (congruent vs. incongruent) conditions.
 """
 
 
@@ -36,16 +36,16 @@ def create_reaction_time_figure(data_file, output_file):
     df = pd.read_csv(data_file)
 
     # drop all buffer trials, not needed in results here
-    mask = df.congruantTrialType != 'buffer'
+    mask = df.congruentTrialType != 'buffer'
     df = df[mask]
 
     # using seaborn high-level df, visualize accuracy by posture, and
     # using the hue (color) to split by congruent/incongruent
     fig, axes = plt.subplots(1, 2, figsize=(12, 8))
 
-    # first visualize only congruant trials
-    mask = df.congruantTrialType == 'congruant'
-    df_congruant = df[mask]
+    # first visualize only congruent trials
+    mask = df.congruentTrialType == 'congruent'
+    df_congruent = df[mask]
     
     # using seaborn high-level df, visualize reaction time by posture, and
     # using the hue (color) to split by congruent/incongruent
@@ -54,7 +54,7 @@ def create_reaction_time_figure(data_file, output_file):
                x='switchTrialType', order=['noswitch', 'switch'],
                y='reactionTime',
                hue='posture', hue_order = ['sitting', 'standing'],
-               data=df_congruant, ci=95)
+               data=df_congruent, ci=95)
 
     # add in figure information and labels
     axes[0].set_xlabel('Condition')
@@ -62,14 +62,14 @@ def create_reaction_time_figure(data_file, output_file):
     axes[0].set_title('Congruent')
     axes[0].set_ylim([0.4, 0.8])
 
-    # plot incongruant figure results
-    mask = df.congruantTrialType == 'incongruant'
-    df_incongruant = df[mask]
+    # plot incongruent figure results
+    mask = df.congruentTrialType == 'incongruent'
+    df_incongruent = df[mask]
     sb.barplot(ax=axes[1],
                x='switchTrialType', order=['noswitch', 'switch'],
                y='reactionTime',
                hue='posture', hue_order = ['sitting', 'standing'],
-               data=df_incongruant, ci=95)
+               data=df_incongruent, ci=95)
 
     # add in figure information and labels
     axes[1].set_xlabel('Condition')
